@@ -1,0 +1,23 @@
+{
+  "name": "MandallaComunicacao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "debug": "~2.2.0",
+    "ejs": "~2.5.2",
+    "express": "~4.14.0",
+    "mongoose": "^4.8.1",
+    "express-load": "~1.1.8",
+    "express-minify-html": "^0.9.0",
+    "express-session": "^1.14.2",
+    "serve-favicon": "^2.3.2"
+
+  },
+  "author": "Samir Braga",
+  "license": "ISC"
+}
