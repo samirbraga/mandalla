@@ -74,11 +74,57 @@
 				</div>
 			</article>
 		</section>
+		<section class="components uniform">
+			
+		</section>
+		<section class="clients uniform">
+			<div class="clients-list">
+				<$ data.clients.forEach(function(client, i){ $>
+					<a href="<$- client.href $>" class="client">
+						<img src="/public/Images/clients-logos/<$- client.imageSrc $>" alt="<$- client.name $>">						
+					</a>
+				<$ }); $>
+			</div>
+		</section>
 		<style id="dynamic-properties">
 			
 		</style>
 		<script>
-			var color;
+
+	
+			var clientsCarousel = function(){
+				var clientsList = document.querySelector('.clients .clients-list');
+				var clientsLinks = document.querySelectorAll('.clients-list .client');
+
+				var rate = 100/clientsLinks.length;
+
+				var selected = 0;
+				var scrollRate = Math.floor(clientsLinks.length/2)*rate;
+				
+				clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
+
+				var increaseScroll = function(){
+					if(scrollRate > -(((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
+						scrollRate -= rate;
+						selected += 1;
+					}else{
+						scrollRate = Math.floor(clientsLinks.length/2)*rate;
+						selected = 0;
+					}
+				}
+				
+				clientsLinks[selected].className += " selected";
+
+				setInterval(function(){
+					increaseScroll();
+					clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
+					[].forEach.call(clientsLinks, function(clientLink){
+						clientLink.className = "client";
+					});
+					clientsLinks[selected].className += " selected";
+				}, 2000)
+			}
+			clientsCarousel();
 
 			var fixTopBar = function(){
 				var scrollTop = (document.body.scrollTop || window.scrollY);

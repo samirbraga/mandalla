@@ -1,7 +1,13 @@
+const clientData = require('./../data/clients');
+
 module.exports = (app) => {
 	return {
 		index: (req, res) => {
-			res.render('home/index', {user: {name: "João Cabral Alves PM"}});
+			res.render('home/index', {
+				data: {
+					clients: clientData
+				}
+			});
 		}	
 	}	
 }

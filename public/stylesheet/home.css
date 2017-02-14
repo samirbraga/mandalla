@@ -253,7 +253,6 @@
 	width: 25%;
 	position: relative;
 	font-size: 12pt;
-	will-change: width;
 	cursor: pointer;
 	transition: width 0.2s ease-out;
 	/* transition-delay: 0.1s; */
@@ -382,31 +381,77 @@
 
 .who-we-are{
 	overflow: hidden;
+	background: url('/public/Images/ball-background.png') #000000 no-repeat;
+	background-size: cover;
 }
 .who-we-are header h1{
 	display: block;
 	position: absolute;
-	width: 80vmin;
-	height: 80vmin;	
 	border-radius: 50%;
-	font-size: 4em;
-	background: #f3765e;
-	top: -50%;
-	left: -50%;
+	font-size: 6em;
+	color: #ffffff;
+	text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+	top: 40px;
+	left: 40px;
 }
 .who-we-are article{
 	position: absolute;
 	width: 80vmin;
 	height: 80vmin;	
 	padding: 5%;
-	background: #00afcc;
+	background: #ffffff;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	bottom: -50%;
-	right: -50%;
+	box-shadow: 0 10px 20px 0 rgba(0,0,0,0.7);
+	top: 50%;
+	transform: translateY(-50%);
+	right: 40px;
 }
 .who-we-are article h2{
 	margin-bottom: 15px;
+}
+
+.components{
+	background: #8e44ad;
+}
+
+
+.clients{
+	background: #ffffff;
+	height: 70vh;
+	overflow-x: hidden;
+	display: flex;
+ 	align-items: center;
+}
+.clients .clients-list {
+	width: 100%;
+	display: flex;
+ 	justify-content: space-between;
+ 	padding: 0;
+ 	transition: transform 0.4s ease-out;
+}
+.clients .clients-list a{
+	display: inline-block;
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	overflow: hidden;
+	transition: transform 0.5s ease;
+	transform: scale3d(0.6, 0.6, 0.6);
+}
+.clients .clients-list img{
+	height: 100%;
+	filter: grayscale(100%);
+	transition: filter 0.4s ease;
+}
+.clients .clients-list a.selected{
+	transform: scale3d(1, 1, 1);
+}
+.clients .clients-list a.selected img{
+	filter: grayscale(0%);
+}
+.clients .clients-list a:hover img{
+	filter: grayscale(0%);
 }
