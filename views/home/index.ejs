@@ -6,139 +6,172 @@
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="/public/stylesheet/general.css">
-		<style>
-			section.uniform{
-				height: 100vh;
-				width: 100%;
-			}
-			.introduce{
-				background: #333
-			}
-
-			.topbar{
-				height: 100px;
-				width: 100%;
-				position: fixed;
-				top: 0;
-				left: 0;
-			}
-			.topbar:after{
-				content: '';
-				position: absolute;
-				width: calc(100% - 20px);
-				bottom: -1´px;
-			}
-
-			.topbar .topbar-content{
-				height: 70px;
-				max-width: 1500px;
-				margin: 15px auto;
-				padding: 0 15px;
-			}
-			.topbar .topbar-content .logo{
-				display: inline-block;
-				height: inherit;
-			}
-			.topbar .topbar-content .logo a{
-				height: inherit;
-				position: relative;
-			}
-			.topbar .topbar-content .logo img{
-				height: inherit;
-			}
-			.topbar .topbar-side-menu{
-				float: right;
-				height: inherit;
-			}
-			.topbar .topbar-side-menu div{
-				height: inherit;
-			}
-			.topbar .topbar-side-menu .topbar-menu-options{
-				display: inline-block;
-				vertical-align: top;
-			}
-			.topbar .topbar-side-menu .topbar-menu-options ul{
-				height: inherit;
-			}
-			.topbar .topbar-side-menu .topbar-menu-options ul li{
-				list-style: none;
-				display: inline-block;
-				padding: 0 10px;
-				height: inherit;
-				line-height: 70px;
-				text-transform: uppercase;
-				color: #ffffff;
-			}
-			.topbar .topbar-side-menu .topbar-menu-options ul li a{
-				position: relative;
-			}
-			.topbar .topbar-side-menu .topbar-menu-options ul li a:after{
-				content: '';
-				position: absolute;
-				display: block;
-				border-radius: 50%;
-				background: #ffffff;
-				bottom: calc(50% - 20px);
-				height: 5px;
-				width: 5px;
-				left: 50%;
-				margin-left: -2px;
-				transform: translateY(5px);
-				opacity: 0;
-				transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-			}
-
-			.topbar .topbar-side-menu .topbar-menu-options ul li a:hover:after{
-				transform: translateY(0);
-				opacity: 1;
-			}
-			.topbar .topbar-side-menu .topbar-main-menu {
-				padding: 20px 10px 0 20px;
-				display: inline-block;
-				width: 70px;
-				height: 70px;
-				cursor: pointer;
-			}
-			.topbar .topbar-side-menu .topbar-main-menu span{
-				display: block;
-				height: 2px;
-				background: #fff;
-				width: 100%;
-				margin: 5px;
-				transition: transform 0.1s ease-out;
-				transform: scaleX(1);
-			}
-			.topbar .topbar-side-menu .topbar-main-menu:hover span{
-				transform: scaleX(1.1);
-			}
-		</style>
+		<link rel="stylesheet" href="/public/stylesheet/home.css">
+		<style></style>
 	</head>
 	<body>
-		<div class="topbar">
-			<div class="topbar-content">
-				<div class="logo">
-					<a href="/">
-						<img src="/public/images/logo.png" alt="Logo Mandalla Comunicação">
-					</a>
-				</div>
-				<div class="topbar-side-menu">
-					<nav class="topbar-menu-options">
-						<ul>
-							<li><a href="#">Lorem</a></li>
-							<li><a href="#">Ullamco</a></li>
-							<li><a href="#">incididunt</a></li>
-						</ul>
-					</nav>
-					<div class="topbar-main-menu">
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
-				</div>
-			</div>
-		</div>
+		<$- include('../topbar'); $>
 		<section class="introduce uniform">
-	
+			<div class="top-gradient"></div>
+			<div class="introduce-background" id="introduce-background2" ></div>
+			<div class="introduce-background" id="introduce-background1" ></div>
+			<div class="introduce-background-overlay"></div>
+			<div class="services">
+				<input type="radio" checked name="service-in-slide" id="service1">
+				<label class="service" for="service1">
+					<h1>ASSESSORIA DE COMUNICAÇÃO</h1>
+					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
+				</label>
+				<input type="radio" name="service-in-slide" id="service2">
+				<label class="service" for="service2">
+					<h1>PROJETOS VISUAIS</h1>
+					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
+				</label>
+				<input type="radio" name="service-in-slide" id="service3">
+				<label class="service" for="service3">
+					<h1>PUBLICAÇÕES</h1>
+					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
+				</label>
+				<input type="radio" name="service-in-slide" id="service4">
+				<label class="service" for="service4">
+					<h1>OUTROS SERVIÇOS</h1>
+					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
+				</label>
+			</div>
 		</section>
+		<section class="portfolio uniform">
+			<div class="area-service" style="z-index: 10">
+				<div class="overlay-background"></div>
+				<span>ASSESSORIA DE<br style="font-size: 0">COMUNICAÇÃO</span>
+				<div class="plus-icon">+</div>
+			</div>
+			<div class="area-service" style="z-index: 9">
+				<div class="overlay-background"></div>
+				<span>PROJETOS VISUAIS</span>
+				<div class="plus-icon">+</div>
+			</div>
+			<div class="area-service" style="z-index: 8">
+				<div class="overlay-background"></div>
+				<span>PUBLICAÇÕES</span>
+				<div class="plus-icon">+</div>
+			</div>
+			<div class="area-service" style="z-index: 7">
+				<div class="overlay-background"></div>
+				<span>OUTROS SERVIÇOS</span>
+				<div class="plus-icon">+</div>
+			</div>
+		</section>
+		<section class="who-we-are uniform">
+			<header>
+				<h1>
+					QUEM<br>SOMOS?
+				</h1>
+			</header>
+			<article>
+				<div class="content">
+					<h2>Lorem ipsum</h2>
+					<p>Lorem ipsum Dolor eu nisi ut aute cupidatat est dolor nisi. Lorem ipsum Excepteur enim qui id reprehenderit voluptate tempor amet reprehenderit pariatur et nostrud. Lorem ipsum Occaecat Excepteur in velit veniam veniam ad magna minim qui nulla.</p>
+				</div>
+			</article>
+		</section>
+		<style id="dynamic-properties">
+			
+		</style>
+		<script>
+			var color;
+
+			var fixTopBar = function(){
+				var scrollTop = (document.body.scrollTop || window.scrollY);
+				var topbar = document.querySelector('.topbar');
+
+				if(scrollTop > 0){
+					topbar.className = "topbar fixed";
+				}else{
+					topbar.className = "topbar static";
+					//color = "#" + topbarBgsColor[Math.round(Math.random()*topbarBgsColor.length)];
+				}
+			}
+
+			window.addEventListener('scroll', fixTopBar);
+			window.addEventListener('DOMMouseScroll', fixTopBar);
+			window.addEventListener('mousewheel', fixTopBar);
+			window.addEventListener('wheel', fixTopBar);
+
+			var backgroundUrls = ['slide1.jpg', 'slide2.jpg', 'slide3.jpg', 'slide4.jpg'];
+
+			var dataImages = backgroundUrls.map(function(bg){
+				return "/public/images/welcome-slide/" + bg;
+			});
+
+			document.addEventListener('DOMContentLoaded', function(){
+				
+				var portfolio = document.querySelector('.portfolio');
+				var portfolioServices = document.querySelectorAll('.portfolio .area-service');
+				
+				[].forEach.call(portfolioServices, function(service, i){
+					service.addEventListener('mouseenter', function (e) {
+						e.preventDefault();
+						[].forEach.call(portfolioServices, function(serv, i){
+							serv.style.width = "15%";
+						})
+						this.style.width = "55%";
+					});
+				})
+				portfolio.addEventListener('mouseleave', function (e) {
+					[].forEach.call(portfolioServices, function(serv, i){
+						serv.style.width = "25%";
+					})
+				});	
+				
+				// Infinite slide loop
+				function passSlide(){
+					var bg1 = document.querySelector('#introduce-background1');
+					var bg2 = document.querySelector('#introduce-background2');
+					var radios = document.querySelectorAll('.introduce .services input[type=radio]');
+					var index = 0;
+					var delay = 5000;
+					var transition = 2000;
+
+					[].forEach.call(radios, function(radio, i){
+						radio.addEventListener('change', function (e) {
+							e.preventDefault();
+						})
+						document.querySelectorAll('.introduce .services label')[i].addEventListener('click', function(e){
+							e.preventDefault();
+						}, false);
+					})
+
+					var increaseIndex = function(){
+						if(index >= dataImages.length-1){
+							index = 0;
+						}else{
+							index++;
+						}
+						return index;
+					}
+
+					function fadeOut(){
+						bg1.style['background-image']  = 'url("' + dataImages[index] + '")';
+						bg2.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
+						setTimeout(function(){
+							bg1.style.opacity = 0;
+							setTimeout(fadeIn, transition);
+							radios[index].checked = true;
+						}, delay);
+					}
+					function fadeIn(){
+						bg2.style['background-image']  = 'url("' + dataImages[index] + '")';
+						bg1.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
+						setTimeout(function(){
+							bg1.style.opacity = 1;
+							setTimeout(fadeOut, transition);
+							radios[index].checked = true;
+						}, delay);
+					}
+					fadeOut();
+				}
+				passSlide();
+			});
+		</script>
 	</body>
 </html>
