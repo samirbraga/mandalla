@@ -104,25 +104,25 @@
 				</div>
 				<span class="close-description">&#x2715;</span>
 				<div class="picture-container">
-					<div class="picture-seleced-overlay" style="background-image: url('/public/Images/component-photos/monique.jpg')"></div>
+					<div class="picture-seleced-overlay" style=""></div>
 					<div class="picture-wrapper">
 						<div class="picture-row">
-							<div class="picture top" style="background-image: url('/public/Images/component-photos/samila.jpg')"></div>
-							<div class="picture right" style="background-image: url('/public/Images/component-photos/samir.jpg')"></div>
+							<div class="picture top" data-id="01" style=""></div>
+							<div class="picture right" data-id="04" style=""></div>
 						</div>
 						<div class="picture-row">
-							<div class="picture bottom" style="background-image: url('/public/Images/component-photos/felipe.jpg')"></div>
-							<div class="picture left" style="background-image: url('/public/Images/component-photos/monique.jpg')"></div>
+							<div class="picture bottom" data-id="03" style=""></div>
+							<div class="picture left" data-id="06" style=""></div>
 						</div>
 					</div>
 					<div class="picture-wrapper">
 						<div class="picture-row">
-							<div class="picture top" style="background-image: url('/public/Images/component-photos/monique.jpg')"></div>
-							<div class="picture right" style="background-image: url('/public/Images/component-photos/felipe.jpg')"></div>
+							<div class="picture top" data-id="02" style=""></div>
+							<div class="picture right" data-id="05" style=""></div>
 						</div>
 						<div class="picture-row">
-							<div class="picture bottom" style="background-image: url('/public/Images/component-photos/samir.jpg')"></div>
-							<div class="picture left" style="background-image: url('/public/Images/component-photos/monique.jpg')"></div>
+							<div class="picture bottom" data-id="04" style=""></div>
+							<div class="picture left" data-id="07" style=""></div>
 						</div>
 					</div>
 				</div>
@@ -224,8 +224,85 @@
 		var meetComponents = function(){
 			var closeMeet = document.querySelector('.close-description');
 			var pictures = document.querySelectorAll('.picture-container .picture-wrapper .picture-row .picture');
-			var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');
+			var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');			
+			var content = document.querySelector('.components .content');
+			var selectedName = document.querySelector('.components .content .selected-name');
+			var selectedDescription = document.querySelector('.components .content .selected-description');
+
+			var id2Names = {
+				"01": "samila",
+				"02": "monique",
+				"03": "edi",
+				"04": "samir",
+				"05": "felipe",
+				"06": "roberta",
+				"07": "manu"
+			}
+			var names2description = {
+				"samila": {
+					name: "Sâmila Braga",
+					description: {
+						title: 'Lorem ipsum Aliqua',
+						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
+					}
+				},
+				"monique": {
+					name: "Monique Oliveira",
+					description: {
+						title: 'Lorem ipsum Aliqua',
+						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
+					}
+				},
+				"edi": {
+					name: "Edi Santos",
+					description: {
+						title: 'Lorem ipsum Aliqua',
+						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
+					}
+				},
+				"samir": {
+					name: "Samir Braga",
+					description: {
+						title: 'Lorem ipsum Aliqua',
+						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
+					}
+				},
+				"felipe": {
+					name: "Felipe Lima",
+					description: {
+						title: 'Lorem ipsum Aliqua',
+						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
+					}
+				},
+				"roberta": {
+					name: "Roberta Tavares",
+					description: {
+						title: 'Lorem ipsum Aliqua',
+						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
+					}
+				},
+				"manu": {
+					name: "Manuela Sales",
+					description: {
+						title: 'Lorem ipsum Aliqua',
+						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
+					}
+				}
+			};
+
+			[].forEach.call(pictures, function(picture, i){
+				var id = picture.getAttribute("data-id");
+				var name = id2Names[id];
+				picture.style.backgroundImage = "url('/public/Images/component-photos/" + name + ".jpg')"; 
+			});
+
 			$(pictures).on('click', function(){
+				var id = this.getAttribute("data-id");
+				var name = id2Names[id];
+				selectedName.innerHTML = names2description[name].name.split(' ').join('<br>');
+				selectedDescription.children[0].innerHTML = names2description[name].description.title;
+				selectedDescription.children[1].innerHTML = names2description[name].description.content;
+
 				pictureOverlay.style['background-image'] = this.style['background-image'];
 				closeMeet.style.display = 'block';
 				closeMeet.style.opacity = 1;
@@ -233,10 +310,12 @@
 				pictureOverlay.style.width = '300px';
 				pictureOverlay.style.display = 'block';
 				pictureOverlay.style.opacity = 1;
+				$(content).class.add('selected');
 			})
 			$(closeMeet).on('click', function(){
 				closeMeet.style.opacity = 0;
 				pictureOverlay.style.opacity = 0;
+				$(content).class.remove('selected');
 				setTimeout(function(){
 					closeMeet.style.display = 'none';
 					pictureOverlay.style.height = '0';

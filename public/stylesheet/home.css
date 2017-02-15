@@ -375,6 +375,9 @@ transition: width 0.2s ease-out;
 	width: 30%;
 	display: inline-block;
 	text-align: center;
+	opacity: 0;
+	transform: translateY(-10px);
+	transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 .components .content .selected-name span{
 	margin: auto;
@@ -384,7 +387,19 @@ transition: width 0.2s ease-out;
 	font-size: 12pt;
 	width: 30%;
 	padding: 0 30px;
+	opacity: 0;
+	transform: translateY(-10px);
+	transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
+.components .content.selected .selected-name{
+	opacity: 1;
+	transform: translateY(0);
+}
+.components .content.selected .selected-description{
+	opacity: 1;
+	transform: translateY(0);
+}
+
 .components .picture-container{
 	display: inline-block;
 	white-space: nowrap;
@@ -456,7 +471,21 @@ transition: width 0.2s ease-out;
     background-position: center;
     transform: rotate(-45deg) translateY(-20%);
 }
-
+.components .picture-container .picture-wrapper .picture-row .picture:before{
+	content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background: #987bb8;
+    opacity: 0.5;
+	transition: opacity 0.2s ease-out;
+}
+.components .picture-container .picture-wrapper .picture-row .picture:hover:before{
+    opacity: 0;
+}
 
 .clients{
 	background: #ffffff;
