@@ -131,12 +131,20 @@
 			</div>
 		</section>
 		<section class="clients uniform">
-			<div class="clients-list">
-				<$ data.clients.forEach(function(client, i){ $>
-					<a href="<$- client.href $>" class="client">
-						<img src="/public/Images/clients-logos/<$- client.imageSrc $>" alt="<$- client.name $>">						
-					</a>
-				<$ }); $>
+			<div class="clients-list-container">
+				<div class="arrow-scroll-left">
+					<span><</span>
+				</div>
+				<div class="arrow-scroll-right">
+					<span>></span>
+				</div>
+				<div class="clients-list">
+					<$ data.clients.forEach(function(client, i){ $>
+						<a href="<$- client.href $>" class="client">
+							<img src="/public/Images/clients-logos/<$- client.imageSrc $>" alt="<$- client.name $>">
+						</a>
+					<$ }); $>
+				</div>
 			</div>
 		</section>
 		<style id="dynamic-properties">
@@ -146,6 +154,12 @@
 
 	
 			var clientsCarousel = function(){
+				var automaticScroll;
+				var buttons = {
+					left: document.querySelector('.clients .clients-list-container .arrow-scroll-left'),
+					right: document.querySelector('.clients .clients-list-container .arrow-scroll-right')
+				}
+				var clientsListContainer = document.querySelector('.clients .clients-list-container');
 				var clientsList = document.querySelector('.clients .clients-list');
 				var clientsLinks = document.querySelectorAll('.clients-list .client');
 
@@ -165,17 +179,48 @@
 						selected = 0;
 					}
 				}
+				var decreaseScroll = function(){
+					if(scrollRate < (((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
+						scrollRate += rate;
+						selected -= 1;
+					}else{
+						scrollRate = -(((clientsLinks.length-1)-Math.floor(clientsLinks.length/2))*rate);
+						selected = clientsLinks.length-1;
+					}
+				}
 				
 				clientsLinks[selected].className += " selected";
 
-				setInterval(function(){
-					increaseScroll();
+				var scroll = function(){
 					clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
 					[].forEach.call(clientsLinks, function(clientLink){
 						clientLink.className = "client";
 					});
 					clientsLinks[selected].className += " selected";
-				}, 2000)
+				}
+
+				buttons.left.addEventListener('click', function(){
+					decreaseScroll();
+					scroll();
+				})
+				buttons.right.addEventListener('click', function(){
+					increaseScroll();
+					scroll();
+				});
+
+				clientsListContainer.addEventListener('mouseenter', function(){
+					clearInterval(automaticScroll);
+				});
+
+				clientsListContainer.addEventListener('mouseleave', setAutomatic);
+
+				function setAutomatic(){
+					automaticScroll = setInterval(function(){
+						increaseScroll();
+						scroll();
+					}, 2000)
+				}
+				setAutomatic();
 			}
 			clientsCarousel();
 
@@ -211,9 +256,9 @@
 					service.addEventListener('mouseenter', function (e) {
 						e.preventDefault();
 						[].forEach.call(portfolioServices, function(serv, i){
-							serv.style.width = "15%";
+							serv.style.width = "16.6666666%";
 						})
-						this.style.width = "55%";
+						this.style.width = "50%";
 					});
 				})
 				portfolio.addEventListener('mouseleave', function (e) {
