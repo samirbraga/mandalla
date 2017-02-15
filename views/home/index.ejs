@@ -102,11 +102,13 @@
 				<div class="selected-name">
 					<span>Samir<br>Braga</span>
 				</div>
+				<span class="close-description">&#x2715;</span>
 				<div class="picture-container">
+					<div class="picture-seleced-overlay" style="background-image: url('/public/Images/component-photos/monique.jpg')"></div>
 					<div class="picture-wrapper">
 						<div class="picture-row">
 							<div class="picture top" style="background-image: url('/public/Images/component-photos/samila.jpg')"></div>
-							<div class="picture right" style="background-image: url('/public/Images/component-photos/monique.jpg')"></div>
+							<div class="picture right" style="background-image: url('/public/Images/component-photos/samir.jpg')"></div>
 						</div>
 						<div class="picture-row">
 							<div class="picture bottom" style="background-image: url('/public/Images/component-photos/felipe.jpg')"></div>
@@ -151,171 +153,262 @@
 			
 		</style>
 		<script>
-
-	
-			var clientsCarousel = function(){
-				var automaticScroll;
-				var buttons = {
-					left: document.querySelector('.clients .clients-list-container .arrow-scroll-left'),
-					right: document.querySelector('.clients .clients-list-container .arrow-scroll-right')
-				}
-				var clientsListContainer = document.querySelector('.clients .clients-list-container');
-				var clientsList = document.querySelector('.clients .clients-list');
-				var clientsLinks = document.querySelectorAll('.clients-list .client');
-
-				var rate = 100/clientsLinks.length;
-
-				var selected = 0;
-				var scrollRate = Math.floor(clientsLinks.length/2)*rate;
-				
-				clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
-
-				var increaseScroll = function(){
-					if(scrollRate > -(((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
-						scrollRate -= rate;
-						selected += 1;
+		var $ = function(elements){
+			function each(callback){
+				if(elements.length){
+					if(elements.length > 1){
+						[].forEach.call(elements, callback);
 					}else{
-						scrollRate = Math.floor(clientsLinks.length/2)*rate;
-						selected = 0;
+						callback(elements, 0);
 					}
+				}else{
+					callback(elements, 0);
 				}
-				var decreaseScroll = function(){
-					if(scrollRate < (((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
-						scrollRate += rate;
-						selected -= 1;
-					}else{
-						scrollRate = -(((clientsLinks.length-1)-Math.floor(clientsLinks.length/2))*rate);
-						selected = clientsLinks.length-1;
+			}
+			return {
+				class: (function(){
+					return{
+						add: function(newClass){
+							each(function(element){
+								var classes = element.className.split(" ");
+								if(classes.indexOf(newClass) < 0){
+									classes.push(newClass);
+									element.className = classes.join(' ');
+								}
+							})
+						},
+						remove: function(willBeRemovedClass){
+							each(function(element){
+								var classes = element.className.split(" ");
+								var indexOf = classes.indexOf(willBeRemovedClass);
+								if(indexOf > 0){
+									classes.splice(indexOf, 1);
+									element.className = classes.join(' ');
+								}
+							})
+						},
+						replace: function(class1, class2){
+							each(function(element){
+								var classes = element.className.split(" ");
+								var indexOf = classes.indexOf(class1);
+								if(indexOf > 0){
+									classes[indexOf] = class2;
+									element.className = classes.join(' ');
+								}
+							});
+						}
 					}
-				}
-				
-				clientsLinks[selected].className += " selected";
-
-				var scroll = function(){
-					clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
-					[].forEach.call(clientsLinks, function(clientLink){
-						clientLink.className = "client";
+				})(),
+				on: function(event, callback){
+					each(function(element){
+						element.addEventListener(event, callback);
 					});
-					clientsLinks[selected].className += " selected";
+				},
+				css: function(property, value){
+					if(value){
+						each(function(element){
+							element.style[property] = value;
+						});
+					}else{
+						var value;
+						each(function(element){
+							value = element.style[property];
+						});
+						return value;
+					}
 				}
+			}
+		};
+		window.$ = $;
 
-				buttons.left.addEventListener('click', function(){
-					decreaseScroll();
-					scroll();
-				})
-				buttons.right.addEventListener('click', function(){
+		var meetComponents = function(){
+			var closeMeet = document.querySelector('.close-description');
+			var pictures = document.querySelectorAll('.picture-container .picture-wrapper .picture-row .picture');
+			var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');
+			$(pictures).on('click', function(){
+				pictureOverlay.style['background-image'] = this.style['background-image'];
+				closeMeet.style.display = 'block';
+				closeMeet.style.opacity = 1;
+				pictureOverlay.style.height = '300px';
+				pictureOverlay.style.width = '300px';
+				pictureOverlay.style.display = 'block';
+				pictureOverlay.style.opacity = 1;
+			})
+			$(closeMeet).on('click', function(){
+				closeMeet.style.opacity = 0;
+				pictureOverlay.style.opacity = 0;
+				setTimeout(function(){
+					closeMeet.style.display = 'none';
+					pictureOverlay.style.height = '0';
+					pictureOverlay.style.width = '0';
+				}, 300)
+			})
+		}
+		meetComponents();
+
+		var clientsCarousel = function(){
+			var automaticScroll;
+			var buttons = {
+				left: document.querySelector('.clients .clients-list-container .arrow-scroll-left'),
+				right: document.querySelector('.clients .clients-list-container .arrow-scroll-right')
+			}
+			var clientsListContainer = document.querySelector('.clients .clients-list-container');
+			var clientsList = document.querySelector('.clients .clients-list');
+			var clientsLinks = document.querySelectorAll('.clients-list .client');
+
+			var rate = 100/clientsLinks.length;
+
+			var selected = 0;
+			var scrollRate = Math.floor(clientsLinks.length/2)*rate;
+			
+			clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
+
+			var increaseScroll = function(){
+				if(scrollRate > -(((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
+					scrollRate -= rate;
+					selected += 1;
+				}else{
+					scrollRate = Math.floor(clientsLinks.length/2)*rate;
+					selected = 0;
+				}
+			}
+			var decreaseScroll = function(){
+				if(scrollRate < (((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
+					scrollRate += rate;
+					selected -= 1;
+				}else{
+					scrollRate = -(((clientsLinks.length-1)-Math.floor(clientsLinks.length/2))*rate);
+					selected = clientsLinks.length-1;
+				}
+			}
+			
+			clientsLinks[selected].className += " selected";
+
+			var scroll = function(){
+				clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
+				[].forEach.call(clientsLinks, function(clientLink){
+					clientLink.className = "client";
+				});
+				clientsLinks[selected].className += " selected";
+			}
+
+			buttons.left.addEventListener('click', function(){
+				decreaseScroll();
+				scroll();
+			})
+			buttons.right.addEventListener('click', function(){
+				increaseScroll();
+				scroll();
+			});
+
+			clientsListContainer.addEventListener('mouseenter', function(){
+				clearInterval(automaticScroll);
+			});
+
+			clientsListContainer.addEventListener('mouseleave', setAutomatic);
+
+			function setAutomatic(){
+				automaticScroll = setInterval(function(){
 					increaseScroll();
 					scroll();
-				});
-
-				clientsListContainer.addEventListener('mouseenter', function(){
-					clearInterval(automaticScroll);
-				});
-
-				clientsListContainer.addEventListener('mouseleave', setAutomatic);
-
-				function setAutomatic(){
-					automaticScroll = setInterval(function(){
-						increaseScroll();
-						scroll();
-					}, 2000)
-				}
-				setAutomatic();
+				}, 2000)
 			}
-			clientsCarousel();
+			setAutomatic();
+		}
+		clientsCarousel();
 
-			var fixTopBar = function(){
-				var scrollTop = (document.body.scrollTop || window.scrollY);
-				var topbar = document.querySelector('.topbar');
+		var fixTopBar = function(){
+			var scrollTop = (document.body.scrollTop || window.scrollY);
+			var topbar = document.querySelector('.topbar');
 
-				if(scrollTop > 0){
-					topbar.className = "topbar fixed";
-				}else{
-					topbar.className = "topbar static";
-					//color = "#" + topbarBgsColor[Math.round(Math.random()*topbarBgsColor.length)];
-				}
+			if(scrollTop > 0){
+				topbar.className = "topbar fixed";
+			}else{
+				topbar.className = "topbar static";
+				//color = "#" + topbarBgsColor[Math.round(Math.random()*topbarBgsColor.length)];
 			}
+		}
 
-			window.addEventListener('scroll', fixTopBar);
-			window.addEventListener('DOMMouseScroll', fixTopBar);
-			window.addEventListener('mousewheel', fixTopBar);
-			window.addEventListener('wheel', fixTopBar);
+		window.addEventListener('scroll', fixTopBar);
+		window.addEventListener('DOMMouseScroll', fixTopBar);
+		window.addEventListener('mousewheel', fixTopBar);
+		window.addEventListener('wheel', fixTopBar);
 
-			var backgroundUrls = ['slide1.jpg', 'slide2.jpg', 'slide3.jpg', 'slide4.jpg'];
+		var backgroundUrls = ['slide1.jpg', 'slide2.jpg', 'slide3.jpg', 'slide4.jpg'];
 
-			var dataImages = backgroundUrls.map(function(bg){
-				return "/public/Images/welcome-slide/" + bg;
-			});
+		var dataImages = backgroundUrls.map(function(bg){
+			return "/public/Images/welcome-slide/" + bg;
+		});
 
-			document.addEventListener('DOMContentLoaded', function(){
-				
-				var portfolio = document.querySelector('.portfolio');
-				var portfolioServices = document.querySelectorAll('.portfolio .area-service');
-				
-				[].forEach.call(portfolioServices, function(service, i){
-					service.addEventListener('mouseenter', function (e) {
-						e.preventDefault();
-						[].forEach.call(portfolioServices, function(serv, i){
-							serv.style.width = "16.6666666%";
-						})
-						this.style.width = "50%";
-					});
-				})
-				portfolio.addEventListener('mouseleave', function (e) {
+		document.addEventListener('DOMContentLoaded', function(){
+			
+			var portfolio = document.querySelector('.portfolio');
+			var portfolioServices = document.querySelectorAll('.portfolio .area-service');
+			
+			[].forEach.call(portfolioServices, function(service, i){
+				service.addEventListener('mouseenter', function (e) {
+					e.preventDefault();
 					[].forEach.call(portfolioServices, function(serv, i){
-						serv.style.width = "25%";
+						serv.style.width = "16.6666666%";
 					})
-				});	
-				
-				// Infinite slide loop
-				function passSlide(){
-					var bg1 = document.querySelector('#introduce-background1');
-					var bg2 = document.querySelector('#introduce-background2');
-					var radios = document.querySelectorAll('.introduce .services input[type=radio]');
-					var index = 0;
-					var delay = 5000;
-					var transition = 2000;
+					this.style.width = "50%";
+				});
+			})
+			portfolio.addEventListener('mouseleave', function (e) {
+				[].forEach.call(portfolioServices, function(serv, i){
+					serv.style.width = "25%";
+				})
+			});	
+			
+			// Infinite slide loop
+			function passSlide(){
+				var bg1 = document.querySelector('#introduce-background1');
+				var bg2 = document.querySelector('#introduce-background2');
+				var radios = document.querySelectorAll('.introduce .services input[type=radio]');
+				var index = 0;
+				var delay = 5000;
+				var transition = 2000;
 
-					[].forEach.call(radios, function(radio, i){
-						radio.addEventListener('change', function (e) {
-							e.preventDefault();
-						})
-						document.querySelectorAll('.introduce .services label')[i].addEventListener('click', function(e){
-							e.preventDefault();
-						}, false);
+				[].forEach.call(radios, function(radio, i){
+					radio.addEventListener('change', function (e) {
+						e.preventDefault();
 					})
+					document.querySelectorAll('.introduce .services label')[i].addEventListener('click', function(e){
+						e.preventDefault();
+					}, false);
+				})
 
-					var increaseIndex = function(){
-						if(index >= dataImages.length-1){
-							index = 0;
-						}else{
-							index++;
-						}
-						return index;
+				var increaseIndex = function(){
+					if(index >= dataImages.length-1){
+						index = 0;
+					}else{
+						index++;
 					}
-
-					function fadeOut(){
-						bg1.style['background-image']  = 'url("' + dataImages[index] + '")';
-						bg2.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
-						setTimeout(function(){
-							bg1.style.opacity = 0;
-							setTimeout(fadeIn, transition);
-							radios[index].checked = true;
-						}, delay);
-					}
-					function fadeIn(){
-						bg2.style['background-image']  = 'url("' + dataImages[index] + '")';
-						bg1.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
-						setTimeout(function(){
-							bg1.style.opacity = 1;
-							setTimeout(fadeOut, transition);
-							radios[index].checked = true;
-						}, delay);
-					}
-					fadeOut();
+					return index;
 				}
-				passSlide();
-			});
+
+				function fadeOut(){
+					bg1.style['background-image']  = 'url("' + dataImages[index] + '")';
+					bg2.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
+					setTimeout(function(){
+						bg1.style.opacity = 0;
+						setTimeout(fadeIn, transition);
+						radios[index].checked = true;
+					}, delay);
+				}
+				function fadeIn(){
+					bg2.style['background-image']  = 'url("' + dataImages[index] + '")';
+					bg1.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
+					setTimeout(function(){
+						bg1.style.opacity = 1;
+						setTimeout(fadeOut, transition);
+						radios[index].checked = true;
+					}, delay);
+				}
+				fadeOut();
+			}
+			passSlide();
+		});
 		</script>
 	</body>
 </html>
