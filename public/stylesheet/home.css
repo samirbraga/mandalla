@@ -17,7 +17,7 @@
 	left: 0;
 	width: 100%;
 	height: 200px;
-    z-index: 20;
+	z-index: 20;
 	background: rgba(0,0,0,0.8); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(top, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -118,10 +118,12 @@
 	overflow: hidden;
 	white-space: nowrap;
 	height: 80vh;	
-}/* 
+}
+/* 
 .portfolio:hover .area-service{
-	width: 15%;
+width: 15%;
 } */
+
 .portfolio .area-service{
 	display: inline-block;
 	height: 100%;
@@ -133,11 +135,13 @@
 	/* transition-delay: 0.1s; */
 	background-size: cover;
 	background-position: center;
-}/* 
+}
+/* 
 .portfolio .area-service:hover{
-	width: 55%;	
-	transition: width 0.2s ease-out;
+width: 55%;	
+transition: width 0.2s ease-out;
 } */
+
 .portfolio .area-service:hover span{
 	transform: rotate(0deg);
 }
@@ -216,7 +220,7 @@
 	top: 0;
 	z-index: 10;
 }
- */
+*/
 .portfolio .area-service:nth-child(1){
 	background-image: url('https://i0.wp.com/s3-ap-southeast-1.amazonaws.com/magazine.job-like.com/magazine/wp-content/uploads/2016/11/22163235/project-manager-meeting-organization.jpg?resize=678%2C381&ssl=1');
 }
@@ -265,7 +269,6 @@
 	height: 100vmax;	
 	padding-left: 80px;
 	background: #ffffff;
-	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	box-shadow: 0 10px 20px 0 rgba(0,0,0,0.7);
@@ -283,6 +286,7 @@
 	justify-content: flex-start;
 	flex-direction: column;
 	padding-top: 5%;
+	padding-right: 80px;
 }
 .who-we-are .left-wrapper header h1{
 	display: block;
@@ -332,34 +336,77 @@
 
 
 .components{
-	background: #8e44ad;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	background: #f3765e;
+}
+.components header{
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+.components .content{
+	height: calc(100% - 100px);
 	font-size: 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.components .content .selected-name{
+	font-size: 40pt;
+	width: 30%;
+	display: inline-block;
+	text-align: center;
+}
+.components .content .selected-name span{
+	margin: auto;
+	display: inline-block;
+}
+.components .content .selected-description{
+	font-size: 12pt;
+	width: 30%;
+	padding: 0 30px;
 }
 .components .picture-container{
+	display: inline-block;
 }
 .components .picture-container .picture-wrapper{
-  width: 200px;
-  height: 200px;
-  transform: rotate(45deg);
-  display: inline-block;
+	width: 200px;
+	height: 200px;
+	transform: rotate(45deg);
+	display: inline-block;
+}
+.components .picture-container .picture-wrapper:nth-child(1){
+	width: 200px;
+	height: 200px;
+	transform: rotate(45deg) translateX(20px) translateY(-20px);
 }
 .components .picture-container .picture-wrapper:nth-child(2){
-  width: 200px;
-  height: 200px;
-  transform: rotate(45deg) translateX(-41px) translateY(41px);
+	width: 200px;
+	height: 200px;
+	transform: rotate(45deg) translateX(-21px) translateY(21px);
 }
-
 .components .picture-container .picture-wrapper .picture-row .picture{
-  width: 98px;
-  height: 98px;
-  display: inline-block;
-  margin: 1px;
-  background-color: #333333;
-  background-size: cover;
-  background-position: center;
+	width: 98px;
+	height: 98px;
+	display: inline-block;
+	margin: 1px;
+	background-color: #333333;
+	background-size: 0 00;
+	background-position: center;
+	position: relative;
+	overflow: hidden;
+}
+.components .picture-container .picture-wrapper .picture-row .picture:after{
+	content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 150%;
+    background-image: inherit;
+    background-color: #333333;
+    background-size: cover;
+    background-position: center;
+    transform: rotate(-45deg) translateY(-20%);
 }
 
 
@@ -368,14 +415,14 @@
 	height: 70vh;
 	overflow-x: hidden;
 	display: flex;
- 	align-items: center;
+	align-items: center;
 }
 .clients .clients-list {
 	width: 100%;
 	display: flex;
- 	justify-content: space-between;
- 	padding: 0;
- 	transition: transform 0.4s ease-out;
+	justify-content: space-between;
+	padding: 0;
+	transition: transform 0.4s ease-out;
 }
 .clients .clients-list a{
 	display: inline-block;

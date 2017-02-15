@@ -132,6 +132,15 @@ a{
 .topbar.fixed .topbar-side-menu .topbar-menu-options ul li{
 	color: #987bb8;
 }
+.topbar.fixed .topbar-side-menu .topbar-menu-options ul li:nth-child(1){
+	opacity: 0;
+}
+.topbar.fixed .topbar-side-menu .topbar-menu-options ul li:nth-child(2){
+	opacity: 1;
+}
+.topbar.static .topbar-side-menu .topbar-menu-options ul li:nth-child(1){
+	opacity: 1;
+}
 .topbar.fixed .topbar-side-menu .topbar-menu-options ul li a:after{
 	background: #987bb8;
 }
