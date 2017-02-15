@@ -396,6 +396,14 @@ transition: width 0.2s ease-out;
 	position: relative;
 	overflow: hidden;
 }
+.components .picture-container .picture-wrapper .picture-row .picture:active{
+	width: 300px;
+	height: 300px;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	right: 0;
+}
 .components .picture-container .picture-wrapper .picture-row .picture:after{
 	content: '';
     position: absolute;
