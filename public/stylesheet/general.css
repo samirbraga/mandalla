@@ -133,7 +133,7 @@ a{
 	color: #987bb8;
 }
 .topbar.fixed .topbar-side-menu .topbar-menu-options ul li:nth-child(1){
-	opacity: 0;
+	opacity: 1;
 }
 .topbar.fixed .topbar-side-menu .topbar-menu-options ul li:nth-child(2){
 	opacity: 1;
@@ -177,4 +177,11 @@ a{
 }
 .topbar .topbar-side-menu .topbar-main-menu:hover span{
 	transform: scaleX(1.1);
+}
+
+
+footer.main-footer{
+	min-height: 80vh;
+	height: auto;
+	background: #999999;
 }

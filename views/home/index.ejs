@@ -11,85 +11,16 @@
 	</head>
 	<body>
 		<$- include('../topbar'); $>
-		<section class="introduce uniform">
-			<div class="top-gradient"></div>
-			<div class="introduce-background" id="introduce-background2" ></div>
-			<div class="introduce-background" id="introduce-background1" ></div>
-			<div class="introduce-background-overlay"></div>
-			<div class="services">
-				<input type="radio" checked name="service-in-slide" id="service1">
-				<label class="service" for="service1">
-					<h1>ASSESSORIA DE COMUNICAÇÃO</h1>
-					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
-				</label>
-				<input type="radio" name="service-in-slide" id="service2">
-				<label class="service" for="service2">
-					<h1>PROJETOS VISUAIS</h1>
-					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
-				</label>
-				<input type="radio" name="service-in-slide" id="service3">
-				<label class="service" for="service3">
-					<h1>PUBLICAÇÕES</h1>
-					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
-				</label>
-				<input type="radio" name="service-in-slide" id="service4">
-				<label class="service" for="service4">
-					<h1>OUTROS SERVIÇOS</h1>
-					<p>Lorem ipsum Excepteur magna nulla ut cillum culpa aliquip</p>
-				</label>
-			</div>
-		</section>
-		<section class="portfolio uniform">
-			<div class="area-service" style="z-index: 10">
-				<div class="overlay-background"></div>
-				<span>ASSESSORIA DE<br style="font-size: 0">COMUNICAÇÃO</span>
-				<div class="plus-icon">+</div>
-			</div>
-			<div class="area-service" style="z-index: 9">
-				<div class="overlay-background"></div>
-				<span>PROJETOS VISUAIS</span>
-				<div class="plus-icon">+</div>
-			</div>
-			<div class="area-service" style="z-index: 8">
-				<div class="overlay-background"></div>
-				<span>PUBLICAÇÕES</span>
-				<div class="plus-icon">+</div>
-			</div>
-			<div class="area-service" style="z-index: 7">
-				<div class="overlay-background"></div>
-				<span>OUTROS SERVIÇOS</span>
-				<div class="plus-icon">+</div>
-			</div>
-		</section>
-		<section class="who-we-are uniform">
-			<div class="left-wrapper">
-				<header>
-					<h1>
-						QUEM<br>SOMOS?
-					</h1>
-				</header>
-				<article class="values" >
-					<ul>
-						<li>
-							<h2>incididunt dolor.</h2>
-						</li>
-						<li>
-							<h2>magna occaecat.</h2>
-						</li>
-						<li>
-							<h2>Henderit voluptate esse.</h2>
-						</li>
-					</ul>
-				</article>
-			</div>
-			<aside class="main-content">
-				<div class="content">
-					<h2>Lorem Culpa sit <br>dolor consequat fugiat</h2>
-					<hr>
-					<p>Lorem ipsum Dolor eu nisi ut aute cupidatat est dolor nisi. Lorem ipsum Excepteur enim qui id reprehenderit voluptate tempor amet reprehenderit pariatur et nostrud. Lorem ipsum Occaecat Excepteur in velit veniam veniam ad magna minim qui nulla.</p>
-				</div>
-			</aside>
-		</section>
+
+		<!-- Section .introduce -->
+		<$- include('./partials/section-introduce'); $>
+
+		<!-- Section .portfolio -->
+		<$- include('./partials/section-portfolio'); $>
+
+		<!-- Section .who-we-are -->
+		<$- include('./partials/section-who-we-are'); $>
+
 		<section class="components uniform">
 			<header>
 				<h1>
@@ -104,25 +35,25 @@
 				</div>
 				<span class="close-description">&#x2715;</span>
 				<div class="picture-container">
-					<div class="picture-seleced-overlay" style=""></div>
+					<div class="picture-seleced-overlay" ></div>
 					<div class="picture-wrapper">
 						<div class="picture-row">
-							<div class="picture top" data-id="01" style=""></div>
-							<div class="picture right" data-id="04" style=""></div>
+							<div class="picture top" data-id="01" ></div>
+							<div class="picture right" data-id="04" style="display: none"></div>
 						</div>
 						<div class="picture-row">
-							<div class="picture bottom" data-id="03" style=""></div>
-							<div class="picture left" data-id="06" style=""></div>
+							<div class="picture bottom" data-id="03" ></div>
+							<div class="picture left" data-id="06" ></div>
 						</div>
 					</div>
 					<div class="picture-wrapper">
 						<div class="picture-row">
-							<div class="picture top" data-id="02" style=""></div>
-							<div class="picture right" data-id="05" style=""></div>
+							<div class="picture top" data-id="02" ></div>
+							<div class="picture right" data-id="05" ></div>
 						</div>
 						<div class="picture-row">
-							<div class="picture bottom" data-id="04" style=""></div>
-							<div class="picture left" data-id="07" style=""></div>
+							<div class="picture bottom" data-id="04" ></div>
+							<div class="picture left" data-id="07" ></div>
 						</div>
 					</div>
 				</div>
@@ -149,345 +80,12 @@
 				</div>
 			</div>
 		</section>
-		<style id="dynamic-properties">
-			
-		</style>
-		<script>
-		var $ = function(elements){
-			function each(callback){
-				if(elements.length){
-					if(elements.length > 1){
-						[].forEach.call(elements, callback);
-					}else{
-						callback(elements, 0);
-					}
-				}else{
-					callback(elements, 0);
-				}
-			}
-			return {
-				class: (function(){
-					return{
-						add: function(newClass){
-							each(function(element){
-								var classes = element.className.split(" ");
-								if(classes.indexOf(newClass) < 0){
-									classes.push(newClass);
-									element.className = classes.join(' ');
-								}
-							})
-						},
-						remove: function(willBeRemovedClass){
-							each(function(element){
-								var classes = element.className.split(" ");
-								var indexOf = classes.indexOf(willBeRemovedClass);
-								if(indexOf > 0){
-									classes.splice(indexOf, 1);
-									element.className = classes.join(' ');
-								}
-							})
-						},
-						replace: function(class1, class2){
-							each(function(element){
-								var classes = element.className.split(" ");
-								var indexOf = classes.indexOf(class1);
-								if(indexOf > 0){
-									classes[indexOf] = class2;
-									element.className = classes.join(' ');
-								}
-							});
-						}
-					}
-				})(),
-				on: function(event, callback){
-					each(function(element){
-						element.addEventListener(event, callback);
-					});
-				},
-				css: function(property, value){
-					if(value){
-						each(function(element){
-							element.style[property] = value;
-						});
-					}else{
-						var value;
-						each(function(element){
-							value = element.style[property];
-						});
-						return value;
-					}
-				}
-			}
-		};
-		window.$ = $;
+		<section class="uniform">
+		</section>
+		
+		<$- include('../footer'); $>
 
-		var meetComponents = function(){
-			var closeMeet = document.querySelector('.close-description');
-			var pictures = document.querySelectorAll('.picture-container .picture-wrapper .picture-row .picture');
-			var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');			
-			var content = document.querySelector('.components .content');
-			var selectedName = document.querySelector('.components .content .selected-name');
-			var selectedDescription = document.querySelector('.components .content .selected-description');
-
-			var id2Names = {
-				"01": "samila",
-				"02": "monique",
-				"03": "edi",
-				"04": "samir",
-				"05": "felipe",
-				"06": "roberta",
-				"07": "manu"
-			}
-			var names2description = {
-				"samila": {
-					name: "Sâmila Braga",
-					description: {
-						title: 'Lorem ipsum Aliqua',
-						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-					}
-				},
-				"monique": {
-					name: "Monique Oliveira",
-					description: {
-						title: 'Lorem ipsum Aliqua',
-						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-					}
-				},
-				"edi": {
-					name: "Edi Santos",
-					description: {
-						title: 'Lorem ipsum Aliqua',
-						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-					}
-				},
-				"samir": {
-					name: "Samir Braga",
-					description: {
-						title: 'Lorem ipsum Aliqua',
-						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-					}
-				},
-				"felipe": {
-					name: "Felipe Lima",
-					description: {
-						title: 'Lorem ipsum Aliqua',
-						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-					}
-				},
-				"roberta": {
-					name: "Roberta Tavares",
-					description: {
-						title: 'Lorem ipsum Aliqua',
-						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-					}
-				},
-				"manu": {
-					name: "Manuela Sales",
-					description: {
-						title: 'Lorem ipsum Aliqua',
-						content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-					}
-				}
-			};
-
-			[].forEach.call(pictures, function(picture, i){
-				var id = picture.getAttribute("data-id");
-				var name = id2Names[id];
-				picture.style.backgroundImage = "url('/public/Images/component-photos/" + name + ".jpg')"; 
-			});
-
-			$(pictures).on('click', function(){
-				var id = this.getAttribute("data-id");
-				var name = id2Names[id];
-				selectedName.innerHTML = names2description[name].name.split(' ').join('<br>');
-				selectedDescription.children[0].innerHTML = names2description[name].description.title;
-				selectedDescription.children[1].innerHTML = names2description[name].description.content;
-
-				pictureOverlay.style['background-image'] = this.style['background-image'];
-				closeMeet.style.display = 'block';
-				closeMeet.style.opacity = 1;
-				pictureOverlay.style.height = '300px';
-				pictureOverlay.style.width = '300px';
-				pictureOverlay.style.display = 'block';
-				pictureOverlay.style.opacity = 1;
-				$(content).class.add('selected');
-			})
-			$(closeMeet).on('click', function(){
-				closeMeet.style.opacity = 0;
-				pictureOverlay.style.opacity = 0;
-				$(content).class.remove('selected');
-				setTimeout(function(){
-					closeMeet.style.display = 'none';
-					pictureOverlay.style.height = '0';
-					pictureOverlay.style.width = '0';
-				}, 300)
-			})
-		}
-		meetComponents();
-
-		var clientsCarousel = function(){
-			var automaticScroll;
-			var buttons = {
-				left: document.querySelector('.clients .clients-list-container .arrow-scroll-left'),
-				right: document.querySelector('.clients .clients-list-container .arrow-scroll-right')
-			}
-			var clientsListContainer = document.querySelector('.clients .clients-list-container');
-			var clientsList = document.querySelector('.clients .clients-list');
-			var clientsLinks = document.querySelectorAll('.clients-list .client');
-
-			var rate = 100/clientsLinks.length;
-
-			var selected = 0;
-			var scrollRate = Math.floor(clientsLinks.length/2)*rate;
-			
-			clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
-
-			var increaseScroll = function(){
-				if(scrollRate > -(((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
-					scrollRate -= rate;
-					selected += 1;
-				}else{
-					scrollRate = Math.floor(clientsLinks.length/2)*rate;
-					selected = 0;
-				}
-			}
-			var decreaseScroll = function(){
-				if(scrollRate < (((clientsLinks.length-2)-Math.floor(clientsLinks.length/2))*rate)){
-					scrollRate += rate;
-					selected -= 1;
-				}else{
-					scrollRate = -(((clientsLinks.length-1)-Math.floor(clientsLinks.length/2))*rate);
-					selected = clientsLinks.length-1;
-				}
-			}
-			
-			clientsLinks[selected].className += " selected";
-
-			var scroll = function(){
-				clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
-				[].forEach.call(clientsLinks, function(clientLink){
-					clientLink.className = "client";
-				});
-				clientsLinks[selected].className += " selected";
-			}
-
-			buttons.left.addEventListener('click', function(){
-				decreaseScroll();
-				scroll();
-			})
-			buttons.right.addEventListener('click', function(){
-				increaseScroll();
-				scroll();
-			});
-
-			clientsListContainer.addEventListener('mouseenter', function(){
-				clearInterval(automaticScroll);
-			});
-
-			clientsListContainer.addEventListener('mouseleave', setAutomatic);
-
-			function setAutomatic(){
-				automaticScroll = setInterval(function(){
-					increaseScroll();
-					scroll();
-				}, 2000)
-			}
-			setAutomatic();
-		}
-		clientsCarousel();
-
-		var fixTopBar = function(){
-			var scrollTop = (document.body.scrollTop || window.scrollY);
-			var topbar = document.querySelector('.topbar');
-
-			if(scrollTop > 0){
-				topbar.className = "topbar fixed";
-			}else{
-				topbar.className = "topbar static";
-				//color = "#" + topbarBgsColor[Math.round(Math.random()*topbarBgsColor.length)];
-			}
-		}
-
-		window.addEventListener('scroll', fixTopBar);
-		window.addEventListener('DOMMouseScroll', fixTopBar);
-		window.addEventListener('mousewheel', fixTopBar);
-		window.addEventListener('wheel', fixTopBar);
-
-		var backgroundUrls = ['slide1.jpg', 'slide2.jpg', 'slide3.jpg', 'slide4.jpg'];
-
-		var dataImages = backgroundUrls.map(function(bg){
-			return "/public/Images/welcome-slide/" + bg;
-		});
-
-		document.addEventListener('DOMContentLoaded', function(){
-			
-			var portfolio = document.querySelector('.portfolio');
-			var portfolioServices = document.querySelectorAll('.portfolio .area-service');
-			
-			[].forEach.call(portfolioServices, function(service, i){
-				service.addEventListener('mouseenter', function (e) {
-					e.preventDefault();
-					[].forEach.call(portfolioServices, function(serv, i){
-						serv.style.width = "16.6666666%";
-					})
-					this.style.width = "50%";
-				});
-			})
-			portfolio.addEventListener('mouseleave', function (e) {
-				[].forEach.call(portfolioServices, function(serv, i){
-					serv.style.width = "25%";
-				})
-			});	
-			
-			// Infinite slide loop
-			function passSlide(){
-				var bg1 = document.querySelector('#introduce-background1');
-				var bg2 = document.querySelector('#introduce-background2');
-				var radios = document.querySelectorAll('.introduce .services input[type=radio]');
-				var index = 0;
-				var delay = 5000;
-				var transition = 2000;
-
-				[].forEach.call(radios, function(radio, i){
-					radio.addEventListener('change', function (e) {
-						e.preventDefault();
-					})
-					document.querySelectorAll('.introduce .services label')[i].addEventListener('click', function(e){
-						e.preventDefault();
-					}, false);
-				})
-
-				var increaseIndex = function(){
-					if(index >= dataImages.length-1){
-						index = 0;
-					}else{
-						index++;
-					}
-					return index;
-				}
-
-				function fadeOut(){
-					bg1.style['background-image']  = 'url("' + dataImages[index] + '")';
-					bg2.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
-					setTimeout(function(){
-						bg1.style.opacity = 0;
-						setTimeout(fadeIn, transition);
-						radios[index].checked = true;
-					}, delay);
-				}
-				function fadeIn(){
-					bg2.style['background-image']  = 'url("' + dataImages[index] + '")';
-					bg1.style['background-image']  = 'url("' + dataImages[increaseIndex()] + '")';
-					setTimeout(function(){
-						bg1.style.opacity = 1;
-						setTimeout(fadeOut, transition);
-						radios[index].checked = true;
-					}, delay);
-				}
-				fadeOut();
-			}
-			passSlide();
-		});
-		</script>
+		<script src="/public/javascript/general.js" ></script>
+		<script src="/public/javascript/home.js" ></script>
 	</body>
 </html>
