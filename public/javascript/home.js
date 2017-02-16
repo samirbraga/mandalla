@@ -147,6 +147,95 @@ var meetComponents = function(){
 }
 meetComponents();
 
+var depositionsCarousel = function(){
+	var arrowLeft = document.querySelector('.depositions .arrow-scroll-left');
+	var arrowRight = document.querySelector('.depositions .arrow-scroll-right');
+	var depositionsContainer = document.querySelector('.depositions .depositions-container');
+	var depositionsContainer = document.querySelector('.depositions .depositions-container');
+	var depositions = document.querySelectorAll('.depositions .depositions-container .depositions-wrapper');
+	var scroll = depositions[0].offsetWidth;
+	var count = 1;
+	var length = depositions.length-2;
+
+	$(depositionsContainer).scrollX(scroll);
+
+	var x = null;
+	var _x = null;
+	var scrollLeft = null;
+	var dragging = false;
+
+	$(depositionsContainer).on('mousedown', function(e){
+		x = e.pageX;
+		dragging = true;
+		scrollLeft = this.scrollLeft;
+	})
+
+	var module = function(int){
+		return (int < 0 ? int*-1 : int);
+	}
+
+	$(window).on('mouseup', function(e){
+		dragging = false;
+		var difference = (x - _x);
+		if(module(difference) > depositions[0].offsetWidth/3){
+			if(difference > 0){
+				next();
+				difference = 0;
+			}else{
+				prev()
+				difference = 0;
+			}
+		}else{
+			$(depositionsContainer).scrollX(scrollLeft, 400)
+		}
+	})
+
+	$(depositionsContainer).on('mousemove', function(e){
+		_x = e.pageX;
+		if(dragging){
+			var difference = (x - _x);
+			this.scrollLeft = scrollLeft + (x - _x);
+		}
+	})
+
+	var next = function(){
+		if(count < length){
+			scroll += depositions[0].offsetWidth;
+			count += 1;
+			$(depositionsContainer).scrollX(scroll, 500);
+		}else{
+			scroll += depositions[0].offsetWidth;
+			count = 1;
+			$(depositionsContainer).scrollX(scroll, 250);
+			setTimeout(function(){
+				depositionsContainer.scrollLeft = depositions[0].offsetWidth/2;
+				scroll = depositions[0].offsetWidth;
+				$(depositionsContainer).scrollX(scroll, 250)
+			}, 250);
+		}
+	}
+	var prev = function(){
+		if(count <= 1){
+			scroll -= depositions[0].offsetWidth;
+			$(depositionsContainer).scrollX(scroll, 250);
+			setTimeout(function(){
+				count = length;
+				depositionsContainer.scrollLeft = depositions[0].offsetWidth*(depositions.length-1);
+				scroll = depositions[0].offsetWidth*(depositions.length-2);
+				$(depositionsContainer).scrollX(scroll, 250);
+			}, 250);
+		}else{
+			scroll -= depositions[0].offsetWidth;
+			count -= 1;
+			$(depositionsContainer).scrollX(scroll, 500);
+		}
+	}
+
+	$(arrowRight).on('click', next);
+	$(arrowLeft).on('click', prev);
+}
+depositionsCarousel();
+
 var clientsCarousel = function(){
 	var automaticScroll;
 	var buttons = {

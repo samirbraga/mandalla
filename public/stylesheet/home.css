@@ -561,8 +561,8 @@ transition: width 0.2s ease-out;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translateY(-50%) translateX(-50%) scale3d(0.7, 2.5, 0.7);
-	font-size: 1.5em;
+	transform: translateY(-50%) translateX(-50%) scale3d(1, 1.5, 0.7);
+	font-size: 1.8em;
 	color: #00afcc;
 }
 .clients .clients-list-container .arrow-scroll-left{
@@ -602,4 +602,66 @@ transition: width 0.2s ease-out;
 }
 .clients .clients-list a:hover img{
 	filter: grayscale(0%);
+}
+
+
+.depositions{
+	background: #cc6e5b;
+	overflow: hidden;
+}
+.depositions header{
+	height: 150px;
+}
+.depositions .depositions-container{
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+	height: calc(100% - 150px);
+	font-size: 0;
+	cursor: -webkit-grab;
+	cursor: grab;
+}
+.depositions .depositions-container:active{
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}
+.depositions .depositions-container .depositions-wrapper{
+	width: 100vw;
+	display: inline-block;
+	font-size: 12pt;
+}
+.depositions .depositions-container .depositions-wrapper .deposition{
+	width: 50%;
+	margin: auto;
+	display: block;
+}
+.depositions .depositions-container .depositions-wrapper .deposition p{
+	white-space: normal;
+	width: 100%;
+}
+.depositions div[class^="arrow"]{
+	height: 100%;
+	width: 10%;
+	position: absolute;
+	top: 0;
+	z-index: 100;
+	cursor: pointer;
+}
+.depositions div[class^="arrow"] span{
+	display: block;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	font-size: 19.5vmin;
+	color: #00afcc;
+	font-family: Verdana, sans-serif
+}
+.depositions .arrow-scroll-left{
+	left: 0;
+}
+.depositions .arrow-scroll-right{
+	right: 0;
 }
