@@ -33,7 +33,7 @@ a{
 	transition: background 0.3s ease-out;
 }
 .topbar.static{
-	height: 100px;
+	height: 105px;
 	line-height: 70px;
 }
 .topbar.fixed{
@@ -57,6 +57,10 @@ a{
 }
 .topbar.static .topbar-content{
 	height: 70px;
+}
+.topbar.static .soft-line{
+	height: 5px;
+	width: 100%;
 }
 .topbar.fixed .topbar-content{
 	height: 50px;

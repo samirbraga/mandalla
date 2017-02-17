@@ -107,6 +107,7 @@ var $ = function(elements){
 			each(function(element){
 				cancelAnimationFrame(_animation);
 				var _animation = null;
+				var callbackExec = false;
 				duration = duration || 300;
 				easeFunction = easeFunction || "easeOutQuad";
 				var initValue = element.scrollX || element.scrollLeft;
@@ -119,9 +120,9 @@ var $ = function(elements){
 					if(progress < duration){
 						element.scrollLeft = initValue + (timePercent*difference)
 					}else{
-						if(callback) { 
-							console.log(callback.toString())
+						if(callback && !callbackExec) { 
 							callback(); 
+							callbackExec = true;
 						}
 						cancelAnimationFrame(_animation);
 					}
@@ -133,3 +134,8 @@ var $ = function(elements){
 	}
 };
 window.$ = $;
+
+
+Math.getRandomFrom = function(n){
+	return Math.round(Math.random()*n);
+}

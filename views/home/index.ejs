@@ -6,11 +6,15 @@
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="/public/stylesheet/general.css">
-		<link rel="stylesheet" href="/public/stylesheet/home.css">
+		<link rel="stylesheet" href="/public/stylesheet/home.css">	
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Open+Sans+Condensed:300i|Questrial" rel="stylesheet"	>
 		<style></style>
 	</head>
 	<body>
+
+		<!-- .topbar -->
 		<$- include('../topbar'); $>
+
 
 		<!-- Section .introduce -->
 		<$- include('./partials/section-introduce'); $>
@@ -21,114 +25,17 @@
 		<!-- Section .who-we-are -->
 		<$- include('./partials/section-who-we-are'); $>
 
-		<section class="components uniform">
-			<header>
-				<h1>
-					<span>QUEM FAZ A MANDALLA GIRAR</span>
-					<br>
-					<hr>
-				</h1>
-			</header>
-			<div class="content">
-				<div class="selected-name">
-					<span>Samir<br>Braga</span>
-				</div>
-				<span class="close-description">&#x2715;</span>
-				<div class="picture-container">
-					<div class="picture-seleced-overlay" ></div>
-					<div class="picture-wrapper">
-						<div class="picture-row">
-							<div class="picture top" data-id="01" ></div>
-							<div class="picture right" data-id="04" style="display: none"></div>
-						</div>
-						<div class="picture-row">
-							<div class="picture bottom" data-id="03" ></div>
-							<div class="picture left" data-id="06" ></div>
-						</div>
-					</div>
-					<div class="picture-wrapper">
-						<div class="picture-row">
-							<div class="picture top" data-id="02" ></div>
-							<div class="picture right" data-id="05" ></div>
-						</div>
-						<div class="picture-row">
-							<div class="picture bottom" data-id="04" ></div>
-							<div class="picture left" data-id="07" ></div>
-						</div>
-					</div>
-				</div>
-				<div class="selected-description">
-					<h2>RAPAZ BOM</h2>
-					<p>Ô minino bom, é bom viu, esse aí. É aquele minino que tu olha e diz: "Esse é bom".</p>
-				</div>
-			</div>
-		</section>
-		<section class="clients uniform">
-			<div class="clients-list-container">
-				<div class="arrow-scroll-left">
-					<span>❮</span>
-				</div>
-				<div class="arrow-scroll-right">
-					<span>❯</span>
-				</div>
-				<div class="clients-list">
-					<$ data.clients.forEach(function(client, i){ $>
-						<a href="<$- client.href $>" class="client">
-							<img src="/public/Images/clients-logos/<$- client.imageSrc $>" alt="<$- client.name $>">
-						</a>
-					<$ }); $>
-				</div>
-			</div>
-		</section>
-		<section class="depositions uniform" onselectstart="return false;">
-			<header></header>
-			<div class="arrow-scroll-left">
-				<span>❮</span>
-			</div>
-			<div class="arrow-scroll-right">
-				<span>❯</span>
-			</div>
-			<article class="depositions-container" >
-				<div class="depositions-wrapper"></div>
-				<div class="depositions-wrapper">
-					<blockquote class="deposition">
-						<h2>Lorem ipsum Nisi 1</h2>
-						<p>Lorem ipsum Sint elit laborum nisi magna laborum. Lorem ipsum Consectetur commodo irure ut occaecat cupidatat qui. Lorem ipsum Aliqua enim sit sint deserunt velit est eu. Lorem ipsum Sed Ut eu magna sit Excepteur enim minim consequat Duis pariatur quis. Lorem ipsum Consequat eiusmod consectetur laboris cillum non proident irure id. Lorem ipsum Excepteur est anim adipisicing culpa ut consequat minim do cillum.</p>
-						<small>Phullanus di Thall</small>
-					</blockquote>
-				</div>
-				<div class="depositions-wrapper">
-					<blockquote class="deposition">
-						<h2>Lorem ipsum Nisi 2</h2>
-						<p>Lorem ipsum Sint elit laborum nisi magna laborum. Lorem ipsum Consectetur commodo irure ut occaecat cupidatat qui. Lorem ipsum Aliqua enim sit sint deserunt velit est eu. Lorem ipsum Sed Ut eu magna sit Excepteur enim minim consequat Duis pariatur quis. Lorem ipsum Consequat eiusmod consectetur laboris cillum non proident irure id. Lorem ipsum Excepteur est anim adipisicing culpa ut consequat minim do cillum.</p>
-						<small>Phullanus di Thall</small>
-					</blockquote>
-				</div>
-				<div class="depositions-wrapper">
-					<blockquote class="deposition">
-						<h2>Lorem ipsum Nisi 3</h2>
-						<p>Lorem ipsum Sint elit laborum nisi magna laborum. Lorem ipsum Consectetur commodo irure ut occaecat cupidatat qui. Lorem ipsum Aliqua enim sit sint deserunt velit est eu. Lorem ipsum Sed Ut eu magna sit Excepteur enim minim consequat Duis pariatur quis. Lorem ipsum Consequat eiusmod consectetur laboris cillum non proident irure id. Lorem ipsum Excepteur est anim adipisicing culpa ut consequat minim do cillum.</p>
-						<small>Phullanus di Thall</small>
-					</blockquote>
-				</div>
-				<div class="depositions-wrapper">
-					<blockquote class="deposition">
-						<h2>Lorem ipsum Nisi 4</h2>
-						<p>Lorem ipsum Sint elit laborum nisi magna laborum. Lorem ipsum Consectetur commodo irure ut occaecat cupidatat qui. Lorem ipsum Aliqua enim sit sint deserunt velit est eu. Lorem ipsum Sed Ut eu magna sit Excepteur enim minim consequat Duis pariatur quis. Lorem ipsum Consequat eiusmod consectetur laboris cillum non proident irure id. Lorem ipsum Excepteur est anim adipisicing culpa ut consequat minim do cillum.</p>
-						<small>Phullanus di Thall</small>
-					</blockquote>
-				</div>
-				<div class="depositions-wrapper">
-					<blockquote class="deposition">
-						<h2>Lorem ipsum Nisi 5</h2>
-						<p>Lorem ipsum Sint elit laborum nisi magna laborum. Lorem ipsum Consectetur commodo irure ut occaecat cupidatat qui. Lorem ipsum Aliqua enim sit sint deserunt velit est eu. Lorem ipsum Sed Ut eu magna sit Excepteur enim minim consequat Duis pariatur quis. Lorem ipsum Consequat eiusmod consectetur laboris cillum non proident irure id. Lorem ipsum Excepteur est anim adipisicing culpa ut consequat minim do cillum.</p>
-						<small>Phullanus di Thall</small>
-					</blockquote>
-				</div>
-				<div class="depositions-wrapper"></div>
-			</article>
-		</section>
-		
+		<!-- Section .components -->
+		<$- include('./partials/section-components'); $>
+
+		<!-- Section .clients -->
+		<$- include('./partials/section-clients'); $>
+
+		<!-- Section .depositions -->
+		<$- include('./partials/section-depositions'); $>
+
+
+		<!-- .main-footer -->
 		<$- include('../footer'); $>
 
 		<script src="/public/javascript/general.js" ></script>
