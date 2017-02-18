@@ -53,8 +53,9 @@ window.addEventListener('wheel', passScroll);
 
 var meetComponents = function(){
 	var closeMeet = document.querySelector('.close-description');
-	var pictures = document.querySelectorAll('.picture-container .picture-wrapper .picture-row .picture');
-	var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');			
+	var pictureContainer = document.querySelector('.components .content .picture-container');
+	var pictures = document.querySelectorAll('.picture-container .picture');
+	//var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');			
 	var content = document.querySelector('.components .content');
 	var selectedName = document.querySelector('.components .content .selected-name');
 	var selectedDescription = document.querySelector('.components .content .selected-description');
@@ -121,12 +122,39 @@ var meetComponents = function(){
 		}
 	};
 
-	[].forEach.call(pictures, function(picture, i){
+	var rotate = 0
+	$(pictures).each(function(picture, i){
 		var id = picture.getAttribute("data-id");
 		var name = id2Names[id];
+		
+		var resetIndex = function(ind){
+			var rotateIndex = 0;
+			var indexOrder = ind;
+
+			for(var k = 0; k < pictures.length; k++){
+				if(indexOrder >= pictures.length){
+					indexOrder = 0;
+				}
+				pictures[indexOrder++].setAttribute("data-rotate-index", rotateIndex++);
+			}
+		}
+
+		picture.setAttribute("data-rotate-index", id);
+		picture.addEventListener('click', function(){
+			var index = parseFloat(this.getAttribute('data-rotate-index'));
+			var deg = -(360/pictures.length)*(+index);
+			if(index >= pictures.length/2){
+				deg = (360/pictures.length)*(pictures.length - index)
+			}
+			rotate += deg;
+			pictureContainer.style.transform = "rotate(" + rotate + "deg)";
+			resetIndex(i);
+		}, false);
+
 		picture.style.backgroundImage = "url('/public/Images/component-photos/" + name + ".jpg')"; 
 	});
 
+	/*
 	$(pictures).on('click', function(){
 		var id = this.getAttribute("data-id");
 		var name = id2Names[id];
@@ -154,6 +182,7 @@ var meetComponents = function(){
 			pictureOverlay.style.width = '0';
 		}, 300)
 	});
+	*/
 }
 meetComponents();
 
@@ -364,7 +393,6 @@ var clientsCarousel = function(){
 
 	var scroll = function(){
 		var windowWidth = window.innerWidth;
-		console.log(windowWidth, scrollRate, (-(+scrollRate+windowWidth/2)));
 		if(selected == clientsLinks.length-1){
 			clientsList.style.transform = "translateX(" + (-(+scrollRate+windowWidth/2)) + "pz)";
 		}else{

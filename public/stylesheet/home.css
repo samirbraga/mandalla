@@ -5,14 +5,14 @@
 	position: relative;
 }
 body::after{
-    position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
-    content: url('/public/Images/component-photos/samila.jpg')
-    		 url('/public/Images/component-photos/monique.jpg')
-    		 url('/public/Images/component-photos/edi.jpg')
-    		 url('/public/Images/component-photos/manu.jpg')
-    		 url('/public/Images/component-photos/felipe.jpg')
-    		 url('/public/Images/component-photos/roberta.jpg')
-    		 url('/public/Images/component-photos/samir.jpg');
+	position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+	content: url('/public/Images/component-photos/samila.jpg')
+	url('/public/Images/component-photos/monique.jpg')
+	url('/public/Images/component-photos/edi.jpg')
+	url('/public/Images/component-photos/manu.jpg')
+	url('/public/Images/component-photos/felipe.jpg')
+	url('/public/Images/component-photos/roberta.jpg')
+	url('/public/Images/component-photos/samir.jpg');
 }
 
 section header{
@@ -24,6 +24,7 @@ section header h1.simple{
 section header h1.simple span{
 	font-family: 'Questrial', sans-serif;
 	text-transform: uppercase;
+	font-size: 0.85em;
 }
 section header h1.simple br{
 	display: none;
@@ -39,7 +40,7 @@ section header h1.simple hr{
 }
 
 section header.passed h1.simple hr{
-	width: 30%;
+	width: 20%;
 }
 
 
@@ -481,6 +482,45 @@ transition: width 0.2s ease-out;
 	white-space: nowrap;
 	position: relative;
 }
+.components div.picture-container{
+	height: 280px;
+	width: 280px;
+	position: relative;
+	margin: 40px;
+	transition: transform 0.6s ease-out;
+}
+.components div.picture-container div.picture{
+	height: 80px;
+	width: 80px;
+	border-radius: 100%;
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	background-size: cover;
+}
+.components div.picture-container div.picture:nth-child(1){
+	transform: rotate(51.43deg) translateY(-140px);
+}
+.components div.picture-container div.picture:nth-child(2){
+	transform: rotate(102.86deg) translateY(-140px);
+}
+.components div.picture-container div.picture:nth-child(3){
+	transform: rotate(154.30deg) translateY(-140px);
+}
+.components div.picture-container div.picture:nth-child(4){
+	transform: rotate(205.72deg) translateY(-140px);
+}
+.components div.picture-container div.picture:nth-child(5){
+	transform: rotate(257.15deg) translateY(-140px);
+}
+.components div.picture-container div.picture:nth-child(6){
+	transform: rotate(308.58deg) translateY(-140px);
+}
+.components div.picture-container div.picture:nth-child(7){
+	transform: rotate(360deg) translateY(-140px);
+}
+
+/*
 .components .picture-container .picture-wrapper{
 	width: 200px;
 	height: 200px;
@@ -571,6 +611,8 @@ transition: width 0.2s ease-out;
 .components .picture-container .picture-wrapper .picture-row .picture:hover:before{
     opacity: 0;
 }
+*/
+
 
 .clients{
 	background: #ffffff;
