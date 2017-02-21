@@ -1,9 +1,9 @@
 const express = require('express'),
-	  app = express(),
-	  http = require('http'),
-	  load = require('express-load'),
-	  favicon = require('serve-favicon'),
-	  path = require('path'),
+	    app = express(),
+	    http = require('http'),
+	    load = require('express-load'),
+	    favicon = require('serve-favicon'),
+	    path = require('path'),
       ejs = require('ejs'),
       minifyHTML = require('express-minify-html');
 
@@ -17,7 +17,6 @@ app.set('view engine', 'ejs');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-/*
 app.use(minifyHTML({
     override:      true,
     exception_url: false,
@@ -31,7 +30,6 @@ app.use(minifyHTML({
         minifyCSS:                 true
     }
 }));
-*/
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
@@ -39,7 +37,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.disable('x-powered-by');
 
 load('controllers').
-    then('routes').
+  then('routes').
 		into(app);
 
 

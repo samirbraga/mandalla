@@ -3,32 +3,35 @@
 		<h1 class="simple">
 			<span>QUEM FAZ A MANDALLA GIRAR</span>
 			<br>
-			<hr> 
+			<hr>
 		</h1>
 	</header>
-	<div class="content">
-		<div class="selected-name">
-			<span>Samir<br>Braga</span>
-		</div>
-		<span class="close-description">&#x2715;</span>
-		<div class="picture-container">
-			<div class="picture" data-id="01"></div>
-			<div class="picture" data-id="02"></div>
-			<div class="picture" data-id="03"></div>
-			<div class="picture" data-id="04"></div>
-			<div class="picture" data-id="05" ></div>
-			<div class="picture" data-id="06" ></div>
-			<div class="picture" data-id="07" ></div>
-		</div>
-		<div class="selected-description">
-			<h2>RAPAZ BOM</h2>
-			<p>Ô minino bom, é bom viu, esse aí. É aquele minino que tu olha e diz: "Esse é bom".</p>
-		</div>
-	</div>
+	<article class="content">
+		<$ data.components.forEach(function(component, i){ $>
+			<div class="row clearfix <$- (i % 2 == 0 ? 'right' : 'left') $>">
+				<div class="wrapper">
+					<$ if(i % 2 == 0){ $>
+						<div class="person-picture clearfix">
+							<img src="/public/Images/component-photos/<$- component.src $>.jpg" alt="">
+						</div>
+					<$ } $>
+						<div class="text">
+							<h3><$- component.name $></h3>
+							<p><$- component.description.content $></p>
+						</div>
+					<$ if(i % 2 != 0){ $>
+						<div class="person-picture clearfix">
+							<img src="/public/Images/component-photos/<$- component.src $>.jpg" alt="">
+						</div>
+					<$ } $>
+				</div>
+			</div>
+		<$ }); $>
+	</article>
 </section>
 
-<!-- 
-# 
+<!--
+#
 
 <div class="picture-container">
 			<div class="picture-seleced-overlay" ></div>

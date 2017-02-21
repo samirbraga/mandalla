@@ -6,6 +6,7 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	font-family: sans-serif;
+	outline: none;
 }
 
 .clearfix:after {
@@ -18,14 +19,13 @@ a{
 	text-decoration: none;
 	color: inherit;
 	height: inherit;
-	display: block;	
+	display: block;
 }
 
 
 .topbar{
 	height: 100px;
 	width: 100%;
-	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 1000;
@@ -35,12 +35,14 @@ a{
 .topbar.static{
 	height: 105px;
 	line-height: 70px;
+	position: absolute;
 }
 .topbar.fixed{
 	height: 80px;
 	line-height: 50px;
 	background: #ffffff;
-	box-shadow: 0 0 5px 0 rgba(0,0,0,0.1)
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+	position: fixed;
 }
 .topbar:after{
 	content: '';
@@ -184,8 +186,92 @@ a{
 }
 
 
-footer.main-footer{
+.main-footer{
 	min-height: 80vh;
 	height: auto;
-	background: #4c4c4c;
+	background-image: url('/public/Images/blurred-background.jpg');
+	background-size: cover;
+	padding-bottom: 20px;
+}
+.main-footer header{
+  height: 150px;
+  text-align: center;
+  line-height: 150px;
+	color: #ffffff;
+}
+.main-footer .content{
+	height: auto;
+	width: 100%;
+	margin-top: 40px;
+}
+.main-footer .content .wrapper{
+	width: 100%;
+	max-width: 1000px;
+	margin: auto;
+}
+.main-footer .content .wrapper .form-row{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.main-footer .content .wrapper .form-row:nth-child(1) input{
+	width: calc(50% - 10px);
+	height: 50px;
+	background: rgba(255, 255, 255, 0.3);
+	padding: 0 15px;
+	color: #ffffff;
+	font-size: 1.1em;
+}
+.main-footer .content .wrapper .form-row:nth-child(2) textarea{
+	height: 200px;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.3);
+	padding: 15px;
+	color: #ffffff;
+	font-size: 1.1em;
+}
+.main-footer .content .wrapper .form-row input::placeholder,
+.main-footer .content .wrapper .form-row textarea::placeholder{
+	color: rgba(255, 255, 255, .9);
+}
+.main-footer .content .wrapper .form-row:nth-child(3) {
+	justify-content: flex-end;
+}
+.main-footer .content .wrapper .form-row:nth-child(3) input{
+	height: 50px;
+	padding: 0 30px;
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	background: transparent;
+	color: rgba(255, 255, 255, 0.7);
+}
+.main-footer footer{
+	height: auto;
+	width: 100%;
+	text-align: center;
+}
+.main-footer footer nav{
+	display: inline-block;
+	margin: auto;
+	margin-right: 15px;
+}
+.main-footer footer nav ul li{
+	list-style: none;
+	display: inline-block;
+	margin-left: 15px;
+}
+.main-footer footer nav ul li a{
+	display: block;
+	width: 50px;
+	height: 50px;
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	background-position: center;
+	border-radius: 50%;
+	border: 1px solid #ffffff;
+	opacity: 0.7;
+	transition: opacity 0.2s ease-in-out;
+}
+.main-footer footer nav ul li a:hover{
+	opacity: 1;
 }

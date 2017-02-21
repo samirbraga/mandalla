@@ -2,7 +2,9 @@
 var sections = document.querySelectorAll('.uniform');
 
 
-var passScroll = function(){
+var passScroll = function () {
+    'use strict';
+
 	var scrollTop = (document.body.scrollTop || window.scrollY);
 
 	function getOffset(el) {
@@ -10,10 +12,10 @@ var passScroll = function(){
 		return {
 			left: el.left,
 			top: el.top + scrollTop
-		}
+		};
 	}
 
-	if(scrollTop > getOffset(sections[1]).top - 400){
+	if (scrollTop > getOffset(sections[1]).top - 400) {
 		var section = sections[1];
 		var services = section.querySelectorAll('.area-service');
 		$(services).each(function(service, index){
@@ -22,8 +24,8 @@ var passScroll = function(){
 			}, (index+1)*100);
 		})
 	}
-	if(scrollTop > getOffset(sections[2]).top - 400){
-		var section = sections[2];
+	if (scrollTop > getOffset(sections[3]).top - 400) {
+		var section = sections[3];
 		var selectionString = ".left-wrapper header h1, .left-wrapper article ul li, .main-content .content, .main-content .content hr";
 		var selections = section.querySelectorAll(selectionString);
 		$(selections).each(function(service, index){
@@ -32,8 +34,8 @@ var passScroll = function(){
 			}, (index+1)*120);
 		})
 	}
-	if(scrollTop > getOffset(sections[3]).top - 400){
-		var section = sections[3];
+	if (scrollTop > getOffset(sections[5]).top - 400) {
+		var section = sections[5];
 		var selectionString = "header, .content .picture-container .picture";
 		var selections = section.querySelectorAll(selectionString);
 		$(selections).each(function(service, index){
@@ -44,10 +46,10 @@ var passScroll = function(){
 	}
 }
 
-window.addEventListener('scroll', passScroll);
-window.addEventListener('DOMMouseScroll', passScroll);
-window.addEventListener('mousewheel', passScroll);
-window.addEventListener('wheel', passScroll);
+//window.addEventListener('scroll', passScroll);
+//window.addEventListener('DOMMouseScroll', passScroll);
+//window.addEventListener('mousewheel', passScroll);
+//window.addEventListener('wheel', passScroll);
 
 
 
@@ -55,78 +57,16 @@ var meetComponents = function(){
 	var closeMeet = document.querySelector('.close-description');
 	var pictureContainer = document.querySelector('.components .content .picture-container');
 	var pictures = document.querySelectorAll('.picture-container .picture');
-	//var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');			
+	//var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');
 	var content = document.querySelector('.components .content');
 	var selectedName = document.querySelector('.components .content .selected-name');
 	var selectedDescription = document.querySelector('.components .content .selected-description');
-
-	var id2Names = {
-		"01": "samila",
-		"02": "monique",
-		"03": "edi",
-		"04": "samir",
-		"05": "felipe",
-		"06": "roberta",
-		"07": "manu"
-	}
-
-	var names2description = {
-		"samila": {
-			name: "Sâmila Braga",
-			description: {
-				title: 'Lorem ipsum Aliqua',
-				content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-			}
-		},
-		"monique": {
-			name: "Monique Oliveira",
-			description: {
-				title: 'Lorem ipsum Aliqua',
-				content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-			}
-		},
-		"edi": {
-			name: "Edi Santos",
-			description: {
-				title: 'Lorem ipsum Aliqua',
-				content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-			}
-		},
-		"samir": {
-			name: "Samir Braga",
-			description: {
-				title: 'Lorem ipsum Aliqua',
-				content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-			}
-		},
-		"felipe": {
-			name: "Felipe Lima",
-			description: {
-				title: 'Lorem ipsum Aliqua',
-				content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-			}
-		},
-		"roberta": {
-			name: "Roberta Tavares",
-			description: {
-				title: 'Lorem ipsum Aliqua',
-				content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-			}
-		},
-		"manu": {
-			name: "Manuela Sales",
-			description: {
-				title: 'Lorem ipsum Aliqua',
-				content: 'Lorem ipsum Aliqua nulla mollit in exercitation sint ex veniam consequat elit esse adipisicing. Lorem ipsum Tempor.'
-			}
-		}
-	};
 
 	var rotate = 0
 	$(pictures).each(function(picture, i){
 		var id = picture.getAttribute("data-id");
 		var name = id2Names[id];
-		
+
 		var resetIndex = function(ind){
 			var rotateIndex = 0;
 			var indexOrder = ind;
@@ -151,7 +91,7 @@ var meetComponents = function(){
 			resetIndex(i);
 		}, false);
 
-		picture.style.backgroundImage = "url('/public/Images/component-photos/" + name + ".jpg')"; 
+		picture.style.backgroundImage = "url('/public/Images/component-photos/" + name + ".jpg')";
 	});
 
 	/*
@@ -184,7 +124,7 @@ var meetComponents = function(){
 	});
 	*/
 }
-meetComponents();
+//meetComponents();
 
 
 
@@ -201,7 +141,7 @@ var depositionsCarousel = function(){
 	depositionsContainer.innerHTML = depositionsContainer.innerHTML + firstDeposition.outerHTML;
 
 	depositions = document.querySelectorAll('.depositions .depositions-container .depositions-wrapper');
-	
+
 	var module = function(int){
 		return (int < 0 ? int*-1 : int);
 	}
@@ -223,7 +163,7 @@ var depositionsCarousel = function(){
 	var getScroll = function(){
 		return (getIndex())*step();
 	}
-	
+
 	var updateScroll = function(){
 		scrollLeft = depositionsContainer.scrollLeft;
 	}
@@ -254,7 +194,7 @@ var depositionsCarousel = function(){
 		var delta = 0;
 		if (!event) event = window.event;
 		if (event.wheelDelta) {
-			delta = event.wheelDelta/120; 
+			delta = event.wheelDelta/120;
 		} else if (event.detail) {
 			delta = -event.detail/3;
 		}
@@ -318,12 +258,13 @@ var depositionsCarousel = function(){
 			this.scrollLeft = scrollLeft + (x - _x);
 		}
 	});
-
+	var nextTimeout;
 	var next = function(){
 		updateScroll();
+		clearTimeout(nextTimeout);
 		if(getIndex() >= length){
 			scrollTo(getScroll() + step());
-			setTimeout(function(){
+			nextTimeout = setTimeout(function(){
 				setIndex(1);
 				depositionsContainer.scrollLeft = getScroll();
 			}, 500);
@@ -332,14 +273,16 @@ var depositionsCarousel = function(){
 			$(depositionsContainer).scrollX(getScroll(), 500);
 		}
 	}
+	var prevTimeout;
 	var prev = function(){
 		updateScroll();
+		clearTimeout(prevTimeout);
 		if(getIndex() > 1){
 			setIndex(getIndex() - 1);
 			$(depositionsContainer).scrollX(getScroll(), 500);
 		}else{
 			$(depositionsContainer).scrollX(getScroll()-step(), 400);
-			setTimeout(function(){
+			prevTimeout = setTimeout(function(){
 				setIndex(length);
 				depositionsContainer.scrollLeft = getScroll();
 			}, 500);
@@ -367,7 +310,7 @@ var clientsCarousel = function(){
 
 	var selected = 0;
 	var scrollRate = Math.floor(clientsLinks.length/2)*rate;
-	
+
 	clientsList.style.transform = "translateX(" + (scrollRate) + "%)";
 
 	var increaseScroll = function(){
@@ -388,7 +331,7 @@ var clientsCarousel = function(){
 			selected = clientsLinks.length-1;
 		}
 	}
-	
+
 	clientsLinks[selected].className += " selected";
 
 	var scroll = function(){
@@ -427,7 +370,7 @@ var clientsCarousel = function(){
 	}
 	setAutomatic();
 }
-clientsCarousel();
+//clientsCarousel();
 
 var fixTopBar = function(){
 	var scrollTop = (document.body.scrollTop || window.scrollY);
@@ -440,19 +383,19 @@ var fixTopBar = function(){
 		//color = "#" + topbarBgsColor[Math.round(Math.random()*topbarBgsColor.length)];
 	}
 }
-window.addEventListener('scroll', fixTopBar);
-window.addEventListener('DOMMouseScroll', fixTopBar);
-window.addEventListener('mousewheel', fixTopBar);
-window.addEventListener('wheel', fixTopBar);
+//window.addEventListener('scroll', fixTopBar);
+//window.addEventListener('DOMMouseScroll', fixTopBar);
+//window.addEventListener('mousewheel', fixTopBar);
+//window.addEventListener('wheel', fixTopBar);
 
-var backgroundUrls = ['slide1.jpg', 'slide1.jpg', 'slide1.jpg', 'slide1.jpg'];
+var backgroundUrls = ['slide3.jpg', 'slide3.jpg', 'slide3.jpg', 'slide3.jpg'];
 
 var dataImages = backgroundUrls.map(function(bg){
 	return "/public/Images/welcome-slide/" + bg;
 });
 
 document.addEventListener('DOMContentLoaded', function(){
-	
+
 	var randomTopbarLineColor = function(){
 		var colors = ['#f3765e', '#00afcc', '#987bb8', '#999999'];
 		var softLine = document.querySelector('.topbar .soft-line');
@@ -460,11 +403,11 @@ document.addEventListener('DOMContentLoaded', function(){
 		softLine.style.background = colors[Math.getRandomFrom(colors.length-1)];
 	}
 	randomTopbarLineColor();
-	
+
 	var portfolioHover = function(){
 		var portfolio = document.querySelector('.portfolio');
 		var portfolioServices = document.querySelectorAll('.portfolio .area-service');
-		
+
 		[].forEach.call(portfolioServices, function(service, i){
 			service.addEventListener('mousemove', function (e) {
 				e.preventDefault();
@@ -478,10 +421,10 @@ document.addEventListener('DOMContentLoaded', function(){
 			[].forEach.call(portfolioServices, function(serv, i){
 				serv.style.width = "25%";
 			})
-		});	
+		});
 	}
-	portfolioHover();
-	
+	//portfolioHover();
+
 	// Infinite slide loop
 	function passSlide(){
 		var bg1 = document.querySelector('#introduce-background1');
