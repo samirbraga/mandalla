@@ -244,6 +244,13 @@ a{
 	border: 1px solid rgba(255, 255, 255, 0.7);
 	background: transparent;
 	color: rgba(255, 255, 255, 0.7);
+	transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+	cursor: pointer;
+}
+.main-footer .content .wrapper .form-row:nth-child(3) input:hover{
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	background: rgba(255, 255, 255, 0.7);
+	color: #872f28;
 }
 .main-footer footer{
 	height: auto;

@@ -1,7 +1,6 @@
 
 var sections = document.querySelectorAll('.uniform');
 
-
 var passScroll = function () {
     'use strict';
 
@@ -54,77 +53,21 @@ var passScroll = function () {
 
 
 var meetComponents = function(){
-	var closeMeet = document.querySelector('.close-description');
-	var pictureContainer = document.querySelector('.components .content .picture-container');
-	var pictures = document.querySelectorAll('.picture-container .picture');
-	//var pictureOverlay = document.querySelector('.picture-container .picture-seleced-overlay');
-	var content = document.querySelector('.components .content');
-	var selectedName = document.querySelector('.components .content .selected-name');
-	var selectedDescription = document.querySelector('.components .content .selected-description');
+	var pictureWrappers = document.querySelectorAll('.components .content .row .wrapper');
+  var componentsObj = {};
+  componentsJson.forEach(function(el, i) {
+    componentsObj[el.src] = el;
+  });
+  $(pictureWrappers).on('click', function(){
+    var src = this.getAttribute('data-src');
+    var name = componentsObj[src].name;
+    var description = componentsObj[src].description.content;
 
-	var rotate = 0
-	$(pictures).each(function(picture, i){
-		var id = picture.getAttribute("data-id");
-		var name = id2Names[id];
+    alert(name + "\n" + description)
 
-		var resetIndex = function(ind){
-			var rotateIndex = 0;
-			var indexOrder = ind;
-
-			for(var k = 0; k < pictures.length; k++){
-				if(indexOrder >= pictures.length){
-					indexOrder = 0;
-				}
-				pictures[indexOrder++].setAttribute("data-rotate-index", rotateIndex++);
-			}
-		}
-
-		picture.setAttribute("data-rotate-index", id);
-		picture.addEventListener('click', function(){
-			var index = parseFloat(this.getAttribute('data-rotate-index'));
-			var deg = -(360/pictures.length)*(+index);
-			if(index >= pictures.length/2){
-				deg = (360/pictures.length)*(pictures.length - index)
-			}
-			rotate += deg;
-			pictureContainer.style.transform = "rotate(" + rotate + "deg)";
-			resetIndex(i);
-		}, false);
-
-		picture.style.backgroundImage = "url('/public/Images/component-photos/" + name + ".jpg')";
-	});
-
-	/*
-	$(pictures).on('click', function(){
-		var id = this.getAttribute("data-id");
-		var name = id2Names[id];
-		selectedName.innerHTML = names2description[name].name.split(' ').join('<br>');
-		selectedDescription.children[0].innerHTML = names2description[name].description.title;
-		selectedDescription.children[1].innerHTML = names2description[name].description.content;
-
-		pictureOverlay.style['background-image'] = this.style['background-image'];
-		closeMeet.style.display = 'block';
-		closeMeet.style.opacity = 1;
-		pictureOverlay.style.height = '306px';
-		pictureOverlay.style.width = '306px';
-		pictureOverlay.style.display = 'block';
-		pictureOverlay.style.opacity = 1;
-		$(content).class.add('selected');
-	});
-
-	$(closeMeet).on('click', function(){
-		closeMeet.style.opacity = 0;
-		pictureOverlay.style.opacity = 0;
-		$(content).class.remove('selected');
-		setTimeout(function(){
-			closeMeet.style.display = 'none';
-			pictureOverlay.style.height = '0';
-			pictureOverlay.style.width = '0';
-		}, 300)
-	});
-	*/
+  });
 }
-//meetComponents();
+meetComponents();
 
 
 

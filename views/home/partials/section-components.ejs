@@ -9,15 +9,15 @@
 	<article class="content">
 		<$ data.components.forEach(function(component, i){ $>
 			<div class="row clearfix <$- (i % 2 == 0 ? 'right' : 'left') $>">
-				<div class="wrapper">
+				<div class="wrapper" data-src="<$- component.src $>" >
 					<$ if(i % 2 == 0){ $>
 						<div class="person-picture clearfix">
 							<img src="/public/Images/component-photos/<$- component.src $>.jpg" alt="">
 						</div>
 					<$ } $>
 						<div class="text">
-							<h3><$- component.name $></h3>
-							<p><$- component.description.content $></p>
+							<h3><$- component.name.split(" ").join("<br>") $></h3>
+							<!-- <p><$- component.description.content $></p> -->
 						</div>
 					<$ if(i % 2 != 0){ $>
 						<div class="person-picture clearfix">
@@ -28,6 +28,9 @@
 			</div>
 		<$ }); $>
 	</article>
+	<div class="component-overlay">
+		
+	</div>
 </section>
 
 <!--
