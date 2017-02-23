@@ -18,9 +18,13 @@ body::after{
 */
 
 body.blurred{
-  -webkit-filter: blur(10px);
-          filter: blur(10px);
+  overflow: hidden
 }
+/*body.blurred section{
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+  overflow: hidden;
+}*/
 
 
  header{
@@ -79,14 +83,11 @@ article p, aside p{
 .introduce .introduce-background-overlay{
     width: 100%;
     height: 100%;
-    background: #34495e;
-    background: -webkit-linear-gradient(to left, #2c3e50 , #11181f);
-    background: -webkit-linear-gradient(right, #2c3e50 , #11181f);
-    background: linear-gradient(to left, #2c3e50 , #11181f);
+    background: url('/public/Images/overlay-dots.png') rgba(0,0,0, 0.05) repeat;
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.3;
+    opacity: 0.9;
     z-index: 20;
 }
 
@@ -510,7 +511,8 @@ article p, aside p{
     width: 100%;
     max-width: 450px;
     top: 50%;
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
     -webkit-transition: opacity 0.3s ease-out;
     transition: opacity 0.3s ease-out;
     opacity: 1 !important; /* 0 */
@@ -592,6 +594,7 @@ article p, aside p{
     width: 50%;
     position: relative;
     display: table;
+    cursor: pointer;
 }
 .components .content .row:nth-child(1) .wrapper:after{
     content: '';
@@ -649,6 +652,17 @@ article p, aside p{
     vertical-align: middle;
     border: 1px solid #ffffff;
     display: inline-block;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.components .content .row .wrapper .person-picture.overlaid{
+    width: 200px;
+    height: 200px;
+    top: 50% !important;
+    left: 25% !important;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    z-index: 100;
 }
 .components .content .row .wrapper .person-picture img{
     width: 100%;
@@ -680,7 +694,39 @@ article p, aside p{
     text-align: left;
     padding-left: 20px;
 }
+.components .component-overlay-background{
+    position: fixed;
+    z-index: 90;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(0,0,0);
+    opacity: 0;
+    -webkit-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    display: none;
+}
+.components .component-overlay-background.showed{
+    opacity: 0.3;
+}
 
+.components .component-overlay{
+    position: fixed;
+    z-index: 95;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0.5);
+    -webkit-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    display: none;
+}
+.components .component-overlay.showed{
+    opacity: 0.5;
+}
 
 
 .clients{
@@ -698,9 +744,19 @@ article p, aside p{
     color: #000000;
 }
 .clients .clients-list-container{
-    width: 100%;
+    width: calc(100% - 200px);
+    max-width: 1060px;
     position: relative;
-    margin-top: 40px;
+    margin: 40px auto auto auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding-right: 40px;
 }
 .clients .clients-list-container:hover .client{
     opacity: 0.5;
@@ -708,21 +764,32 @@ article p, aside p{
 .clients .clients-list-container:before{
     content: '';
     position: absolute;
-    bottom: -20px;
+    bottom: 0;
     height: 20px;
     width: 100%;
     left: 0;
     background: #ffffff;
     z-index: 10;
 }
-.clients .clients-list-container .clients-list-row{
+.clients .clients-list-container:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 20px;
+    right: 20px;
+    background: #ffffff;
+    z-index: 10;
+}
+
+/*.clients .clients-list-container .clients-list-row{
     width: 100%;
     max-width: 1060px;
     display: table;
     margin: 0 auto 40px auto;
     position: relative;
-}
-.clients .clients-list-container .clients-list-row:after{
+}*/
+/*.clients .clients-list-container .clients-list-row:after{
     content: '';
     position: absolute;
     right: 10px;
@@ -731,23 +798,27 @@ article p, aside p{
     top: 0;
     background: #ffffff;
     z-index: 10;
-}
-.clients .clients-list-container .clients-list-row .client{
+}*/
+.clients .clients-list-container .client{
     display: inline-block;
     width: 130px;
     height: 130px;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    margin-left: 40px;
+    margin-left: 38px;
+    margin-bottom: 38px;
     position: relative;
     -webkit-transition: opacity 0.3s ease-in-out;
     transition: opacity 0.3s ease-in-out;
 }
-.clients .clients-list-container .clients-list-row .client:hover{
+.clients .clients-list-container .client:last-child:after{
+    display: none;
+}
+.clients .clients-list-container .client:hover{
     opacity: 1;
 }
-.clients .clients-list-container .clients-list-row .client:after,
-.clients .clients-list-container .clients-list-row .client:before{
+.clients .clients-list-container .client:after,
+.clients .clients-list-container .client:before{
     content: '';
     position: absolute;
     width: 4px;
@@ -755,19 +826,19 @@ article p, aside p{
     background: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
 }
-.clients .clients-list-container .clients-list-row .client:after{
+.clients .clients-list-container .client:after{
     right: -20px;
     top:  50%;
     -webkit-transform: translate(50%, -50%);
             transform: translate(50%, -50%);
 }
-.clients .clients-list-container .clients-list-row .client:before{
+.clients .clients-list-container .client:before{
     bottom: -20px;
     left: 50%;
     -webkit-transform: translate(-50%, 50%);
             transform: translate(-50%, 50%);
 }
-.clients .clients-list-container .clients-list-row .client img{
+.clients .clients-list-container .client img{
     margin: auto;
     width: 50%;
     height: 50%;
@@ -787,7 +858,6 @@ article p, aside p{
     background-position: center;
     /* background-attachment: fixed; */
 }
-
 .depositions header{
     height: 150px;
     text-align: center;
@@ -809,7 +879,6 @@ article p, aside p{
     z-index: 10;
     cursor: url('/public/Images/cursor-slide.png') 1 1, pointer;
 }
-
 .depositions .depositions-container:active{
     cursor: url('/public/Images/cursor-slide-active.png') 1 1, pointer;
 }

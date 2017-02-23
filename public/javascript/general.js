@@ -28,23 +28,39 @@ var $ = function(elements){
 	return {
 		class: (function(){
 			return{
-				add: function(newClass){
+				add: function(newClasses){
 					each(function(element){
 						var classes = element.className.split(" ");
-						if(classes.indexOf(newClass) < 0){
-							classes.push(newClass);
-							element.className = classes.join(' ');
-						}
+						newClasses.split(' ').forEach(function(newClass){
+							if(classes.indexOf(newClass) < 0){
+								classes.push(newClass);
+							}
+						});
+						element.className = classes.join(' ');
 					})
 				},
-				remove: function(willBeRemovedClass){
+				has: function(classVerify){
+					var returned;
 					each(function(element){
 						var classes = element.className.split(" ");
-						var indexOf = classes.indexOf(willBeRemovedClass);
-						if(indexOf > 0){
-							classes.splice(indexOf, 1);
-							element.className = classes.join(' ');
+						if(classes.indexOf(classVerify) >= 0){
+							returned = true;
+						}else{
+							returned = false;
 						}
+					})
+					return returned;
+				},
+				remove: function(willBeRemovedClasses){
+					each(function(element){
+						var classes = element.className.split(" ");
+						willBeRemovedClasses.split(" ").forEach(function(willBeRemovedClass){
+							var indexOf = classes.indexOf(willBeRemovedClass);
+							if(indexOf > 0){
+								classes.splice(indexOf, 1);
+							}
+						})
+						element.className = classes.join(' ');
 					})
 				},
 				replace: function(class1, class2){
@@ -80,10 +96,59 @@ var $ = function(elements){
 		each: function(callback){
 			each(callback);
 		},
+		offset: function() {
+			var offset;
+			each(function(el){
+				el = el.getBoundingClientRect();
+				offset =  {
+					left: el.left,
+					top: el.top
+				};
+			});
+			return offset;
+		},
+		offset: function() {
+			var offset;
+			each(function(el){
+				el = el.getBoundingClientRect();
+				offset =  {
+					left: el.left,
+					top: el.top
+				};
+			});
+			return offset;
+		},
+		height: function() {
+			var height;
+			each(function(el){
+				height = el.offsetHeight;
+			});
+			return height;
+		},
+		width: function() {
+			var width;
+			each(function(el){
+				width = el.offsetWidth;
+			});
+			return width;
+		},
+		attr: function(attr, value) {
+			var args = arguments;
+			var returnedAttr = true;
+			each(function(el){
+				if(args.length > 1){
+					el.setAttribute(attr, value);
+				}else{
+					returnedAttr = el.getAttribute(attr);
+				}
+			});
+			return returnedAttr;
+		},
 		scrollY: function(target, duration, easeFunction){
 			each(function(element){
 				cancelAnimationFrame(_animation);
-				var _animation;
+				var _animation = null;
+				var callbackExec = false;
 				duration = duration || 300;
 				easeFunction = easeFunction || "easeOutQuad";
 				var initValue = element.scrollY || element.scrollTop;
@@ -91,11 +156,15 @@ var $ = function(elements){
 				var start = null;
 				var animate = function(timestamp){
 					if(!start) start = timestamp;
-  					var progress = timestamp - start;
+  				var progress = timestamp - start;
 					var timePercent = EasingFunctions[easeFunction](progress/duration);
 					if(progress < duration){
 						element.scrollTop = initValue + (timePercent*difference)
 					}else{
+						if(callback && !callbackExec) {
+							callback();
+							callbackExec = true;
+						}
 						cancelAnimationFrame(_animation);
 					}
 					_animation = requestAnimationFrame(animate);
@@ -120,8 +189,8 @@ var $ = function(elements){
 					if(progress < duration){
 						element.scrollLeft = initValue + (timePercent*difference)
 					}else{
-						if(callback && !callbackExec) { 
-							callback(); 
+						if(callback && !callbackExec) {
+							callback();
 							callbackExec = true;
 						}
 						cancelAnimationFrame(_animation);

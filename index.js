@@ -44,7 +44,7 @@ load('controllers').
 // Middlewares
 
 app.use((req, res, next) => {
-    res.render('not-found/index');
+    res.end('not-found/index');
     next();
 });
 app.use((req, res, next) => {

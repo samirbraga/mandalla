@@ -1,12 +1,41 @@
+//(function(){
+
+var body = document.body;
 
 var sections = document.querySelectorAll('.uniform');
 
+var toggleMenu = function () {
+  var menuIcon = document.querySelector('.topbar .topbar-main-menu');
+  var menuOverlay = document.querySelector('.main-menu .main-menu-overlay');
+  var menu = document.querySelector('.main-menu');
+
+  var menuFns = {
+    open: function(){
+      menu.style.opacity = 1;
+      $(menu).class.add('actived');
+      $(body).class.add('no-overflow');
+    },
+    close: function(){
+      menu.style.opacity = 0;
+      $(body).class.remove('no-overflow');
+      setTimeout(function(){
+        $(menu).class.remove('actived');
+      }, 300)
+    }
+  }
+
+  $(menuIcon).on('click', menuFns.open);
+  $(menuOverlay).on('click', menuFns.close);
+
+}
+//toggleMenu();
+
+
 var passScroll = function () {
-    'use strict';
+  'use strict';
 
-	var scrollTop = (document.body.scrollTop || window.scrollY);
-
-	function getOffset(el) {
+	var scrollTop = (body.scrollTop || window.scrollY);
+  function getOffset(el) {
 		el = el.getBoundingClientRect();
 		return {
 			left: el.left,
@@ -54,6 +83,9 @@ var passScroll = function () {
 
 var meetComponents = function(){
 	var pictureWrappers = document.querySelectorAll('.components .content .row .wrapper');
+  var componentBgOverlay = document.querySelector('.components .component-overlay-background');
+  var componentOverlay = document.querySelector('.components .component-overlay');
+
   var componentsObj = {};
   componentsJson.forEach(function(el, i) {
     componentsObj[el.src] = el;
@@ -63,7 +95,31 @@ var meetComponents = function(){
     var name = componentsObj[src].name;
     var description = componentsObj[src].description.content;
 
-    alert(name + "\n" + description)
+    var pictureElement = this.querySelector('.person-picture');
+
+    $(componentBgOverlay).css('display', 'block');
+    $(componentOverlay).css('display', 'block');
+
+    setTimeout(function(){
+      $(componentBgOverlay).class.add('showed');
+      $(componentOverlay).class.add('showed');
+
+      $(body).class.add('blurred');
+    }, 50)
+
+    var initTop = $(pictureElement).offset().top;
+    var initLeft = $(pictureElement).offset().left;
+
+    var st = document.scrollY || body.scrollTop;
+    var sl = document.scrollX || body.scrollLeft;
+
+    $(pictureElement).css('position', 'fixed');
+    $(pictureElement).css('top', (+initTop) + "px");
+    $(pictureElement).css('left', (+initLeft) + "px");
+
+    setTimeout(function(){
+      $(pictureElement).class.add('overlaid');
+    }, 50)
 
   });
 }
@@ -315,21 +371,33 @@ var clientsCarousel = function(){
 }
 //clientsCarousel();
 
-var fixTopBar = function(){
-	var scrollTop = (document.body.scrollTop || window.scrollY);
-	var topbar = document.querySelector('.topbar');
 
-	if(scrollTop > 0){
-		topbar.className = "topbar fixed";
-	}else{
-		topbar.className = "topbar static";
-		//color = "#" + topbarBgsColor[Math.round(Math.random()*topbarBgsColor.length)];
-	}
+
+var fixTopBar = function(){
+  var lst = (body.scrollTop || window.scrollY);
+  var delta = 5;
+  var topbar = document.querySelector('.topbar');
+  var fix = function(){
+  	var scrollTop = (body.scrollTop || window.scrollY);
+    /*
+    if(Math.abs(lst - scrollTop) <= delta)
+      return;
+    */
+  	if(scrollTop > 0){
+  		$(topbar).class.replace("static", "fixed");
+  	}else{
+      $(topbar).class.replace("fixed", "static");
+  	}
+    lst = scrollTop;
+  }
+  window.addEventListener('scroll', fix);
+  window.addEventListener('DOMMouseScroll', fix);
+  window.addEventListener('mousewheel', fix);
+  window.addEventListener('wheel', fix);
 }
-//window.addEventListener('scroll', fixTopBar);
-//window.addEventListener('DOMMouseScroll', fixTopBar);
-//window.addEventListener('mousewheel', fixTopBar);
-//window.addEventListener('wheel', fixTopBar);
+fixTopBar();
+
+
 
 var backgroundUrls = ['slide3.jpg', 'slide3.jpg', 'slide3.jpg', 'slide3.jpg'];
 
@@ -346,27 +414,6 @@ document.addEventListener('DOMContentLoaded', function(){
 		softLine.style.background = colors[Math.getRandomFrom(colors.length-1)];
 	}
 	randomTopbarLineColor();
-
-	var portfolioHover = function(){
-		var portfolio = document.querySelector('.portfolio');
-		var portfolioServices = document.querySelectorAll('.portfolio .area-service');
-
-		[].forEach.call(portfolioServices, function(service, i){
-			service.addEventListener('mousemove', function (e) {
-				e.preventDefault();
-				[].forEach.call(portfolioServices, function(serv, i){
-					serv.style.width = "16.6666666%";
-				})
-				this.style.width = "50%";
-			});
-		})
-		portfolio.addEventListener('mouseleave', function (e) {
-			[].forEach.call(portfolioServices, function(serv, i){
-				serv.style.width = "25%";
-			})
-		});
-	}
-	//portfolioHover();
 
 	// Infinite slide loop
 	function passSlide(){
@@ -417,3 +464,5 @@ document.addEventListener('DOMContentLoaded', function(){
 	}
 	passSlide();
 });
+
+//})()

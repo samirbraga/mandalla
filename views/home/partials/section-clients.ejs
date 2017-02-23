@@ -7,14 +7,12 @@
 		</h1>
 	</header>
 	<div class="clients-list-container">
-		<$ for(var i = 0; i < data.clients.length; i += data.clients.length/5){ $>
-			<div class="clients-list-row">
-				<$ for(var k = i; k < +i+data.clients.length/5; k++){ $>
-					<a href="<$- data.clients[k].href $>" class="client" >
-						<img src="/public/Images/clients-logos/<$- data.clients[k].imageSrc $>" alt="<$- data.clients[k].name $>">
+		<$ data.clients.forEach(function(client, i){ $>
+			<!-- <div class="clients-list-row"> -->
+					<a href="<$- client.href $>" class="client" >
+						<img src="/public/Images/clients-logos/<$- client.imageSrc $>" alt="<$- client.name $>">
 					</a>
-				<$ }; $>
-			</div>
-		<$ }; $>
+			<!-- </div> -->
+		<$ }); $>
 	</div>
 </section>
