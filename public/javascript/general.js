@@ -10,6 +10,7 @@ var $ = function(elements){
 			callback(elements, 0);
 		}
 	}
+
 	var EasingFunctions = {
 		linear: function (t) { return t },
 		easeInQuad: function (t) { return t*t },
@@ -25,6 +26,27 @@ var $ = function(elements){
 		easeOutQuint: function (t) { return 1+(--t)*t*t*t*t },
 		easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 	}
+
+	Math.easeInOutQuad = function (t, b, c, d) {
+	  t /= d/2;
+	  if (t < 1) {
+	    return c/2*t*t + b
+	  }
+	  t--;
+	  return -c/2 * (t*(t-2) - 1) + b;
+	};
+
+	Math.easeInCubic = function(t, b, c, d) {
+	  var tc = (t/=d)*t*t;
+	  return b+c*(tc);
+	};
+
+	Math.inOutQuintic = function(t, b, c, d) {
+	  var ts = (t/=d)*t,
+	  tc = ts*t;
+	  return b+c*(6*tc*ts + -15*ts*ts + 10*tc);
+	};
+
 	return {
 		class: (function(){
 			return{
@@ -144,30 +166,26 @@ var $ = function(elements){
 			});
 			return returnedAttr;
 		},
-		scrollY: function(target, duration, easeFunction){
+		scrollY: function(target, duration, easeFunction, callback){
 			each(function(element){
-				cancelAnimationFrame(_animation);
 				var _animation = null;
-				var callbackExec = false;
-				duration = duration || 300;
-				easeFunction = easeFunction || "easeOutQuad";
+				duration = parseFloat(duration) || 300;
+				easeFunction = easeFunction || "easeInOutQuad";
+				target = parseFloat(target);
 				var initValue = element.scrollY || element.scrollTop;
 				var difference = target - initValue;
 				var start = null;
-				var animate = function(timestamp){
-					if(!start) start = timestamp;
-  				var progress = timestamp - start;
-					var timePercent = EasingFunctions[easeFunction](progress/duration);
+				var progress = 0;
+				var animate = function(){
+  				progress += 20;
+					var value = Math[easeFunction](progress, initValue, difference, duration);
+					element.scrollTop = value;
+
 					if(progress < duration){
-						element.scrollTop = initValue + (timePercent*difference)
+						_animation = requestAnimationFrame(animate);
 					}else{
-						if(callback && !callbackExec) {
-							callback();
-							callbackExec = true;
-						}
-						cancelAnimationFrame(_animation);
+						if(callback) callback();
 					}
-					_animation = requestAnimationFrame(animate);
 				}
 				_animation = requestAnimationFrame(animate);
 			});

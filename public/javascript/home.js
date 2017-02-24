@@ -81,6 +81,23 @@ var passScroll = function () {
 
 
 
+var parallax = function(){
+  var introduceBackground = document.querySelectorAll('.parallax-background');
+
+
+  var scrollBg = function(){
+    var scrollTop = document.scrollY || body.scrollTop;
+    var rate = 0.7;
+    $(introduceBackground).css('background-position', '0 ' + (scrollTop*rate) + "px")
+  }
+  scrollBg();
+  window.addEventListener('DOMMouseScroll', scrollBg);
+  window.addEventListener('scroll', scrollBg);
+  window.addEventListener('mousewheel', scrollBg);
+  window.addEventListener('wheel', scrollBg);
+}
+parallax();
+
 var meetComponents = function(){
 	var pictureWrappers = document.querySelectorAll('.components .content .row .wrapper');
   var componentBgOverlay = document.querySelector('.components .component-overlay-background');
@@ -94,6 +111,7 @@ var meetComponents = function(){
     var src = this.getAttribute('data-src');
     var name = componentsObj[src].name;
     var description = componentsObj[src].description.content;
+    var offsetHeight = $(this).height();
 
     var pictureElement = this.querySelector('.person-picture');
 
@@ -395,7 +413,7 @@ var fixTopBar = function(){
   window.addEventListener('mousewheel', fix);
   window.addEventListener('wheel', fix);
 }
-fixTopBar();
+//fixTopBar();
 
 
 
@@ -414,6 +432,45 @@ document.addEventListener('DOMContentLoaded', function(){
 		softLine.style.background = colors[Math.getRandomFrom(colors.length-1)];
 	}
 	randomTopbarLineColor();
+
+  var goDown = function(){
+    var introduce = document.querySelector('.introduce');
+    var arrow = document.querySelector('.introduce .arrow-bottom');
+    $(arrow).on('click', function(){
+      $(body).scrollY($(introduce).height(), 1000)
+    });
+  }
+  goDown();
+
+  var searchOverlay = function(){
+    var searchIcon = document.querySelector('.topbar .search-icon');
+    var searchContainer = document.querySelector('.search-container');
+    var searchBgOverlay = document.querySelector('.search-container .search-background-overlay');
+    var closeIcon = document.querySelector('.search-container .search-wrapper .close-icon');
+    var searchInput = document.querySelector('.search-container .search-wrapper form input');
+    var searchElements = searchContainer.querySelectorAll('*');
+
+    var search = {
+      open: function(){
+        $(searchContainer).class.add('actived');
+        searchInput.focus()
+        setTimeout(function(){
+          $(searchElements).class.add('actived');
+        }, 30)
+      },
+      close: function(){
+        $(searchContainer).class.remove('actived');
+        setTimeout(function(){
+          $(searchElements).class.remove('actived');
+        }, 30)
+      }
+    }
+
+    $(searchIcon).on('click', search.open);
+    $(closeIcon).on('click', search.close);
+    $(searchBgOverlay).on('click', search.close);
+  }
+  searchOverlay();
 
 	// Infinite slide loop
 	function passSlide(){

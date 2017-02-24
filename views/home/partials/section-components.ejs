@@ -11,8 +11,10 @@
 			<div class="row clearfix <$- (i % 2 == 0 ? 'right' : 'left') $>">
 				<div class="wrapper" data-src="<$- component.src $>" >
 					<$ if(i % 2 == 0){ $>
-						<div class="person-picture clearfix">
-							<img src="/public/Images/component-photos/<$- component.src $>.jpg" alt="">
+						<div class="person-picture-container">
+							<div class="person-picture">
+								<img src="/public/Images/component-photos/<$- component.src $>.jpg" alt="">
+							</div>
 						</div>
 					<$ } $>
 						<div class="text">
@@ -20,8 +22,10 @@
 							<!-- <p><$- component.description.content $></p> -->
 						</div>
 					<$ if(i % 2 != 0){ $>
-						<div class="person-picture clearfix">
-							<img src="/public/Images/component-photos/<$- component.src $>.jpg" alt="">
+						<div class="person-picture-container">
+							<div class="person-picture">
+								<img src="/public/Images/component-photos/<$- component.src $>.jpg" alt="">
+							</div>
 						</div>
 					<$ } $>
 				</div>
