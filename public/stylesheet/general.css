@@ -83,6 +83,7 @@ body.no-overflow{
 	font-family: 'Raleway', sans-serif;
 	font-weight: normal;
 	position: relative;
+	text-transform: uppercase;
 }
 .section-title.bottom div h2{
 	margin: 0 0 20px 0;
@@ -104,15 +105,18 @@ body.no-overflow{
 	-webkit-transform: translate(-50%, 0);
 	        transform: translate(-50%, 0);
 }
-
+.section-title.light{
+	color: #ffffff;
+}
+.section-title.light div h2:before{
+	background-image: url('/public/images/icons/curve-detail-white.png');
+}
 .section-title.top div h2:before{
 	top: -12px;
 }
 .section-title.bottom div h2:before{
 	bottom: -12px;
 }
-
-
 
 .section-title div span{
 	font-size: 0.9em;
@@ -157,6 +161,8 @@ body.no-overflow{
 	height: 70px;
 	margin: 15px auto;
 	position: relative;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 .topbar.static .topbar-content{
 	height: 70px;
@@ -217,7 +223,7 @@ body.no-overflow{
 .topbar .topbar-side-menu .topbar-menu-options ul li{
 	list-style: none;
 	display: inline-block;
-	padding: 0 15px;
+	padding: 0 10px;
 	height: inherit;
 	text-transform: uppercase;
 	color: #ffffff;
@@ -225,12 +231,22 @@ body.no-overflow{
 	transition: line-height 0.2s ease-out, color 0.1s ease-in;
 	font-size: 0.8em;
 }
+.topbar .topbar-side-menu .topbar-menu-options ul li.i-am-here{
+	color: #36bab3;
+}
+.topbar .topbar-side-menu .topbar-menu-options ul li.i-am-here a{
+	transform: translateY(-2px);
+}
 .topbar .topbar-side-menu .topbar-menu-options ul li:hover{
 	color: #36bab3;
+}
+.topbar .topbar-side-menu .topbar-menu-options ul li:hover a{
+	transform: translateY(-2px);
 }
 .topbar .topbar-side-menu .topbar-menu-options ul li a{
 	position: relative;
 	font-family: 'Raleway', sans-serif;
+	transition: transform 0.2s ease-in-out;
 }
 .topbar .topbar-side-menu .topbar-menu-options ul li a:after{
 	content: '';
@@ -366,7 +382,7 @@ body.no-overflow{
 	width: 100%;
 	height: 100%;
 	display: block;
-	background-image: url('/public/Images/icons/search-white.png');
+	background-image: url('/public/images/icons/search-white.png');
 	background-repeat: no-repeat;
 	background-size: 18px 18px;
 	background-position: center 20px;
@@ -593,117 +609,151 @@ body.no-overflow{
 .main-footer{
 	min-height: 80vh;
 	height: auto;
-	background-image: url('/public/Images/blurred-background.jpg');
-	background-size: cover;
-	padding-bottom: 20px;
+	background: #222e56;
+	position: relative;
+	margin-top: 100px;
 }
-.main-footer header{
-  height: 150px;
-  text-align: center;
-  line-height: 150px;
-	color: #ffffff;
+.main-footer:before{
+	content: '';
+	width: 100%;
+	height: 100px;
+	bottom: 100%;
+	left: 0;
+	background-image: url('/public/images/houses-overlay.png');
+	background-repeat: repeat-x;
+	background-position: bottom;
+	position: absolute;
 }
 .main-footer .content{
 	height: auto;
 	width: 100%;
-	margin-top: 40px;
 }
-.main-footer .content .wrapper{
-	width: 100%;
-	max-width: 1000px;
+.main-footer .content .fotter-content-wrapper{
 	margin: auto;
 }
-.main-footer .content .wrapper .form-row{
+.main-footer .content .fotter-content-wrapper .form-row{
 	width: 100%;
-	-js-display: flex;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
+	font-size: 0;
 }
-.main-footer .content .wrapper .form-row:nth-child(1) input{
-	width: calc(50% - 10px);
-	height: 50px;
+.form-input{
 	background: rgba(255, 255, 255, 0.3);
-	padding: 0 15px;
+	opacity: 0.6;
 	color: #ffffff;
-	font-size: 1.1em;
+	font-size: 11pt;
+	font-family: 'Raleway', sans-serif;
+	background-image: url('/public/images/icons/linkedin.png');
+	background-position: calc(100% - 12px) 12px;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	padding: 15px;
+	padding-right: 40px;
+	border-radius: 4px;
+	transition: opacity 0.1s ease-out;
 }
-.main-footer .content .wrapper .form-row:nth-child(2) textarea{
+.form-input:hover{
+	opacity: 0.8;
+}
+.form-input:focus{
+	opacity: 0.8;
+}
+.main-footer .content .fotter-content-wrapper .form-row:nth-child(1) input{
+	width: calc(33.3333% - 10px);
+	height: 45px;
+	display: inline-block;
+	margin-left: 15px;
+}
+.main-footer .content .fotter-content-wrapper .form-row:nth-child(1) input:nth-child(1){
+	margin-left: 0;
+}
+@media (max-width: 800px) {
+	.main-footer .content .fotter-content-wrapper .form-row:nth-child(1) input{
+		display: block;
+		width: 100%;
+		margin-top: 15px;
+		margin-left: 0;
+	}
+	.main-footer .content .fotter-content-wrapper .form-row:nth-child(1) input:nth-child(1){
+		margin-top: 0;
+		margin-left: 0;
+	}
+}
+.main-footer .content .fotter-content-wrapper .form-row:nth-child(2) textarea{
 	height: 200px;
 	width: 100%;
-	background: rgba(255, 255, 255, 0.3);
-	padding: 15px;
-	color: #ffffff;
-	font-size: 1.1em;
+	max-width: 100%;
+	min-width: 100%;
 }
-.main-footer .content .wrapper .form-row input::-webkit-input-placeholder,
-.main-footer .content .wrapper .form-row textarea::-webkit-input-placeholder{
+.form-input::-webkit-input-placeholder{
 	color: rgba(255, 255, 255, .9);
 }
-.main-footer .content .wrapper .form-row input::-moz-placeholder,
-.main-footer .content .wrapper .form-row textarea::-moz-placeholder{
+.form-input::-moz-placeholder{
 	color: rgba(255, 255, 255, .9);
 }
-.main-footer .content .wrapper .form-row input:-ms-input-placeholder,
-.main-footer .content .wrapper .form-row textarea:-ms-input-placeholder{
+.form-input:-ms-input-placeholder{
 	color: rgba(255, 255, 255, .9);
 }
-.main-footer .content .wrapper .form-row input::placeholder,
-.main-footer .content .wrapper .form-row textarea::placeholder{
+.form-input::placeholder{
 	color: rgba(255, 255, 255, .9);
 }
-.main-footer .content .wrapper .form-row:nth-child(3) {
+.main-footer .content .fotter-content-wrapper .form-row:nth-child(3) {
 	-webkit-box-pack: end;
-	    -ms-flex-pack: end;
-	        justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
-.main-footer .content .wrapper .form-row:nth-child(3) input{
+.main-footer .content .fotter-content-wrapper .form-row:nth-child(3) input{
 	height: 50px;
-	padding: 0 30px;
+	padding: 0 40px;
 	border: 1px solid rgba(255, 255, 255, 0.7);
 	background: transparent;
 	color: rgba(255, 255, 255, 0.7);
 	-webkit-transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 	transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 	cursor: pointer;
+	border-radius: 50px;
 }
-.main-footer .content .wrapper .form-row:nth-child(3) input:hover{
-	border: 1px solid rgba(255, 255, 255, 0.7);
+.main-footer .content .fotter-content-wrapper .form-row:nth-child(3) input:hover{
+	border: 1px solid rgba(255, 255, 255, 0.3);
 	background: rgba(255, 255, 255, 0.7);
-	color: #872f28;
+	color: #222e56;
 }
+.main-footer .content .fotter-content-wrapper .form-row:nth-child(3) input:hover{
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, 0.7);
+	color: #222e56;
+}
+.main-footer .content .fotter-content-wrapper hr{
+	background: rgba(255, 255, 255, 0.2);
+	margin: 30px 0;
+	width: 100%;
+	height: 1px;
+}
+.main-footer .content .fotter-content-wrapper .info{
+	height: 100px;
+}
+
+
 .main-footer footer{
-	height: auto;
+	height: 350px;
 	width: 100%;
 	text-align: center;
-}
-.main-footer footer nav{
-	display: inline-block;
-	margin: auto;
-	margin-right: 15px;
-}
-.main-footer footer nav ul li{
-	list-style: none;
-	display: inline-block;
-	margin-left: 15px;
-}
-.main-footer footer nav ul li a{
-	display: block;
-	width: 50px;
-	height: 50px;
+	background-image: url('/public/images/fortaleza-background.jpg');
 	background-repeat: no-repeat;
-	background-size: 20px 20px;
 	background-position: center;
-	border-radius: 50%;
-	border: 1px solid #ffffff;
-	opacity: 0.7;
-	-webkit-transition: opacity 0.2s ease-in-out;
-	transition: opacity 0.2s ease-in-out;
+	background-size: cover;
+	font-family: 'Maven Pro', sans-serif;
 }
-.main-footer footer nav ul li a:hover{
-	opacity: 1;
+.main-footer footer *{
+	font-family: 'Maven Pro', sans-serif;
+}
+.main-footer footer .align{
+	display: table;
+	margin: auto;
+	height: 100%;
+}
+.main-footer footer .align .wrapper{
+	display: table-cell;
+	vertical-align: middle;
+	color: rgba(255, 255, 255, 0.5);
+	line-height: 20px;
 }

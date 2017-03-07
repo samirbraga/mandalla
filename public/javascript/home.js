@@ -84,7 +84,6 @@ var passScroll = function () {
 var parallax = function(){
   var introduceBackground = document.querySelectorAll('.parallax-background');
 
-
   var scrollBg = function(){
     var scrollTop = document.scrollY || body.scrollTop;
     var rate = 0.7;
@@ -104,6 +103,13 @@ var depositionsCarousel = function(){
 	var arrowRight = document.querySelector('.depositions .arrow-scroll-right');
 	var depositionsContainer = document.querySelector('.depositions .depositions-container');
 	var depositions = document.querySelectorAll('.depositions .depositions-container .depositions-wrapper');
+	var depositionsIndex = document.querySelectorAll('.depositions .depositions-index-marker')[0];
+  $(depositions).each(function(el, i){
+    depositionsIndex.innerHTML += "<span data-index='" + (+i+1) + "' ></span>"
+  })
+	var depositionsMarkers = document.querySelectorAll('.depositions .depositions-index-marker span');
+  $(depositionsMarkers[0]).class.add("selected");
+
 
 	var firstDeposition = depositions[0];
 	var lastDeposition = depositions[depositions.length-1];
@@ -145,6 +151,15 @@ var depositionsCarousel = function(){
 	}
 
 	var length = depositions.length - 2;
+
+
+  $(depositionsMarkers).on('click', function(){
+    var index = this.getAttribute("data-index");
+    setIndex(index);
+    scrollTo();
+    $(depositionsMarkers).class.remove('selected');
+    $(depositionsMarkers[+index-1]).class.add('selected');
+  })
 
 	scrollTo();
 
@@ -194,10 +209,14 @@ var depositionsCarousel = function(){
 		if(getIndex() >= length){
 			scrollTo(getScroll() + step());
 			nextTimeout = setTimeout(function(){
+        $(depositionsMarkers).class.remove('selected');
+        $(depositionsMarkers[0]).class.add('selected');
 				setIndex(1);
 				depositionsContainer.scrollLeft = getScroll();
 			}, 500);
 		}else{
+      $(depositionsMarkers).class.remove('selected');
+      $(depositionsMarkers[+getIndex()]).class.add('selected');
 			setIndex(getIndex() + 1);
 			$(depositionsContainer).scrollX(getScroll(), 500);
 		}
@@ -207,21 +226,26 @@ var depositionsCarousel = function(){
 		updateScroll();
 		clearTimeout(prevTimeout);
 		if(getIndex() > 1){
+      $(depositionsMarkers).class.remove('selected');
+      $(depositionsMarkers[+getIndex()-2]).class.add('selected');
 			setIndex(getIndex() - 1);
 			$(depositionsContainer).scrollX(getScroll(), 500);
 		}else{
 			$(depositionsContainer).scrollX(getScroll()-step(), 400);
 			prevTimeout = setTimeout(function(){
 				setIndex(length);
+        $(depositionsMarkers).class.remove('selected');
+        $(depositionsMarkers[+length-1]).class.add('selected');
 				depositionsContainer.scrollLeft = getScroll();
 			}, 500);
 		}
+
 	}
 
 	$(arrowRight).on('click', next);
 	$(arrowLeft).on('click', prev);
 }
-//depositionsCarousel();
+depositionsCarousel();
 
 
 

@@ -15,7 +15,7 @@ const server = http.createServer(app);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images/favicon/', 'favicon.ico')));
 /*
 app.use(minifyHTML({
     override:      true,
@@ -53,5 +53,5 @@ app.use((req, res, next) => {
 
 const port = Number( process.env.PORT || 7000 );
 server.listen(port, () => {
-	console.log(`Ruas Biográficas running in port ${port}`);
+	console.log(`Ruas Biográficas running in port ${ (function(){ return port})() }`);
 });

@@ -1,28 +1,39 @@
 <footer class="main-footer">
-	<header>
-		<h1 class="simple">
-			<span>ENTRE EM CONTATO</span>
-			<br>
-			<hr>
-		</h1>
+	<header class="section-title bottom light">
+		<div>
+			<h2>ENTRE EM CONTATO</h2>
+			<span></span>
+		</div>
 	</header>
 	<div class="content">
-		<div class="wrapper">
-			<form class="" method="post">
+		<div class="fotter-content-wrapper responsive-width">
+			<form method="post">
 				<div class="form-row">
-					<input type="text" placeholder="Nome" name="name" >
-					<input type="text" placeholder="Email" name="email" >
+					<input type="text" class="form-input" style="background-image: url('/public/images/icons/person-icon.png')" placeholder="Nome" name="name" >
+					<input type="text" class="form-input" style="background-image: url('/public/images/icons/at-icon.png')" placeholder="Email" name="email" >
+					<input type="text" class="form-input" style="background-image: url('/public/images/icons/info-icon.png')" placeholder="Assunto" name="subject" >
 				</div>
 				<div class="form-row">
-					<textarea placeholder="Mensagem" name="message" ></textarea>
+					<textarea class="form-input" style="background-image: url('/public/images/icons/message-icon.png')" placeholder="Mensagem" name="message" ></textarea>
 				</div>
 				<div class="form-row">
 					<input type="submit" name="submit" value="ENVIAR">
 				</div>
 			</form>
+			<hr>
+			<div class="info">
+				
+			</div>
 		</div>
 	</div>
 	<footer>
-		<$- include('networking'); $>
+		<div class="align responsive-width" >
+			<div class="wrapper">
+				<br><br>
+				Ruas Biográficas - 2017 <br>
+				Fortaleza - CE <br><br>
+				<small>Mandalla Comunicação - Copyright (c) 2017 Copyright Holder All Rights Reserved.</small>
+			</div>
+		</div>
 	</footer>
 </footer>
