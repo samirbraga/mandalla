@@ -61,6 +61,20 @@ var $ = function(elements){
 						element.className = classes.join(' ');
 					})
 				},
+				toggle: function(toggleClass){
+					each(function(element){
+						var classes = element.className.split(" ");
+						if(classes.indexOf(toggleClass) >= 0){
+							var indexOf = classes.indexOf(toggleClass);
+							console.log(indexOf, classes);
+							classes.splice(indexOf, 1);
+							console.log(indexOf, classes);
+						}else{
+							classes.push(toggleClass);
+						}
+						element.className = classes.join(' ');
+					})
+				},
 				has: function(classVerify){
 					var returned;
 					each(function(element){
@@ -206,14 +220,13 @@ var $ = function(elements){
 					var timePercent = EasingFunctions[easeFunction](progress/duration);
 					if(progress < duration){
 						element.scrollLeft = initValue + (timePercent*difference)
+						_animation = requestAnimationFrame(animate);
 					}else{
 						if(callback && !callbackExec) {
 							callback();
 							callbackExec = true;
 						}
-						cancelAnimationFrame(_animation);
 					}
-					_animation = requestAnimationFrame(animate);
 				}
 				_animation = requestAnimationFrame(animate);
 			});
@@ -221,8 +234,57 @@ var $ = function(elements){
 	}
 };
 window.$ = $;
+// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 
+// MIT license
+
+(function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+                                   || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame){
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+		}
+    if (!window.cancelAnimationFrame){
+			window.cancelAnimationFrame = function(id) {
+				clearTimeout(id);
+			};
+		}
+}());
 
 Math.getRandomFrom = function(n){
 	return Math.round(Math.random()*n);
 }
+Number.prototype.formatDot = function(){
+	return this.toString().split("").reverse().join("").match(/[0-9]{1,3}/g).map(function(part){
+				 	  return part.split("").reverse().join("")
+				 }).reverse().join('.');
+}
+
+/*
+
+var plugins = ['parser.js', 'tokenizer.js', 'vminpoly.js'];
+plugins = plugins.map(function(plugin){
+	return "/public/javascript/libs/viewport-units-polyfill/" + plugin
+});
+
+if (!Modernizr.cssvwunit || !Modernizr.cssvhunit || !Modernizr.cssvminunit || !Modernizr.cssvminunit) {
+	plugins.forEach(function(plugin){
+		var script = document.createElement('script');
+		script.src = plugin;
+		document.body.appendChild(script);
+	})
+}
+*/

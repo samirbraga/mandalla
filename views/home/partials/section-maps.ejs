@@ -1,0 +1,128 @@
+<section class="section-maps uniform">
+	<header class="section-title top">
+		<div>
+			<span>Veja os estabelecimentos da</span>
+			<h2>
+				NOSSA REDE INTEGRADA
+			</h2>
+		</div>
+	</header>
+	<article class="show-map" >
+		<div class="search-form">
+			<form method="post">
+				<div class="search-wrapper">
+					<input placeholder="Pesquise por algum de nossos integrados" type="text" name="">
+					<button type="submit" name="search-submit"></button>
+					<div class="search-autocomplete " style="display: none">
+						<ul>
+							<li class="clearfix">
+								<span class="location-name" >Restaurante Costela</span>
+								<span class="location-address" >Av. Godofredo Maciel, 2705 - Maraponga</span>
+							</li>
+							<li class="clearfix">
+								<span class="location-name" >Restaurante Costela</span>
+								<span class="location-address" >Av. Godofredo Maciel, 2705 - Maraponga</span>
+							</li>
+							<li class="clearfix">
+								<span class="location-name" >Restaurante Costela</span>
+								<span class="location-address" >Av. Godofredo Maciel, 2705 - Maraponga</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="filters-wrapper">
+					<div class="filters-modal general-modal">
+						<span>Bairro:</span>
+						<div class="input-container district">
+							<input type="text" name="district" placeholder="Ex.: Maraponga">
+						</div>
+						<span>Rua:</span>
+						<div class="input-container street">
+							<input type="text" name="street" placeholder="Ex.: Av. Godofredo Maciel">
+						</div>
+						<span>Ramo:</span>
+						<div class="input-container trading">
+							<input type="text" name="trading" autocomplete="eee" placeholder="Ex.: Sorveteria">
+						</div>
+					</div>
+					<button type="button" class="filters-modal-toggle" name="submit">Filtros</button>
+				</div>
+			</form>
+		</div>
+		<div class="map-container">
+			<div id="main-map"></div>
+		</div>
+	</article>
+	<script type="text/javascript">
+		var filterModalToggle = document.querySelector(".filters-modal-toggle");
+		var filterModal = document.querySelector(".filters-modal");
+		$(filterModalToggle).on('click', function(){
+			$(filterModal).class.toggle('activated');
+		})
+		var filtersInput = document.querySelectorAll('.filters-wrapper .input-container input');
+		$(filtersInput).on('input', function(){
+			var container = this.parentNode;
+			var rewrite = function(mode){
+				$(container).class.add('hidden');
+				setTimeout(function(){
+					$(container).class[mode == 'done' ? "add" : 'remove']('done');
+					$(container).class.remove('hidden');
+				}, 200)
+			}
+			if(this.value.trim() != ""){
+				if(!$(container).class.has('done')){
+					rewrite('done');
+				}
+			}else{
+				rewrite();
+			}
+		});
+	</script>
+	<script type="text/javascript">
+	var styleArray = [
+	  {
+	    featureType: "all",
+	    stylers: [
+	      { hue: "#39b7b4" },
+	      { saturation: -70 },
+	      { lightness: 0 }
+	    ]
+	  },{
+	    featureType: "poi",
+	    stylers: [
+	      { visibility: "off" }
+	    ]
+	  },{
+	    featureType: "road.arterial",
+	    elementType: "geometry",
+	    stylers: [
+	      { hue: "#39b7b4" },
+	      { saturation: 50 }
+	    ]
+	  }
+	];
+
+	function initMap(){
+		var mapElement = document.querySelector('.map-container #main-map');
+
+		// Create a map object and specify the DOM element for display.
+		var mainMap = new google.maps.Map(mapElement, {
+			center: {
+				lat: -3.732065,
+				lng: -38.527414
+			},
+			scrollwheel: false,
+			zoom: 10,
+			mapTypeControl: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+
+		mainMap.setOptions({
+			styles: styleArray,
+			minZoom: 12
+		});
+	}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDF6m-mdz6eTmb-x5CuGaGXkBUjjaceVSE&callback=initMap" defer async></script>
+
+</section>

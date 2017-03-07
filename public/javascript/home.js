@@ -12,14 +12,14 @@ var toggleMenu = function () {
   var menuFns = {
     open: function(){
       menu.style.opacity = 1;
-      $(menu).class.add('actived');
+      $(menu).class.add('activated');
       $(body).class.add('no-overflow');
     },
     close: function(){
       menu.style.opacity = 0;
       $(body).class.remove('no-overflow');
       setTimeout(function(){
-        $(menu).class.remove('actived');
+        $(menu).class.remove('activated');
       }, 300)
     }
   }
@@ -96,53 +96,7 @@ var parallax = function(){
   window.addEventListener('mousewheel', scrollBg);
   window.addEventListener('wheel', scrollBg);
 }
-parallax();
-
-var meetComponents = function(){
-	var pictureWrappers = document.querySelectorAll('.components .content .row .wrapper');
-  var componentBgOverlay = document.querySelector('.components .component-overlay-background');
-  var componentOverlay = document.querySelector('.components .component-overlay');
-
-  var componentsObj = {};
-  componentsJson.forEach(function(el, i) {
-    componentsObj[el.src] = el;
-  });
-  $(pictureWrappers).on('click', function(){
-    var src = this.getAttribute('data-src');
-    var name = componentsObj[src].name;
-    var description = componentsObj[src].description.content;
-    var offsetHeight = $(this).height();
-
-    var pictureElement = this.querySelector('.person-picture');
-
-    $(componentBgOverlay).css('display', 'block');
-    $(componentOverlay).css('display', 'block');
-
-    setTimeout(function(){
-      $(componentBgOverlay).class.add('showed');
-      $(componentOverlay).class.add('showed');
-
-      $(body).class.add('blurred');
-    }, 50)
-
-    var initTop = $(pictureElement).offset().top;
-    var initLeft = $(pictureElement).offset().left;
-
-    var st = document.scrollY || body.scrollTop;
-    var sl = document.scrollX || body.scrollLeft;
-
-    $(pictureElement).css('position', 'fixed');
-    $(pictureElement).css('top', (+initTop) + "px");
-    $(pictureElement).css('left', (+initLeft) + "px");
-
-    setTimeout(function(){
-      $(pictureElement).class.add('overlaid');
-    }, 50)
-
-  });
-}
-meetComponents();
-
+//parallax();
 
 
 var depositionsCarousel = function(){
@@ -198,48 +152,6 @@ var depositionsCarousel = function(){
 	var _x = null;
 	var scrollLeft;
 	var dragging = false;
-
-	/*
-	var handle = function (delta) {
-		if (delta < 0)
-			next();
-		else
-			prev();
-	};
-
-	var wheel = function (event){
-		var delta = 0;
-		if (!event) event = window.event;
-		if (event.wheelDelta) {
-			delta = event.wheelDelta/120;
-		} else if (event.detail) {
-			delta = -event.detail/3;
-		}
-		if (delta)
-			handle(delta);
-	        if (event.preventDefault)
-	                event.preventDefault();
-	        event.returnValue = false;
-	}
-
-	if (window.addEventListener){
-		window.addEventListener('DOMMouseScroll', wheel, false);
-		window.onmousewheel = document.onmousewheel = wheel;
-	}
-
-	$(depositionsContainer).on('mouseenter', function(e){
-		wheel = function (delta) {
-			if (delta < 0)
-				next();
-			else
-				prev();
-		}
-	})
-	$(depositionsContainer).on('mouseleave', function(e){
-		wheel = function (delta) {
-		};
-	})
-	*/
 
 	$(depositionsContainer).on('mousedown', function(e){
 		x = e.pageX;
@@ -309,7 +221,7 @@ var depositionsCarousel = function(){
 	$(arrowRight).on('click', next);
 	$(arrowLeft).on('click', prev);
 }
-depositionsCarousel();
+//depositionsCarousel();
 
 
 
@@ -417,11 +329,6 @@ var fixTopBar = function(){
 
 
 
-var backgroundUrls = ['slide3.jpg', 'slide3.jpg', 'slide3.jpg', 'slide3.jpg'];
-
-var dataImages = backgroundUrls.map(function(bg){
-	return "/public/Images/welcome-slide/" + bg;
-});
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -431,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 		softLine.style.background = colors[Math.getRandomFrom(colors.length-1)];
 	}
-	randomTopbarLineColor();
+	//randomTopbarLineColor();
 
   var goDown = function(){
     var introduce = document.querySelector('.introduce');
@@ -452,16 +359,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
     var search = {
       open: function(){
-        $(searchContainer).class.add('actived');
+        $(searchContainer).class.add('activated');
         searchInput.focus()
         setTimeout(function(){
-          $(searchElements).class.add('actived');
+          $(searchElements).class.add('activated');
         }, 30)
       },
       close: function(){
-        $(searchContainer).class.remove('actived');
+        $(searchContainer).class.remove('activated');
         setTimeout(function(){
-          $(searchElements).class.remove('actived');
+          $(searchElements).class.remove('activated');
         }, 30)
       }
     }
@@ -477,15 +384,16 @@ document.addEventListener('DOMContentLoaded', function(){
 		var bg1 = document.querySelector('#introduce-background1');
 		var bg2 = document.querySelector('#introduce-background2');
 		var radios = document.querySelectorAll('.introduce .services input[type=radio]');
-		var index = 0;
+    var labels = document.querySelectorAll('.introduce .services label');
+    var index = 0;
 		var delay = 5000;
 		var transition = 2000;
 
 		[].forEach.call(radios, function(radio, i){
-			radio.addEventListener('change', function (e) {
+			radio.addEventListener('change', function(e){
 				e.preventDefault();
-			})
-			document.querySelectorAll('.introduce .services label')[i].addEventListener('click', function(e){
+			});
+			labels[i].addEventListener('click', function(e){
 				e.preventDefault();
 			}, false);
 		})
@@ -519,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 		fadeOut();
 	}
-	passSlide();
+  //passSlide();
 });
 
 //})()

@@ -1,0 +1,52 @@
+<section class="clients uniform">
+	<header class="section-title bottom">
+		<div>
+			<h2>GALERIA DE IMAGENS</h2>
+			<span>Veja mais no <a style="display: inline" href="https://www.instagram.com/ruasbiograficas/" >nosso Instagram</a></span>
+		</div>
+	</header>
+	<div class="galery-container" id="galery"></div>
+
+	<script src="https://rawgit.com/stevenschobert/instafeed.js/master/instafeed.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var feed = new Instafeed({
+			get: 'user',
+			userId: '1537761915',
+			clientId: 'bd5e6a3d6d0b47e0a65ac83fb8f4de28',
+			target: 'galery',
+			template: '<figure>' +
+									'<a href="{{link}}" target="_blank" >' +
+										'<img src="{{image}}">' +
+										'<figcaption>' +
+											'<span class="likes">' +
+												'<span>{{likes}}</span>' +
+											'</span>' +
+											'<span class="time">' +
+												'<span>{{model.caption.created_time}}</span>' +
+											'</span>' +
+											'<span class="comments">' +
+												'<span>{{comments}}</span>' +
+											'</span>' +
+										'</figcaption>' +
+									'</a>' +
+								'</figure>',
+			accessToken: "1537761915.bd5e6a3.18d6c0f38e634dc182551439d48106ba",
+			resolution: 'low_resolution',
+			sortBy: "none",
+			after: function(){
+				[].forEach.call(document.querySelector('#galery').children, function(figure){
+					var time = figure.querySelector('.time span');
+					var timestamp = parseFloat(time.innerHTML);
+					var date = new Date(timestamp*1000);
+					var year = date.getFullYear();
+					var month = (+date.getMonth() + 1) >= 10 ? (+date.getMonth() + 1) : "0" + (+date.getMonth() + 1);
+					var day = date.getDay() >= 10 ? date.getDay() : "0" + date.getDay();
+
+					time.innerHTML = day + "." + month + "." + year;
+				})
+			},
+			limit: 10
+		});
+		feed.run();
+		</script>
+</section>

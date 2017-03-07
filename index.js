@@ -16,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
+/*
 app.use(minifyHTML({
     override:      true,
     exception_url: false,
@@ -30,6 +30,7 @@ app.use(minifyHTML({
         minifyCSS:                 true
     }
 }));
+*/
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
@@ -40,9 +41,7 @@ load('controllers').
   then('routes').
 		into(app);
 
-
 // Middlewares
-
 app.use((req, res, next) => {
     res.end('not-found/index');
     next();
@@ -52,8 +51,7 @@ app.use((req, res, next) => {
     next();
 });
 
-
-const port = Number( process.env.PORT || 2000 );
+const port = Number( process.env.PORT || 7000 );
 server.listen(port, () => {
-	console.log(`Mandalla Comunicação running in port ${port}`);
+	console.log(`Ruas Biográficas running in port ${port}`);
 });
