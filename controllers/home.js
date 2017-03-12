@@ -13,10 +13,15 @@ module.exports = (app) => {
 			});
 		},
 		printEstablishments: (req, res) => {
+			var autoPrint = false;
+			if(req.query.for == "initMap")
+				autoPrint = true;
+
 			res.render('home/print-establishments', {
 				data: {
-					establishmentsList: establishmentsList
-				}
+					establishments: establishmentsList
+				},
+				autoPrint: autoPrint
 			});
 		}
 	}

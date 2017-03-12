@@ -22,7 +22,7 @@
 			clearTimeout(id);
 		};
 	}
-}());
+})();
 
 var $ = function(elements){
 	function each(callback){
@@ -372,6 +372,7 @@ var optimizedResize = (function() {
 
 document.addEventListener('DOMContentLoaded', function(){
 	if (!Modernizr.cssvwunit || !Modernizr.cssvhunit || !Modernizr.cssvminunit || !Modernizr.cssvminunit){
+		/*
 		var viewPortUnitsCss = {};
 		for(i in document.styleSheets){
 			var sheet = document.styleSheets[i];
@@ -421,24 +422,29 @@ document.addEventListener('DOMContentLoaded', function(){
 				}
 			}
 		}
-		function replaceVpUnites(cssSheet){
+		*/
+		//function replaceVpUnites(cssSheet){
 
 
-			var fallElements = [];
-			var fallRules = [];
-
+			//var fallElements = [];
+			//var fallRules = [];
+			/*
 			for(selector in cssSheet){
 				fallElements.push(document.querySelectorAll(selector));
 				fallRules.push(viewPortUnitsCss[selector]);
 			}
+			*/
 			var resizeElements = function(){
-				fallElements.forEach(function(nodeList, i){
-					if(nodeList.length > 0){
+				//fallElements.forEach(function(nodeList, i){
+					//if(nodeList.length > 0){
+				var nodeList = document.querySelectorAll('.viewport-units');
 						$(nodeList).each(function(el){
-							var styles = fallRules[i];
-							for(style in styles){
-								var property = style.trim();
-								var value = styles[style].trim();
+							var styles = el.getAttribute('data-properties');
+							console.log(styles)
+							styles = styles.split(';');
+							styles.forEach(function(style){
+								var property = style.split(':')[0].trim();
+								var value = style.split(':')[1].trim();
 
 								var unit = value.match(/(vmin|vmax|vh|vw)$/)[0];
 								var number = parseFloat(value);
@@ -457,14 +463,14 @@ document.addEventListener('DOMContentLoaded', function(){
 								}
 
 								el.style[property] = ((number*value)/100) + "px";
-							}
+							});
 						});
 					}
-				})
-			}
+				//})
+			//}
 			resizeElements();
 			optimizedResize.add(resizeElements)
-		}
+		//}
 	}
 });
 

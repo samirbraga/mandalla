@@ -7,6 +7,12 @@
 	outline: none;
 }
 
+
+.m-auto{
+	margin: auto;
+}
+
+
 .responsive-width{
   width: 100%;
   max-width: 1200px;
