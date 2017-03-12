@@ -7,54 +7,32 @@
   </header>
   <article class="content-numbers">
     <div class="wrapper responsive-width">
-      <div class="number-count" style="background-image: url('/public/images/icons/picture-icon-turqueza.png')">
-        <span class="number" >+200</span><br>
-        <span class="description" >Ruas <br> biografadas</span>
+      <div class="number-count biographies">
+        <div class="number-wrapper" style="background-image: url('/public/images/icons/picture-icon-turqueza.png')">
+          <span class="number" >0</span><br>
+          <span class="description" >Ruas <br> biografadas</span>
+        </div>
       </div>
       <hr>
-      <div class="number-count" style="background-image: url('/public/images/icons/net-icon.png')">
-        <span class="number" >180</span><br>
-        <span class="description" >Estabelecimentos <br> integrados</span>
+      <div class="number-count establishments">
+        <div class="number-wrapper" style="background-image: url('/public/images/icons/net-icon.png')">
+          <span class="number" >0</span><br>
+          <span class="description" >Estabelecimentos <br> integrados</span>
+        </div>
       </div>
       <hr>
-      <div class="number-count followers" style="background-image: url('/public/images/icons/followers-icon.png')">
-        <span class="number" >3.686</span><br>
-        <span class="description" >Seguidores <br> no Instagram</span>
+      <div class="number-count followers">
+        <div class="number-wrapper" style="background-image: url('/public/images/icons/followers-icon.png')">
+          <span class="number" >0</span><br>
+          <span class="description" >Seguidores <br> no Instagram</span>
+        </div>
       </div>
       <hr>
-
-      <div class="number-count history" style="background-image: url('/public/images/icons/clock-icon.png')">
-        <span class="number" >3</span><br>
-        <span class="description" >Anos <br> de história</span>
-        <script type="text/javascript">
-          (function(){
-            var history = document.querySelector('.section-numbers .history');
-            var historyNumber = history.querySelector('.number');
-            var followers = document.querySelector('.section-numbers .followers');
-            var followersNumber = followers.querySelector('.number');
-
-            dataRequest('date', function(error, data){
-              var time;
-              if(!error){
-                var date = data;
-                time = date.year - 2014;
-              }else{
-                time = 3;
-              }
-              historyNumber.innerHTML = time;
-            });
-
-            dataRequest('insta', function(error, data){
-              var followed_byCount;
-              if(!error){
-                followed_byCount = data.data.counts.followed_by;
-              }else{
-                followed_byCount = 6709;
-              }
-              followersNumber.innerHTML = followed_byCount.formatDot();
-            });
-          })()
-        </script>
+      <div class="number-count history">
+        <div class="number-wrapper" style="background-image: url('/public/images/icons/clock-icon.png')">
+          <span class="number" >0</span><br>
+          <span class="description" >Anos <br> de história</span>
+        </div>
       </div>
     </div>
   </article>

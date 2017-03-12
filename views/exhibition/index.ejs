@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Exposição | Ruas Biográficas</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/public/stylesheet/general.css">
+		<link rel="stylesheet" href="/public/stylesheet/exhibition.css">
+		<link href="https://fonts.googleapis.com/css?family=Maven+Pro|Raleway:100,300,400|Ubuntu" rel="stylesheet">
+		<link href="/public/stylesheet/libs/font-awesome/font-awesome.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+		<meta http-equiv="content-language" content="br" />
+    <script src="/public/javascript/libs/smooth-scroll/smoothscroll.js" ></script>
+		<script src="/public/javascript/libs/modernizr/modernizr.js" ></script>
+		<script src="/public/javascript/general.js" ></script>
+		<script type="text/javascript">
+			var dataRequest = function(code, callback){
+	      var xml = new XMLHttpRequest();
+	    	var url = "/data?q=" + code;
+	    	xml.open("GET", url);
+	    	xml.responseType = "json";
+	    	xml.onload = function () {
+	    	    if(xml.readyState === 4){
+	    	        if(xml.status === 200 || xml.status == 0){
+	              	var data = xml.response;
+									callback(null, data);
+	    	        }else{
+									callback(xml.statusText, null);
+								}
+	    	    }
+	    	}
+	    	xml.send();
+			}
+
+	    var dataEstablishments;
+		</script>
+	</head>
+	<body >
+
+		<!-- .topbar -->
+		<$- include('../topbar', {classTopbar: "dark"}); $>
+
+    <header class="introduce align-center-both-table viewport-units" data-properties="height: 60vh" style="padding-top: 90px">
+      <div class="header-content content-align" >
+        <div class="content-wrapper content-wrapper">
+          <h1>
+            <span>Ruas<br>Biográgicas</span>
+            <hr>
+            <span>Expo<br>sição</span>
+          </h1>
+        </div>
+      </div>
+    </header>
+    <section class="welcome viewport-units" data-properties="height: 40vh" >
+      <header class="section-title bottom">
+        <div>
+          <h2>QUER PROMOVER SUA MARCA <br>E AINDA SUA CIDADE?</h2>
+          <span></span>
+        </div>
+      </header>
+    </section>
+		<section class="presentation align-center-both-table viewport-units" data-properties="height: 100vh">
+			<article class="content-wrapper">
+				<div class="presentation-text-align clearfix">
+					<div class="main-text">
+						<h2>@RuasBiográficas resgata a história de Fortaleza</h2>
+						<hr>
+						<p>Exposição Ruas Biográficas é um projeto de Memória que traz microbio­grafias das pessoas e lugares que de­nominam ruas, avenidas, alamedas e travessas da cidade de Fortaleza.</p>
+						<span><i class="fa fa-instagram fa-2x"></i><p>Produzido via Instagram</p></span>
+						<span><i class="fa fa-clock-o fa-2x"></i><p>Desde novembro de 2014</p></span>
+						<span><i class="fa fa-users fa-lg" style="font-size: 1.5em"></i><p>3724 interessados</p></span>
+					</div>
+				</div>
+				<div class="presentation-image-align">
+					<figure>
+						<figcaption>
+							<p>O perfil<br>
+								 <b>@ruasbiograficas</b><br>
+								 atrai diariamente interessados na<br>
+								<b> História de Fortaleza</b>.<br>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+			</article>
+		</section>
+		<section class="general-info align-center-both-table">
+			<div class="background-overlay"></div>
+			<div class="content-align responsive-width" style="height: 350px;">
+				<div class="content-wrapper">
+						<div class="info-section info-1">
+							<h2>POSTAGENS SEMANAIS</h2>
+							<p>Lançado em novembro de 2014, o <a href="https://www.instagram.com/ruasbiograficas/">@ruasbiograficas</a> resgata parte da História da capital do Ceará, por meio dessas <a href="/audiografias">microbiografias</a> de sujeitos e espaços sociais, cuja história tem sua importância e se relaciona com a História do Estado.</p>
+						</div>
+						<div class="info-section info-2">
+							<h2>@RUASBIOGRÁFICAS CHEGA ÀS RUAS!</h2>
+							<p>São 3.680 seguidores acompanhando as postagens semanais na rede social, que agora chega às ruas, com o apoio da Prefeitura Municipal de Fortaleza e de estabelecimentos comerciais do ramo alimentício, tais como lanchontes, bares, restaurantes, padarias, sorveterias etc.</p>
+						</div>
+				</div>
+			</div>
+		</section>
+		<section class="meet-plaque" id="rede-de-apoiadores">
+			<header class="section-title bottom" >
+				<div>
+					<h2>NOSSA REDE DE APOIADORES</h2>
+					<span>Cada estabelecimento vai exibir em sua fachada (ou em seu ambiente interno) placas trazendo uma biografia resumida da pessoa homenageada daquela rua onde está situado.</span>
+				</div>
+			</header>
+			<article class="align-center-both-table viewport-units" data-properties="height: 80vh">
+				<div class="content-align responsive-width">
+					<div class="content-wrapper">
+						<div class="plaque-slider-container" >
+							<div class="arrow-prev arrow align-center-both-table">
+								<div class="content-align">
+									<div class="content-wrapper">
+										<span>❮</span>
+									</div>
+								</div>
+							</div>
+							<div class="arrow-pass arrow align-center-both-table">
+								<div class="content-align">
+									<div class="content-wrapper">
+										<span>❯</span>
+									</div>
+								</div>
+							</div>
+							<div class="figure-container">
+								<figure>
+									<img src="http://localhost/public/images/placa-interior.png" alt="">
+									<figcaption>INTERNA</figcaption>
+								</figure>
+								<figure>
+									<img src="http://localhost/public/images/placa-exterior.png" alt="">
+									<figcaption>EXTERNA</figcaption>
+								</figure>
+								<figure>
+									<img src="http://localhost/public/images/placa-interior.png" alt="">
+									<figcaption>INTERNA</figcaption>
+								</figure>
+								<figure>
+									<img src="http://localhost/public/images/placa-exterior.png" alt="">
+									<figcaption>EXTERNA</figcaption>
+								</figure>
+							</div>
+						</div>
+						<div class="plaque-explain">
+							<h3>Com funciona esse apoio?</h3>
+							<p>O estabelecimento comercial adquire uma placa trazendo a microbiografia da pessoa que dá nome à rua em que está situado - a placa vem em dois formatos, para ser fixada em ambiente externo ou interno, de acordo com a vontade do estabelecimento.</p>
+							<br>
+							<p>O ideal é que seja em um local de maior visibilidade e passagem de clientes.</p>
+							<br>
+							<p>As placas custam: interna > externa.</p>
+						</div>
+					</div>
+				</div>
+
+				<script>
+				var pass = document.querySelector('.meet-plaque .arrow-pass');
+				var prev = document.querySelector('.meet-plaque .arrow-prev');
+
+				var duration = 600;
+
+				var container = document.querySelector('.meet-plaque .plaque-slider-container');
+				var figuresContainer = document.querySelector('.meet-plaque .plaque-slider-container .figure-container');
+				var figures = document.querySelectorAll('.meet-plaque .plaque-slider-container .figure-container figure');
+				var index = 1;
+				var step = figures[0].offsetWidth;
+				var scroll = step;
+				figuresContainer.addEventList
+				var scrollTo = function(){
+					$(figuresContainer).scrollX(scroll, duration);
+				}
+				var scrollToImmediate = function(){
+					figuresContainer.scrollLeft = scroll;
+				}
+				scrollToImmediate();
+
+				var toPass,
+						toPrev;
+
+				toPass = function(){
+				  scroll += step;
+				  if(index == 2){
+				    index = 1;
+				    scrollTo()
+				    scroll = step;
+				    pass.onclick = null;
+				    setTimeout(function(){
+				      scrollToImmediate();
+				    	pass.onclick = toPass;
+				    }, +duration+50)
+				  }else{
+				    index++;
+				    scrollTo()
+				  }
+				  console.log("index: ", index, " | ", "scroll:", scroll);
+				}
+				toPrev = function(){
+				  scroll -= step;
+				  if(index == 1){
+				    index = 2;
+				    scrollTo();
+				    scroll = step*index;
+				    prev.onclick = null;
+				    setTimeout(function(){
+				      scrollToImmediate();
+				    	prev.onclick = toPrev;
+				    }, +duration+50)
+				  }else{
+				    index--;
+				    scrollTo();
+				  }
+				  console.log("index: ", index, " | ", "scroll:", scroll);
+				}
+
+				optimizedResize.add(function(){
+					step = figures[0].offsetWidth;
+				  figuresContainer.scrollLeft = (index)*step;
+				})
+
+				pass.onclick = toPass;
+				prev.onclick = toPrev;
+
+				var loopInterval = setInterval(toPass, 5000);
+
+				container.addEventListener('mouseenter', function(){
+					clearInterval(loopInterval);
+				})
+				document.addEventListener('mouseleave', function(){
+					clearInterval(loopInterval);
+				})
+				container.addEventListener('mouseleave', function(){
+					clearInterval(loopInterval);
+					loopInterval = setInterval(toPass, 5000);
+				})
+				document.addEventListener('mouseenter', function(){
+					clearInterval(loopInterval);
+					loopInterval = setInterval(toPass, 5000);
+				})
+				</script>
+			</article>
+		</section>
+		<$# include('../footer'); $>
+	</body>
+</html>

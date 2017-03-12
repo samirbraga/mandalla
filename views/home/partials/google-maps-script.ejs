@@ -1,0 +1,422 @@
+
+<script type="text/javascript" defer async>
+  //$(document).on('DOMContentLoaded', function(){
+
+    var filterModalToggle = document.querySelector(".filters-modal-toggle");
+    var filterModal = document.querySelector(".filters-modal");
+    $(filterModalToggle).on('click', function(){
+      $(filterModal).class.toggle('activated');
+    });
+
+    var filtersInput = document.querySelectorAll('.filters-wrapper .input-container input');
+    $(filtersInput).on('input', function(){
+      var container = this.parentNode;
+      var rewrite = function(mode){
+        $(container).class.add('hidden');
+        setTimeout(function(){
+          $(container).class[mode == 'done' ? "add" : 'remove']('done');
+          $(container).class.remove('hidden');
+        }, 200);
+      }
+      if(this.value.trim() != ""){
+        if(!$(container).class.has('done')){
+          rewrite('done');
+        }
+      }else{
+        rewrite();
+      }
+    });
+
+    var mainMap,
+    markersCoordinates,
+    markerCluster;
+
+    var markersData = (function(){
+      return {
+        get: function(callback){
+          dataRequest('establishments', callback)
+        },
+        add: function(newMarker, callback){
+
+          var formData = {
+            newMarker: newMarker
+          };
+
+          var filteredMarkers = markersCoordinates.filter(function(markers, i){
+            for(marker in markers){
+              if(JSON.stringify(markers[marker]) == JSON.stringify(formData.newMarker[marker])){
+                return true;
+              }
+            }
+          })
+
+          if(filteredMarkers.length == 0){
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("post", url);
+            xmlHttp.responseType = "json";
+            xmlHttp.setRequestHeader("Content-type", "application/json");
+
+            xmlHttp.onreadystatechange = function(){
+              if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
+                callback(xmlHttp.response);
+              }
+            }
+
+            xmlHttp.send(JSON.stringify(formData));
+          }
+        },
+        remove: function(id, callback){
+
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open("delete", url + "&id=" + id);
+
+          xmlHttp.onreadystatechange = function(){
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
+              callback(xmlHttp.response);
+            }
+          }
+
+          xmlHttp.send();
+        }
+      }
+    })();
+
+    var infowindows = {
+      windows: [],
+      closeAll: function(){
+        infowindows.windows.forEach(function(infowindow){
+          infowindow.close();
+        });
+      }
+    };
+
+    var myMarkers;
+    function mapConfig(){
+
+      markersCoordinates = dataEstablishments;
+
+      var districtList = document.querySelector('#district-list');
+      var districts = markersCoordinates.map(function(establishment){
+        return establishment.district;
+      });
+      districts = districts.filter(function(item, pos) {
+        return districts.indexOf(item) == pos;
+      });
+      districts.forEach(function(el, i){
+        var option = document.createElement('option');
+        option.value = el;
+        districtList.appendChild(option);
+      });
+
+      var streetList = document.querySelector('#street-list');
+      var streets = markersCoordinates.map(function(establishment){
+        return establishment.street;
+      });
+      streets = streets.filter(function(item, pos) {
+        return streets.indexOf(item) == pos;
+      });
+      streets.forEach(function(el, i){
+        var option = document.createElement('option');
+        option.value = el;
+        streetList.appendChild(option);
+      });
+
+      var tradingList = document.querySelector('#trading-list');
+      var tradings = markersCoordinates.map(function(establishment){
+        return establishment.trading;
+      });
+      tradings = tradings.filter(function(item, pos) {
+        return tradings.indexOf(item) == pos;
+      });
+      tradings.forEach(function(el, i){
+        var option = document.createElement('option');
+        option.value = el;
+        tradingList.appendChild(option);
+      });
+
+      myMarkers = function(){
+        return markersCoordinates;
+      }
+
+      myMarkers['add'] = function(newMarker){
+
+        var filteredMarkers = markersCoordinates.filter(function(markers, i){
+          for(marker in markers){
+            if(JSON.stringify(markers[marker]) == JSON.stringify(newMarker[marker])){
+              return true;
+            }
+          }
+        });
+
+        if(filteredMarkers.length == 0){
+          markersCoordinates.push(newMarker);
+          var newMapMarker = new google.maps.Marker({
+            map: mainMap,
+            position: {
+              lat: newMarker.latLng[0],
+              lng: newMarker.latLng[1]
+            },
+            title: newMarker.title,
+            icon: 'https://static.xx.fbcdn.net/rsrc.php/v3/yr/r/4H8RHw3RvPl.png'
+          });
+
+          myMarkers['mapMarkers'].push(newMapMarker);
+        }
+        //myMarkers.setCluster();
+      }
+
+      myMarkers['render'] = function (currentMarkers) {
+
+        currentMarkers = currentMarkers || markersCoordinates;
+
+        if(myMarkers['mapMarkers']){
+          myMarkers['mapMarkers'].forEach(function(oldMarker){
+            oldMarker.setMap(null)
+          })
+        }
+
+        myMarkers['mapMarkers'] = currentMarkers.map( function(marker, index) {
+
+          var mapMarker = new google.maps.Marker({
+            map: mainMap,
+            position: {
+              lat: marker.latLng[0],
+              lng: marker.latLng[1]
+            },
+            title: marker.name,
+            icon: '/public/images/google-maps-clusterer/marker.png'
+          });
+
+          var contentString = '<div id="content">' +
+                                '<div id="siteNotice">' +
+                                  '<h3>' + marker.name + '</h3>' +
+                                '</div> <br> '+
+                                '<div id="bodyContent">' +
+                                  '<p>' +
+                                    '<b>Endereço: </b>' +
+                                    '<span class="location-address" >' + marker.street + ", " + marker.number + " - " + marker.district + '</span>' +
+                                  '</p>' +
+                                '</div>' +
+                              '</div>';
+
+          var newInfowindow = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 300
+          });
+
+          infowindows.windows.push(newInfowindow);
+          mapMarker.addListener('click', function() {
+            infowindows.closeAll();
+            newInfowindow.open(mainMap, mapMarker);
+          });
+
+          return mapMarker;
+        });
+      }
+
+      myMarkers['setCluster'] = function () {
+
+        var markersClusterStyle = [{
+          url: '/public/images/google-maps-clusterer/m1.png',
+          height: 54,
+          width: 54,
+          textColor: '#ffffff',
+        }, {
+          url: '/public/images/google-maps-clusterer/m2.png',
+          height: 57,
+          width: 57,
+          textColor: '#ffffff',
+        }, {
+          url: '/public/images/google-maps-clusterer/m3.png',
+          height: 55,
+          width: 55,
+          textColor: '#ffffff',
+        }, {
+          url: '/public/images/google-maps-clusterer/m4.png',
+          height: 55,
+          width: 55,
+          textColor: '#ffffff',
+        }, {
+          url: '/public/images/google-maps-clusterer/m5.png',
+          height: 55,
+          width: 55,
+          textColor: '#ffffff',
+        }];
+
+        if(markerCluster) markerCluster.clearMarkers();
+
+        markerCluster = new MarkerClusterer(mainMap, myMarkers.mapMarkers, {
+          styles: markersClusterStyle
+        });
+      }
+
+      myMarkers.render();
+      //myMarkers.setCluster();
+    }
+
+    var styleArray = [{
+      featureType: "all",
+      stylers: [
+        { hue: "#39b7b4" },
+        { saturation: -70 },
+        { lightness: 0 }
+      ]
+    },{
+      featureType: "poi",
+      stylers: [
+        { visibility: "off" }
+      ]
+    },{
+      featureType: "road.arterial",
+      elementType: "geometry",
+      stylers: [
+        { hue: "#39b7b4" },
+        { saturation: 50 }
+      ]
+    }];
+
+    var currentMarker = {};
+
+    function initMap() {
+      var mapElement = document.querySelector('.map-container #main-map');
+
+      // Create a map object and specify the DOM element for display.
+      mainMap = new google.maps.Map(mapElement, {
+        center: {
+          lat: -3.732065,
+          lng: -38.527414
+        },
+        scrollwheel: false,
+        zoom: 10,
+        mapTypeControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      mainMap.setOptions({
+        styles: styleArray,
+        minZoom: 12
+      });
+
+      animateProjectNumbers();
+    }
+
+
+    var establishmentsSearchForm = document.querySelector('.establishments-search-form');
+    var mainNameSearch = document.querySelector('.main-name-search');
+    var searchAutocomplete = document.querySelector('.search-autocomplete');
+    var inputFilters = document.querySelectorAll('.input-filter');
+    var submitFilters = document.querySelector('.filters-modal input[type="submit"]');
+
+    var doSearch = function(){
+      var name = this.value.trim().parseToRegex();
+      var searchResult = markersCoordinates.filter(function(marker){
+        if(new RegExp('^' + name, 'gi').test(marker.name)){
+          return true;
+        }else if(new RegExp(name, 'gi').test(marker.name)){
+          return true;
+        }else{
+          return false;
+        }
+      });
+
+      if(!$(searchAutocomplete).class.has('activated')){
+        $(searchAutocomplete).class.add('activated');
+      }
+
+      var fragment = document.createDocumentFragment();
+      var ul = document.createElement('ul');
+      var htmlListResult = searchResult.map(function(result){
+        return '<li class="clearfix" data-id="' + result._id + '"  data-name="' + result.name + '" onclick="panToEstablishment(event)">' +
+          '<span class="location-name" >' + result.name + '</span>' +
+          '<span class="location-address" >' + result.street + ", " + result.number + " - " + result.district + '</span>' +
+          '</li>';
+      });
+      if(htmlListResult.length >= 1){
+        ul.innerHTML = htmlListResult.join('');
+      }else{
+        ul.innerHTML = '<li class="clearfix">' +
+          '<span class="location-name" >Nenhum local encontrado</span>' +
+          '<span class="location-address" ></span>' +
+          '</li>';
+      }
+      fragment.appendChild(ul);
+      searchAutocomplete.innerHTML = "";
+      searchAutocomplete.appendChild(fragment);
+    };
+
+    $(mainNameSearch).on('input', doSearch);
+    $(mainNameSearch).on('click', doSearch);
+
+    function panToEstablishment(e){
+      var id = parseFloat(e.currentTarget.getAttribute('data-id'));
+      var name = e.currentTarget.getAttribute('data-name');
+      var index;
+
+      var choosed = markersCoordinates.filter(function(marker, i){
+        if(marker._id == id){
+          index = i;
+          return true;
+        }
+      })[0];
+
+      var latLng = new google.maps.LatLng(choosed.latLng[0], choosed.latLng[1]);
+      mainMap.panTo(latLng);
+      mainMap.setZoom(18);
+      mainNameSearch.value = name;
+
+      // Close search autocomplete modal
+      $(searchAutocomplete).class.remove('activated');
+
+      // Open marker infowindow
+      // To that close all infowindows before opened
+      infowindows.closeAll();
+      infowindows.windows[index].open(mainMap, myMarkers.mapMarkers[index]);
+    }
+
+    $(document.body).on('click', function(){
+      $(searchAutocomplete).class.remove('activated');
+      $(filterModal).class.remove('activated');
+    });
+    $(mainNameSearch).on('click', function(e){
+      e.stopPropagation()
+      $(filterModal).class.remove('activated');
+    });
+    $(submitFilters).on('click', function(e){
+      $(filterModal).class.remove('activated');
+    });
+    $(filterModal).on('click', function(e){
+      e.stopPropagation()
+    });
+    $(filterModalToggle).on('click', function(e){
+      e.stopPropagation()
+      $(searchAutocomplete).class.remove('activated');
+    });
+    $(mainNameSearch).on('focus', function(){
+      if(this.value.trim() != ""){
+        $(searchAutocomplete).class.add('activated');
+      }
+    });
+
+    function filterEstablishments(){
+      markersCoordinates = dataEstablishments;
+
+      $(inputFilters).each(function(filter){
+        var attr = filter.getAttribute('name');
+        var value = filter.value;
+        if(value.trim() != ""){
+          markersCoordinates = markersCoordinates.filter(function(marker){
+            return marker[attr] == value.trim();
+          });
+        }
+      });
+
+      myMarkers.render(markersCoordinates);
+      //myMarkers.setCluster();
+    };
+    $(establishmentsSearchForm).on('submit', function(e){
+      e = e || window.event;
+
+      filterEstablishments();
+    })
+  //})
+</script>

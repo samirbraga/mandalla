@@ -1,0 +1,307 @@
+.introduce{
+  height: 60vh;
+  background-image: url('/public/images/catedral-pb.jpg');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.introduce h1{
+  font-size: 2em;
+}
+
+.introduce h1 span{
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  width: 250px;
+  vertical-align: middle;
+}
+.introduce h1 hr{
+  display: inline-block;
+  height: 50px;
+  vertical-align: middle;
+  width: 1px;
+  margin: 0 5px;
+  background: rgba(58, 180, 180, 1);
+}
+
+.introduce h1 span:nth-of-type(1){
+  text-align: right;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+}
+
+.introduce h1 span:nth-of-type(2){
+  text-align: left;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  color: rgba(58, 180, 180, 1);
+}
+
+
+
+.welcome{
+  height: 40vh;
+  background: rgba(58, 180, 180, 1);
+  position: relative;
+}
+.welcome:after{
+  content: '';
+  width: 150px;
+  height: 100px;
+  position: absolute;
+  left: auto;
+  bottom: 100%;
+  right: 0;
+  background-image: url("/public/images/ornament-green.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  background-position: right bottom;
+}
+
+.presentation{
+  height: 100vh;
+  font-size: 0;
+  display: table;
+  width: 100%;
+}
+.presentation article{
+  height: 400px;
+  position: relative;
+  width: 100%;
+}
+.presentation article .main-text,
+.presentation article figure{
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
+.presentation article .presentation-text-align{
+  width: 50%;
+  display: inline-block;
+  height: 500px;
+  vertical-align: middle;
+}
+.presentation article .presentation-image-align{
+  width: 50%;
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  height: 500px;
+  vertical-align: middle;
+}
+.presentation article figure{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url('/public/images/instagram-image.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.presentation article figure figcaption{
+  width: 100%;
+  max-width: 600px;
+  font-size: 15pt;
+  text-align: right;
+  display: table;
+  height: 100%;
+  color: #ffffff;
+  padding-right: 15px;
+}
+.presentation article figure figcaption p{
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 1.5em;
+  font-family: 'Raleway', sans-serif;
+}
+.presentation article .main-text{
+  padding-right: 30px;
+  font-size: 11pt;
+  width: 100%;
+  max-width: 600px;
+  float: right;
+  padding-left: 15px;
+}
+.presentation article .main-text h2{
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.2em;
+  color: #0c1e61;
+  margin-top: 25px;
+}
+.presentation article .main-text hr{
+  height: 2px;
+  width: 40px;
+  border-radius: 2px;
+  background: #0c1e61;
+  margin-top: 15px;
+}
+.presentation article .main-text p{
+  font-family: 'Maven Pro', sans-serif;
+  margin-top: 20px;
+  max-width: 400px;
+  line-height: 1.4em;
+}
+.presentation article .main-text span{
+  display: block;
+  margin-top: 20px;
+}
+.presentation article .main-text span p,
+.presentation article .main-text span i{
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0;
+  color: #0c1e61;
+}
+.presentation article .main-text span p{
+  margin-left: 10px;
+}
+
+.general-info{
+  padding: 20px 0;
+  height: auto;
+  position: relative;
+  font-size: 0;
+  background-image: url('/public/images/city-wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+.general-info .background-overlay{
+  position: absolute;
+  width: 100%;
+  max-width: 1250px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.general-info .info-section{
+  display: inline-block;
+  width: 49.8%;
+  vertical-align: top;
+  padding-right: 50px;
+  margin-top: 15px;
+  font-size: 12pt;
+}
+.general-info .info-section h2{
+  font-size: 1.2em;
+  color: #39b6b3;
+  opacity: 0.7;
+}
+.general-info .info-section h2:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 2px;
+  top: 0;
+  background: #39b6b3;
+}
+.general-info .info-section h2,
+.general-info .info-section p{
+  padding-left: 15px;
+  position: relative;
+}
+.general-info .info-section p{
+  margin-top: 15px;
+  font-family: 'Maven Pro', sans-serif;
+  color: #fff;
+  max-width: 450px;
+  line-height: 1.3em;
+  opacity: 0.8;
+}
+.general-info .info-section a{
+  color: #39b6b3;
+  display: inline;
+}
+
+
+.meet-plaque article{
+  height: auto;
+  min-height: 80vh;
+  font-size: 0;
+  padding: 30px 0;
+}
+
+.meet-plaque article .plaque-explain{
+  font-size: 12pt;
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
+.meet-plaque article .plaque-explain h3{
+  font-size: 1.6em;
+  margin-bottom: 30px;
+  position: relative;
+  color: #0c1e61;
+  font-family: 'Raleway', sans-serif;
+}
+.meet-plaque article .plaque-explain h3:before{
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  height: 2px;
+  width: 6%;
+  background: #0c1e61;
+
+}
+.meet-plaque article .plaque-explain p{
+  font-family: 'Maven Pro', sans-serif;
+}
+
+
+.plaque-slider-container{
+  position: relative;
+  width: 50%;
+  display: inline-block;
+  padding-right: 50px;
+  vertical-align: top;
+}
+.plaque-slider-container .arrow{
+  position: absolute;
+  height: 100%;
+  width: 60px;
+  z-index: 100;
+  font-size: 25pt;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.3s ease-out;
+}
+.plaque-slider-container .arrow:hover{
+  opacity: 0.6;
+}
+.plaque-slider-container .arrow-prev{
+  left: 0;
+}
+.plaque-slider-container .arrow-pass{
+  right: 50px;
+}
+.plaque-slider-container .figure-container{
+  height: auto;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0;
+  position: relative;
+}
+.plaque-slider-container .figure-container figure{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+.plaque-slider-container .figure-container figure figcaption{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12pt;
+}
+.plaque-slider-container .figure-container figure img{
+  width: 250px;
+  display: block;
+  margin: auto;
+}

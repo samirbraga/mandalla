@@ -79,25 +79,6 @@ var passScroll = function () {
 //window.addEventListener('mousewheel', passScroll);
 //window.addEventListener('wheel', passScroll);
 
-
-
-var parallax = function(){
-  var introduceBackground = document.querySelectorAll('.parallax-background');
-
-  var scrollBg = function(){
-    var scrollTop = document.scrollY || body.scrollTop;
-    var rate = 0.7;
-    $(introduceBackground).css('background-position', '0 ' + (scrollTop*rate) + "px")
-  }
-  scrollBg();
-  window.addEventListener('DOMMouseScroll', scrollBg);
-  window.addEventListener('scroll', scrollBg);
-  window.addEventListener('mousewheel', scrollBg);
-  window.addEventListener('wheel', scrollBg);
-}
-//parallax();
-
-
 var depositionsCarousel = function(){
 	var arrowLeft = document.querySelector('.depositions .arrow-scroll-left');
 	var arrowRight = document.querySelector('.depositions .arrow-scroll-right');
@@ -367,8 +348,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var goDown = function(){
     var introduce = document.querySelector('.introduce');
     var arrow = document.querySelector('.introduce .arrow-bottom');
+    var roots = document.querySelectorAll('html, body');
     $(arrow).on('click', function(){
-      $(body).scrollY($(introduce).height(), 1000)
+      $(roots).scrollY($(introduce).height(), 1000)
     });
   }
   goDown();

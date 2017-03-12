@@ -1,14 +1,17 @@
 const request = require('request');
 
+let establishments = require('./../data/establishments');
+
 module.exports = (app) => {
 	return {
 		response: (req, res) => {
-      var query = req.query;
+      let query = req.query;
+
       if(query.q == "date"){
 
-        var date = new Date();
+        let date = new Date();
 
-        var dateResponse = {
+        let dateResponse = {
           full: date,
           year: date.getFullYear(),
           month: (+date.getMonth()) >= 10 ? (+date.getMonth()) : "0" + (+date.getMonth()),
@@ -17,12 +20,14 @@ module.exports = (app) => {
           minutes: (+date.getMinutes()) >= 10 ? (+date.getMinutes()) : "0" + (+date.getMinutes()),
           seconds: (+date.getSeconds()) >= 10 ? (+date.getSeconds()) : "0" + (+date.getSeconds())
         }
+
         res.json(dateResponse);
+
       }else if(query.q == "insta"){
 
-				var userId = "1537761915";
-				var accessToken = "1537761915.bd5e6a3.18d6c0f38e634dc182551439d48106ba";
-				var url = "https://api.instagram.com/v1/users/" + userId + "?access_token=" + accessToken;
+				let userId = "1537761915";
+				let accessToken = "1537761915.bd5e6a3.18d6c0f38e634dc182551439d48106ba";
+				let url = "https://api.instagram.com/v1/users/" + userId + "?access_token=" + accessToken;
 
 				const options = {
 					url: url,
@@ -36,6 +41,9 @@ module.exports = (app) => {
 				request(options, (err, response, body) => {
 					res.json(JSON.parse(body));
 				});
+
+			}else if(query.q == "establishments"){
+				res.json(establishments);
 			}
     }
 	}
