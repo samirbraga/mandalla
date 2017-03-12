@@ -1,4 +1,4 @@
-<section class="clients uniform">
+<section class="galery uniform">
 	<header class="section-title bottom">
 		<div>
 			<h2>GALERIA DE IMAGENS</h2>
@@ -49,7 +49,7 @@
 					time.innerHTML = day + "." + month + "." + year;
 				})
 			},
-			limit: 10
+			limit: (window.innerWidth > 450 ? 10 : 11)
 		});
 		feed.run();
 	</script>

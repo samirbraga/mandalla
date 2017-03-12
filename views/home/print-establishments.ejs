@@ -16,6 +16,11 @@
 		<script src="/public/javascript/libs/modernizr/modernizr.js" ></script>
 		<script src="/public/javascript/general.js" ></script>
     <style>
+       @media print{
+         header{
+           display: none !important;
+         }
+       }
       .establishments-list-container{
         font-size: 0;
       }
@@ -81,11 +86,18 @@
                 <$- establishment.name $>
               </span>
               <span class="address info" >
-                <i class="fa fa-location-arrow fa" ></i> <$- `${establishment.street}, ${establishment.number} - ${establishment.district}` $>
+                <i class="fa fa-location-arrow fa" ></i>
+                <$- `${establishment.street}, ${establishment.number} - ${establishment.district}` $>
+              </span>
+              <span class="trading info" >
+                <i class="fa fa-shopping-cart fa" ></i>
+                <a href="<$- establishment.site $>">
+                  <$- establishment.trading.charAt(0).toUpperCase() + establishment.trading.substring(1, establishment.trading.length) $>
+                </a>
               </span>
               <span class="site info" >
                 <i class="fa fa-globe fa" ></i>
-                <a href="<$- establishment.site $>"> <$- establishment.site.replace(/^((http|https)\:\/\/)/, '').replace(/(\/)?$/, '') $> </a>
+                <a href="<$- establishment.site $>">  <$- establishment.site.replace(/^((http|https)\:\/\/)/, '').replace(/(\/)?$/, '') $> </a>
               </span>
             </div>
           </div>

@@ -149,32 +149,42 @@ var depositionsCarousel = function(){
 	var scrollLeft;
 	var dragging = false;
 
-	$(depositionsContainer).on('mousedown', function(e){
-		x = e.pageX;
-		dragging = true;
-		updateScroll();
-	})
+  $(depositionsContainer).on('mousedown', function(e){
+    x = e.pageX;
+    dragging = true;
+    updateScroll();
+  })
+  $(depositionsContainer).on('touchstart', function(e){
+  	x = e.changedTouches[0].pageX;
+  	dragging = true;
+  	updateScroll();
+  })
 
 	$(window).on('mouseup', function(e){
 		dragging = false;
 		scrollTo();
 	})
-
-	$(depositionsContainer).on('mouseup', function(e){
-		e.preventDefault();
-		e.stopPropagation()
+	$(window).on('touchend', function(e){
 		dragging = false;
-		var difference = (x - _x);
-		if(module(difference) > step()/3){
-			if(difference > 0){
-				next();
-			}else{
-				prev();
-			}
-		}else{
-			scrollTo();
-		}
-	});
+		scrollTo();
+	})
+  var _mouseUpHandle = function(e){
+    e.preventDefault();
+    e.stopPropagation()
+    dragging = false;
+    var difference = (x - _x);
+    if(module(difference) > step()/3){
+      if(difference > 0){
+        next();
+      }else{
+        prev();
+      }
+    }else{
+      scrollTo();
+    }
+  };
+	$(depositionsContainer).on('mouseup', _mouseUpHandle);
+	$(depositionsContainer).on('touchend',_mouseUpHandle);
 
 	$(depositionsContainer).on('mousemove', function(e){
 		_x = e.pageX;
@@ -183,6 +193,14 @@ var depositionsCarousel = function(){
 			this.scrollLeft = scrollLeft + (x - _x);
 		}
 	});
+	$(depositionsContainer).on('touchstart', function(e){
+		_x = e.changedTouches[0].pageX;
+		if(dragging){
+			var difference = (x - _x);
+			this.scrollLeft = scrollLeft + (x - _x);
+		}
+	});
+
 	var nextTimeout;
 	var next = function(){
 		updateScroll();
