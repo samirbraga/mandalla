@@ -193,7 +193,7 @@ var depositionsCarousel = function(){
 			this.scrollLeft = scrollLeft + (x - _x);
 		}
 	});
-	$(depositionsContainer).on('touchstart', function(e){
+	$(depositionsContainer).on('touchmove', function(e){
 		_x = e.changedTouches[0].pageX;
 		if(dragging){
 			var difference = (x - _x);

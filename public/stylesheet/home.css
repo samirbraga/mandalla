@@ -430,7 +430,7 @@ article p, aside p{
   background: #ffffff;
   left: 15px;
   bottom: 15px;
-  z-index: 100;
+  z-index: 10;
   padding: 16px;
   font-size: 0.8em;
   border-radius: 4px;
