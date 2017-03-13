@@ -297,7 +297,7 @@ var animateCounting = function(target, begin, time, callback){
 	if(target > 1000){
 		step = 100;
 	}
-
+	var animation;
   var animate = function(timestamp){
     if(!start) start = timestamp;
 
@@ -309,10 +309,13 @@ var animateCounting = function(target, begin, time, callback){
 		callback(value >= target ? target : value);
 
     if(progress < time){
-      requestAnimationFrame(animate)
-    }
+      animation = requestAnimationFrame(animate)
+    } else {
+			callback(target);
+			cancelAnimationFrame(animation);
+		}
   }
-  requestAnimationFrame(animate)
+  animation = requestAnimationFrame(animate)
 }
 /*
 
