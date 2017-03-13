@@ -530,11 +530,9 @@ body.no-overflow{
 	top: 0;
 	height: 100%;
 	width: 100px;
-	background-image: url('/public/Images/icons/search-white.png');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 30px 30px;
 	background-color: transparent;
+	font-size: 2.0em;
+	color: white;
 }
 .search-container .search-wrapper .close-icon{
 	position: absolute;

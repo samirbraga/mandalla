@@ -9,18 +9,7 @@
   max-width: 1200px;
   padding: 0 15px;
 }
-/*
-body::after{
-    position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
-    content: url('/public/images/component-photos/samila.jpg')
-    url('/public/images/component-photos/monique.jpg')
-    url('/public/images/component-photos/edi.jpg')
-    url('/public/images/component-photos/manu.jpg')
-    url('/public/images/component-photos/felipe.jpg')
-    url('/public/images/component-photos/roberta.jpg')
-    url('/public/images/component-photos/samir.jpg');
-}
-*/
+
 
 body.blurred{
   overflow: hidden
@@ -1006,7 +995,7 @@ article p, aside p{
     display: block;
     text-align: center;
     position: absolute;
-    top: 40%;
+    top: 30%;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
     font-size: 9.5vmin;

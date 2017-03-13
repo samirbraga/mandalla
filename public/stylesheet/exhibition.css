@@ -176,7 +176,8 @@
   width: 100%;
   max-width: 1250px;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   top: 0;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -271,6 +272,7 @@
   font-size: 25pt;
   cursor: pointer;
   opacity: 0.4;
+  -webkit-transition: opacity 0.3s ease-out;
   transition: opacity 0.3s ease-out;
 }
 .plaque-slider-container .arrow:hover{

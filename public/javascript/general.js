@@ -305,7 +305,8 @@ var animateCounting = function(target, begin, time, callback){
 
     var percent = Math[ease](progress/time);
 
-		callback((Math.roundTo(target*percent, step)) >= target-step ? target : (Math.roundTo(target*percent, step)));
+		var value = (Math.roundTo(target*percent, step)) >= target-step ? target : (Math.roundTo(target*percent, step))
+		callback(value >= target ? target : value);
 
     if(progress < time){
       requestAnimationFrame(animate)

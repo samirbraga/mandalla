@@ -16,11 +16,6 @@
 		<script src="/public/javascript/libs/modernizr/modernizr.js" ></script>
 		<script src="/public/javascript/general.js" ></script>
     <style>
-       @media print{
-         header{
-           display: none !important;
-         }
-       }
       .establishments-list-container{
         font-size: 0;
       }
@@ -65,6 +60,21 @@
         display: table-cell;
         vertical-align: middle;
       }
+     @media print{
+       header{
+         display: none !important;
+       }
+     }
+     @media (max-width: 800px){
+       .establishment-container .content{
+         font-size: 10pt;
+       }
+     }
+     @media screen and (max-width: 700px){
+       .establishment-container{
+         width: 100%;
+       }
+     }
     </style>
 	</head>
 	<body>
