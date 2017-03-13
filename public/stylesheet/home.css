@@ -421,6 +421,7 @@ article p, aside p{
 
 .section-maps .show-map{
   height: 100vh;
+  min-height: 400px;
   width: 100%;
   position: relative;
 }
