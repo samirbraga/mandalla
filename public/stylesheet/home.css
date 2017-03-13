@@ -339,9 +339,11 @@ article p, aside p{
 
   .section-numbers .wrapper .number-count{
     width: 100%;
+    text-align: center;
   }
   .section-numbers .wrapper .number-wrapper{
     margin-bottom: 25px;
+    width: 200px;
   }
 }
 
