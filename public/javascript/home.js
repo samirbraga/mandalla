@@ -201,6 +201,14 @@ var depositionsCarousel = function(){
 		}
 	});
 
+  optimizedResize.add(setScrollFixed);
+  window.addEventListener('orientationchange', setScrollFixed);
+
+  function setScrollFixed(){
+    depositionsContainer.scrollLeft = getScroll();
+  }
+
+
 	var nextTimeout;
 	var next = function(){
 		updateScroll();

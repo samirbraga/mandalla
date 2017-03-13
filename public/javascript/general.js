@@ -473,7 +473,9 @@ document.addEventListener('DOMContentLoaded', function(){
 				//})
 			//}
 			resizeElements();
-			optimizedResize.add(resizeElements)
+			optimizedResize.add(resizeElements);
+			window.addEventListener('orientationchange', resizeElements);
+
 		//}
 	}
 });
