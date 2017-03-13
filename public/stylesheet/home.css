@@ -714,6 +714,7 @@ article p, aside p{
   display: inline-block;
   width: 50%;
   height: 100%;
+  vertical-align: top;
 }
 .section-demo article .content h2{
   font-family: 'Raleway', sans-serif;
@@ -752,6 +753,7 @@ article p, aside p{
   display: inline-block;
   height: 500px;
   float: right;
+  vertical-align: top;
 }
 
 @media (max-width: 800px){
