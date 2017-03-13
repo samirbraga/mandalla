@@ -20,12 +20,12 @@
 	      var xml = new XMLHttpRequest();
 	    	var url = "/data?q=" + code;
 	    	xml.open("GET", url);
-	    	xml.responseType = "json";
+	    	xml.responseType = "text";
 	    	xml.onload = function () {
 	    	    if(xml.readyState === 4){
 	    	        if(xml.status === 200 || xml.status == 0){
 	              	var data = xml.response;
-									callback(null, data);
+									callback(null, JSON.parse(data));
 	    	        }else{
 									callback(xml.statusText, null);
 								}
