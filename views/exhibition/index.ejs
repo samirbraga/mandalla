@@ -17,24 +17,6 @@
 		<script src="/public/javascript/libs/modernizr/modernizr.js" ></script>
 		<script src="/public/javascript/general.js" ></script>
 		<script type="text/javascript">
-			var dataRequest = function(code, callback){
-	      var xml = new XMLHttpRequest();
-	    	var url = "/data?q=" + code;
-	    	xml.open("GET", url);
-	    	xml.responseType = "json";
-	    	xml.onload = function () {
-	    	    if(xml.readyState === 4){
-	    	        if(xml.status === 200 || xml.status == 0){
-	              	var data = xml.response;
-									callback(null, data);
-	    	        }else{
-									callback(xml.statusText, null);
-								}
-	    	    }
-	    	}
-	    	xml.send();
-			}
-
 	    var dataEstablishments;
 		</script>
 	</head>
@@ -105,7 +87,7 @@
 		<section class="meet-plaque" id="rede-de-apoiadores">
 			<header class="section-title bottom" >
 				<div>
-					<h2>NOSSA REDE DE APOIADORES</h2>
+					<h2>EXPOSIÇÃO EM REDE</h2>
 					<span>Cada estabelecimento vai exibir em sua fachada (ou em seu ambiente interno) placas trazendo uma biografia resumida da pessoa homenageada daquela rua onde está situado.</span>
 				</div>
 			</header>
@@ -129,19 +111,19 @@
 							</div>
 							<div class="figure-container">
 								<figure>
-									<img src="http://localhost/public/images/placa-interior.png" alt="">
+									<img src="/public/images/placa-interior.png" alt="">
 									<figcaption>INTERNA</figcaption>
 								</figure>
 								<figure>
-									<img src="http://localhost/public/images/placa-exterior.png" alt="">
+									<img src="/public/images/placa-exterior.png" alt="">
 									<figcaption>EXTERNA</figcaption>
 								</figure>
 								<figure>
-									<img src="http://localhost/public/images/placa-interior.png" alt="">
+									<img src="/public/images/placa-interior.png" alt="">
 									<figcaption>INTERNA</figcaption>
 								</figure>
 								<figure>
-									<img src="http://localhost/public/images/placa-exterior.png" alt="">
+									<img src="/public/images/placa-exterior.png" alt="">
 									<figcaption>EXTERNA</figcaption>
 								</figure>
 							</div>
@@ -158,89 +140,124 @@
 				</div>
 
 				<script>
-				var pass = document.querySelector('.meet-plaque .arrow-pass');
-				var prev = document.querySelector('.meet-plaque .arrow-prev');
+					var pass = document.querySelector('.meet-plaque .arrow-pass');
+					var prev = document.querySelector('.meet-plaque .arrow-prev');
 
-				var duration = 600;
+					var duration = 600;
 
-				var container = document.querySelector('.meet-plaque .plaque-slider-container');
-				var figuresContainer = document.querySelector('.meet-plaque .plaque-slider-container .figure-container');
-				var figures = document.querySelectorAll('.meet-plaque .plaque-slider-container .figure-container figure');
-				var index = 1;
-				var step = figures[0].offsetWidth;
-				var scroll = step;
-				figuresContainer.addEventList
-				var scrollTo = function(){
-					$(figuresContainer).scrollX(scroll, duration);
-				}
-				var scrollToImmediate = function(){
-					figuresContainer.scrollLeft = scroll;
-				}
-				scrollToImmediate();
+					var container = document.querySelector('.meet-plaque .plaque-slider-container');
+					var figuresContainer = document.querySelector('.meet-plaque .plaque-slider-container .figure-container');
+					var figures = document.querySelectorAll('.meet-plaque .plaque-slider-container .figure-container figure');
+					var index = 1;
+					var step = figures[0].offsetWidth;
+					var scroll = step;
+					figuresContainer.addEventList
+					var scrollTo = function(){
+						$(figuresContainer).scrollX(scroll, duration);
+					}
+					var scrollToImmediate = function(){
+						figuresContainer.scrollLeft = scroll;
+					}
+					scrollToImmediate();
 
-				var toPass,
-						toPrev;
+					var toPass,
+							toPrev;
 
-				toPass = function(){
-				  scroll += step;
-				  if(index == 2){
-				    index = 1;
-				    scrollTo()
-				    scroll = step;
-				    pass.onclick = null;
-				    setTimeout(function(){
-				      scrollToImmediate();
-				    	pass.onclick = toPass;
-				    }, +duration+50)
-				  }else{
-				    index++;
-				    scrollTo()
-				  }
-				  console.log("index: ", index, " | ", "scroll:", scroll);
-				}
-				toPrev = function(){
-				  scroll -= step;
-				  if(index == 1){
-				    index = 2;
-				    scrollTo();
-				    scroll = step*index;
-				    prev.onclick = null;
-				    setTimeout(function(){
-				      scrollToImmediate();
-				    	prev.onclick = toPrev;
-				    }, +duration+50)
-				  }else{
-				    index--;
-				    scrollTo();
-				  }
-				  console.log("index: ", index, " | ", "scroll:", scroll);
-				}
+					toPass = function(){
+					  scroll += step;
+					  if(index == 2){
+					    index = 1;
+					    scrollTo()
+					    scroll = step;
+					    pass.onclick = null;
+					    setTimeout(function(){
+					      scrollToImmediate();
+					    	pass.onclick = toPass;
+					    }, +duration+50)
+					  }else{
+					    index++;
+					    scrollTo()
+					  }
+					  console.log("index: ", index, " | ", "scroll:", scroll);
+					}
+					toPrev = function(){
+					  scroll -= step;
+					  if(index == 1){
+					    index = 2;
+					    scrollTo();
+					    scroll = step*index;
+					    prev.onclick = null;
+					    setTimeout(function(){
+					      scrollToImmediate();
+					    	prev.onclick = toPrev;
+					    }, +duration+50)
+					  }else{
+					    index--;
+					    scrollTo();
+					  }
+					  console.log("index: ", index, " | ", "scroll:", scroll);
+					}
 
-				optimizedResize.add(function(){
-					step = figures[0].offsetWidth;
-				  figuresContainer.scrollLeft = (index)*step;
-				})
+					optimizedResize.add(function(){
+						step = figures[0].offsetWidth;
+					  figuresContainer.scrollLeft = (index)*step;
+					})
 
-				pass.onclick = toPass;
-				prev.onclick = toPrev;
+					pass.onclick = toPass;
+					prev.onclick = toPrev;
 
-				var loopInterval = setInterval(toPass, 5000);
+					var loopInterval = setInterval(toPass, 5000);
 
-				container.addEventListener('mouseenter', function(){
-					clearInterval(loopInterval);
-				})
-				document.addEventListener('mouseleave', function(){
-					clearInterval(loopInterval);
-				})
-				container.addEventListener('mouseleave', function(){
-					clearInterval(loopInterval);
-					loopInterval = setInterval(toPass, 5000);
-				})
-				document.addEventListener('mouseenter', function(){
-					clearInterval(loopInterval);
-					loopInterval = setInterval(toPass, 5000);
-				})
+					container.addEventListener('mouseenter', function(){
+						clearInterval(loopInterval);
+					})
+					document.addEventListener('mouseleave', function(){
+						clearInterval(loopInterval);
+					})
+					container.addEventListener('mouseleave', function(){
+						clearInterval(loopInterval);
+						loopInterval = setInterval(toPass, 5000);
+					})
+					document.addEventListener('mouseenter', function(){
+						clearInterval(loopInterval);
+						loopInterval = setInterval(toPass, 5000);
+					})
 				</script>
+			</article>
+		</section>
+
+		<div style="height: 300px;
+								width: 100%;
+								background-image: url('/public/images/background-splitter.png');
+								background-repeat: no-repeat;
+								background-size: cover">
+		</div>
+
+		<section class="sponsors-rights" >
+			<header class="section-title bottom" >
+				<div>
+					<h2>FAÇA PARTE DA HISTÓRIA!</h2>
+					<span>O estabelecimento pode participar e se tornar um dos parceiros da rede, com o investimento na placa, tendo como contrapartida:</span>
+				</div>
+			</header>
+			<article>
+				<div class="responsive-width m-auto">
+					<div class="right" >
+						<img src="/public/images/icons/include-in-map.png" alt="">
+						<h3>Localização no nosso mapa</h3>
+						<p> Localização no mapa do site, na ocasião do mês de aniversário de Fortaleza (pelo mapa, o internauta tem acesso ao site do estabelecimento).</p>
+					</div>
+					<div class="right" >
+						<img src="/public/images/icons/include-in-networking.png" alt="">
+						<h3>Anúcios do estabelecimento</h3>
+						<p>Anúncios (dentro da temática da Exposição Ruas Biográficas) na nossa página  no Instagram, e nas páginas dos realizadores (Mandalla Comunicação e Edições BPM).</p>
+					</div>
+					<div class="right" >
+						<img src="/public/images/icons/include-in-site.png" alt="">
+						<h3>Participação na Imprensa</h3>
+						<p>Logomarca do estabelecimento no site e citação como patrocinador nos releases enviados à imprensa.</p>
+					</div>
+				</div>
 			</article>
 		</section>
 		<$- include('../footer') $>

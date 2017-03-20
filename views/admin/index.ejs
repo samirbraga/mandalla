@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Página do Administrador | Ruas Biográficas</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link href="/public/stylesheet/general.css" rel="stylesheet">
+		<link href="/public/stylesheet/admin.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Maven+Pro|Raleway|Ubuntu" rel="stylesheet">
+		<link href="/public/stylesheet/libs/font-awesome/font-awesome.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+		<meta http-equiv="content-language" content="br" />
+		<script src="/public/javascript/libs/modernizr/modernizr.js" ></script>
+		<script src="/public/javascript/general.js" ></script>
+	</head>
+	<body>
+		<!-- .topbar -->
+		<$- include('../topbar', {classTopbar: 'dark'}); $>
+		<header class="introduce align-center-both-table viewport-units" data-properties="height: 50vh" >
+			<div class="content-align">
+				<div class="content-wrapper">
+					<h1>Página do Administrador</h1>
+				</div>
+			</div>
+		</header>
+    <div class="page-wrapper responsive-width m-auto">
+			<div class="content">
+				<section class="establishments-manage" >
+					<h2>Gerenciamento de estabelecimentos</h2>
+					<hr>
+					<div class="tabs-container">
+						<div class="tabs-header">
+							<div class="tab-title " data-target="add-establishment">
+								Adicionar <i class="fa fa-plus" ></i>
+							</div>
+							<div class="tab-title" data-target="remove-establishment">
+								Deletar <i class="fa fa-trash" ></i>
+							</div>
+							<div class="tab-title activated" data-target="update-establishment">
+								Atualizar <i class="fa fa-refresh" ></i>
+							</div>
+						</div>
+						<div class="tab add" id="add-establishment">
+							<h3 class="title">Dados do novo estabelecimento:</h3>
+							<form action="javascript: addEstablishment()">
+								<label for="name"><i class="fa fa-id-card-o" ></i> Nome:</label>
+								<input value="dddd" required="true" type="text" id="name" name="name" class="">
+								<label for="site"><i class="fa fa-globe" ></i> Site: <small>(Com <b>https://www.</b>)</small></label>
+								<input value="dddd" required="true" type="text" id="site" name="site" class="">
+								<label for="trading"><i class="fa fa-shopping-cart" ></i> Ramo:</label>
+								<input value="dddd" required="true" type="text" id="trading" name="trading" class="">
+								<label for="district"><i class="fa fa-compass" ></i> Bairro:</label>
+								<input value="dddd" required="true" type="text" id="district" name="district" class="">
+								<label for="street"><i class="fa fa-road" ></i> Rua: <small>(Escreva o prefixo <b>Rua, Av., Alameda, etc</b>)</small></label>
+								<input value="dddd" required="true" type="text" id="street" name="street" class="">
+								<label for="number"><i class="fa fa-list-ol" ></i> Número:</label>
+								<input value="dddd" required="true" type="text" id="number" name="number" class="">
+								<label for="latLng"><i class="fa fa-map-marker" ></i> Latitude e logintude: <small>(Primeiro Latitude, segundo longitude - <b>sepados por vírgula (,)</b>)</small></label>
+								<input value="9999, 888" pattern="\s*((-)?[0-9]+(\.[0-9]+)?)\s*,\s*((-)?[0-9]+(\.[0-9]+)?)\s*" type="text" id="latLng" name="latLng" class="" title="Dois números separados por vírgula" required >
+								<hr>
+								<button type="submit" name="button">ADICIONAR ESTABELECIMENTO &nbsp;
+									<i class="fa fa-plus" aria-hidden="true"></i>
+								</button>
+							</form>
+						</div>
+						<div class="tab remove " id="remove-establishment">
+							<h3 class="title">Pesquise o estabelecimento que será removido:</h3>
+							<form action="">
+								<label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+								<input type="text" id="name-search" class="search-name" >
+							</form>
+							<div class="establishments-list"></div>
+						</div>
+						<div class="tab update activated" id="update-establishment">
+							<h3 class="title">Pesquise o estabelecimento que será atualizado:</h3>
+							<form action="">
+								<label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+								<input type="text" id="name-search" class="search-name" >
+							</form>
+							<div class="establishments-list"></div>
+						</div>
+					</div>
+				</section>
+					<section class="audios-manage" >
+						<h2>Gerenciamento de Audiografias</h2>
+						<hr>
+						<div class="tabs-container">
+							<div class="tabs-header">
+								<div class="tab-title " data-target="add-audio">
+									Adicionar <i class="fa fa-plus" ></i>
+								</div>
+								<div class="tab-title" data-target="remove-audio">
+									Deletar <i class="fa fa-trash" ></i>
+								</div>
+								<div class="tab-title activated" data-target="update-audio">
+									Atualizar <i class="fa fa-refresh" ></i>
+								</div>
+							</div>
+							<div class="tab add" id="add-audio">
+								<h3 class="title">Dados da nova audiografia:</h3>
+								<form enctype="multipart/form-data" method="post" action="/admin/add-audio">
+									<label for="street-name"><i class="fa fa-id-card-o" ></i> Nome da respectiva rua:</label>
+									<input value="dddd" required="true" type="text" id="street-name" name="street-name" class="">
+									<label for="instagram-link"><i class="fa fa-instagram" ></i> Link da respectiva publicação no Instagram: <small>(Com <b>https://www.</b>)</small></label>
+									<input value="dddd" required="true" type="text" id="instagram-link" name="instagram-link" class="">
+									<label for="audio-uploader"><i class="fa fa-headphones" ></i> Upload do arquivo do áudio:</label>
+									<input value="dddd" required="true" type="file" id="audio-uploader" name="audiographs" class="">
+									<hr>
+									<button type="submit" name="button">ADICIONAR ÁUDIO &nbsp;
+										<i class="fa fa-plus" aria-hidden="true"></i>
+									</button>
+								</form>
+							</div>
+							<div class="tab remove " id="remove-audio">
+								<h3 class="title">Pesquise a audiografia que será removida:</h3>
+								<form action="">
+									<label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+									<input type="text" id="name-search" class="search-name" >
+								</form>
+								<div class="audios-list"></div>
+							</div>
+							<div class="tab update activated" id="update-audio">
+								<h3 class="title">Pesquise a audiografia que será atualizada:</h3>
+								<form action="">
+									<label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+									<input type="text" id="name-search" class="search-name" >
+								</form>
+								<div class="audios-list"></div>
+							</div>
+						</div>
+					</section>
+				<a href="/admin/logout" class="btn-plain"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+			</div>
+    </div>
+		<script src="/public/javascript/adminIndex.js" charset="utf-8"></script>
+
+		<$- include('../footer') $>
+	</body>
+</html>

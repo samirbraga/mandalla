@@ -360,7 +360,7 @@
     $(mainNameSearch).on('click', doSearch);
 
     function panToEstablishment(e){
-      var id = parseFloat(e.currentTarget.getAttribute('data-id'));
+      var id = e.currentTarget.getAttribute('data-id');
       var name = e.currentTarget.getAttribute('data-name');
       var index;
 

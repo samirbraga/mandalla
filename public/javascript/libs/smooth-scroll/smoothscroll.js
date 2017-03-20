@@ -133,10 +133,10 @@ function ssc_keydown(e) {
     var r, i = 0,
         s = 0;
     var o = ssc_overflowingAncestor(ssc_activeElement);
-    var u = o.clientHeight;
-    if (o == document.body) {
-        u = window.innerHeight
-    }
+
+    var u = (!!o ? o.clientHeight : 0);
+    if (o == document.body) {
+        u = window.innerHeight    }
     switch (e.keyCode) {
     case ssc_key.up:
         s = -ssc_arrowscroll;

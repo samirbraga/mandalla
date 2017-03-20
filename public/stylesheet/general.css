@@ -12,7 +12,6 @@
 	margin: auto;
 }
 
-
 .responsive-width{
   width: 100%;
   max-width: 1200px;
@@ -35,13 +34,38 @@ p a:hover{
 	text-decoration: underline;
 }
 
+b, a, span, em{
+	font-family: inherit;
+}
+
+hr{
+	width: 100%;
+	height: 1px;
+	background: rgba(0,0,0,.2);
+	margin: 10px 0;
+}
+
 body{
 	overflow-x: hidden;
+	-webkit-font-smooth: antialiased;
 }
 body.no-overflow{
 	overflow: hidden;
 }
 
+.soft-scroll{
+	overflow: auto;
+}
+.soft-scroll::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+.soft-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+}
+.soft-scroll::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.08);
+}
 
 .general-modal{
   opacity: 0;
@@ -194,6 +218,7 @@ body.no-overflow{
 	position: absolute;
  	right: 0;
 	bottom: 1px;
+	margin: 0;
 }
 .topbar.dark .soft-line{
 	display: none;

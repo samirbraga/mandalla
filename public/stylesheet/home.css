@@ -210,6 +210,8 @@ article p, aside p{
   .introduce .header-content-align .meet-buttons .meet-button{
     margin-right: 0 !important;
     margin-bottom: 15px !important;
+    padding: 12px;
+    font-size: 0.7em;
   }
   .introduce .header-content-align .header-title {
     font-size: 1.4em;

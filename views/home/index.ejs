@@ -33,7 +33,6 @@
 	    	}
 	    	xml.send();
 			}
-
 	    var dataEstablishments;
 		</script>
 	</head>
@@ -149,17 +148,10 @@
 					});
 				});
 
-				dataRequest('date', function(error, data){
-					var time;
-					if(!error){
-						var date = data;
-						time = date.year - 2014;
-					}else{
-						time = 3;
-					}
-					animateCounting(time, 0, 4000, function(currentValue){
-						historyNumber.innerHTML = currentValue;
-					});
+				var fulldate = <$- JSON.stringify(data.fulldate); $>;
+				var time = fulldate.year - 2014;
+				animateCounting(time, 0, 4000, function(currentValue){
+					historyNumber.innerHTML = currentValue;
 				});
 			};
 		</script>

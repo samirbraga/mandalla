@@ -1,8 +1,11 @@
-const request = require('request');
+const request = require('request'),
+			path = require('path');
 
-let establishments = require('./../data/establishments');
 
 module.exports = (app) => {
+	let Establishments = app.models.establishments;
+	let Audiographs = app.models.audiographs;
+
 	return {
 		response: (req, res) => {
       let query = req.query;
@@ -43,8 +46,53 @@ module.exports = (app) => {
 				});
 
 			}else if(query.q == "establishments"){
-				res.json(establishments);
+				Establishments.find({}, (err, establishments) => {
+					if(!err){
+						res.json(establishments);
+					}
+				});
+			}else if(query.q == "audiographs"){
+				Audiographs.find({}, (err, audiographs) => {
+					if(!err){
+						res.json(audiographs);
+					}
+				});
 			}
-    }
+    },
+		sendAudio: (req, res) => {
+			res.sendFile(rootPath + '/uploads/audiographs/' + req.params.filename);
+		},
+		instapost: (req, res) => {
+			var key = req.params.key;
+
+			let userId = "1537761915";
+			let accessToken = "1537761915.bd5e6a3.18d6c0f38e634dc182551439d48106ba";
+			let url = "https://api.instagram.com/v1/media/shortcode/" + key + "?access_token=" + accessToken;
+
+			const options = {
+				url: url,
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json',
+					'Accept-Charset': 'utf-8'
+				}
+			}
+
+			if(req.query.res == 'image'){
+				request(options, (err, response, body) => {
+					request(JSON.parse(body).data.images.thumbnail.url).pipe(res)
+				});
+			}else if(req.query.res == 'imageUrl'){
+				request(options, (err, response, body) => {
+					res.end(JSON.parse(body).data.images.thumbnail.url);
+				});
+			}else if(req.query.res == 'data'){
+				request(options, (err, response, body) => {
+					res.json(JSON.parse(body));
+				});
+			}else{
+				res.end();
+			}
+		}
 	}
 }

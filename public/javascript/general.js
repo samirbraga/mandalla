@@ -137,10 +137,21 @@ var $ = function(elements){
 				}
 			}
 		})(),
-		on: function(event, callback){
+		on: function(_event, callback){
 			each(function(element){
-				element.addEventListener(event, callback);
+				element.addEventListener(_event, callback);
 			});
+		},
+		html: function(html){
+			var htmlRetured;
+			each(function(element){
+				if(html){
+					element.innerHTML = html;
+				}else{
+					htmlRetured = element.innerHTML;
+				}
+			});
+			return htmlRetured;
 		},
 		css: function(property, value){
 			if(value){
@@ -193,6 +204,11 @@ var $ = function(elements){
 				width = el.offsetWidth;
 			});
 			return width;
+		},
+		value: function(value) {
+			each(function(el){
+				el.value = value || "";
+			});
 		},
 		attr: function(attr, value) {
 			var args = arguments;
@@ -281,6 +297,27 @@ Number.prototype.formatDot = function(){
 String.prototype.parseToRegex = function(){
   return this.replace(/\(/g, '\\(').replace(/\)/g, '\\)').replace(/\./g, '\\.').replace(/\*/g, '\\*').replace(/\+/g, '\\+').replace(/\-/g, '\\-').replace(/\//g, '\\/').replace(/\"/g, '\\"').replace(/\'/g, "\\'").replace(/\,/g, '\\,').replace(/\&/g, '\\&')
 }
+
+String.prototype.parseToUrl = function (){
+	string = this;
+	var translate = { "ç": "c", "é": "e", "õ": 'o', "á": "a", "ã": "a", "à": "a", "ű": "u", "ő": "o", "ú": "u", "ö": "o", "ï": "i", "ü": "u", "ó": "o", "í": "i", "É": "E", "Á": "A", "Ű": "U", "Ő": "O", "Ú": "U", "Ö": "O", "Ü": "U", "Ó": "O", "Í": "I" };
+	var translate_re = new RegExp("[" + Object.keys(translate).join('') + "]", 'g');
+
+	string = string.replace(/\s/g, '-')
+				   .replace(/\?/g, '')
+				   .replace(translate_re, function(letter){ return translate[letter] });
+	return string.toLowerCase();
+}
+
+String.prototype.parseToSearch = function (){
+	string = this;
+	var translate = { "ç": "c", "é": "e", "õ": 'o', "á": "a", "ã": "a", "à": "a", "ű": "u", "ő": "o", "ú": "u", "ö": "o", "ï": "i", "ü": "u", "ó": "o", "í": "i", "É": "E", "Á": "A", "Ű": "U", "Ő": "O", "Ú": "U", "Ö": "O", "Ü": "U", "Ó": "O", "Í": "I" };
+	var translate_re = new RegExp("[" + Object.keys(translate).join('') + "]", 'g');
+
+	string = string.replace(translate_re, function(letter){ return translate[letter] });
+	return string;
+}
+
 
 var animateCounting = function(target, begin, time, callback){
   var target = target;
@@ -480,7 +517,61 @@ document.addEventListener('DOMContentLoaded', function(){
 	}
 });
 
+var jsonToHTML = function(json, html, fallbackHTML){
+	var htmlresult = json.map(function(el, index){
+  	return html.replace(/\{\{[^{}]+\}\}/g, function(match){
+    	var key = match.replace(/(\{|\})/g, '');
+    	return el[key];
+    })
+  }).join(' ');
 
+  return htmlresult.length <= 0 ? fallbackHTML : htmlresult;
+}
+
+
+var dataRequest = function(code, callback, fullUrl){
+	var xml = new XMLHttpRequest();
+	var url = fullUrl || ("/data?q=" + code) ;
+	xml.open("GET", url);
+	xml.responseType = "text";
+	xml.onload = function () {
+			if(xml.readyState === 4){
+					if(xml.status === 200 || xml.status == 0){
+						var data = xml.response;
+						callback(null, JSON.parse(data));
+					}else{
+						callback(xml.statusText, null);
+					}
+			}
+	}
+	xml.send();
+}
+function jsonToQueryString(json) {
+	return Object.keys(json).map(function(key) {
+					return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
+				 }).join('&');
+}
+
+
+var postData = function(url, params, callback, method, fullUrl){
+	var xml = new XMLHttpRequest();
+	params = jsonToQueryString(params);
+	xml.open((method || "POST"), (fullUrl || url), true);
+
+	//Send the proper header information along with the request
+	xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	xml.onreadystatechange = function() {//Call a function when the state changes.
+			if(xml.readyState == 4) {
+				if(xml.status == 200){
+					callback(null, xml.responseText);
+				}else{
+					callback(xml.statusText);
+				}
+			}
+	}
+	xml.send(params);
+}
 
 
 /*

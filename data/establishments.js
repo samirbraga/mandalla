@@ -1,3 +1,4 @@
+/*
 var establishments = [
 	{_id: 1, site: "https://www.restaurantecostela.com.br/", name: "Restaurante Costela", trading: "restaurante", district: "Maraponga", street: "Av. Godofredo Maciel", number: "2705", latLng: [-3.7990144, -38.5700877]},
 	{_id: 2, site: "https://www.gelateriatrevo.com.br/", name: "Gelateria Trevo", trading: "sorveteria", district: "Cambeba", street: "Av. Pedro Lazar", number: "732", latLng: [-3.8014691, -38.4975606]},
@@ -7,5 +8,10 @@ var establishments = [
 	{_id: 6, site: "https://www.maminhamaraponga.com.br/", name: "Maminha Maraponga", trading: "restaurante", district: "Maraponga", street: "Av. Godofredo Maciel", number: "1155", latLng: [-3.7859122, -38.5684554]},
 	{_id: 7, site: "https://www.deangelispizzaria.com.br/", name: "De Angelis Pizzeria", trading: "pizzaria", district: "Maraponga", street: "Av. Godofredo Maciel", number: "2157", latLng: [-3.7947063, -38.5712465]}
 ]
-
-module.exports = establishments;
+*/
+// 
+// module.exports = (callback) => {
+// 	const app = require('./../index');
+// 	let Establishments = app.models.establishments;
+//
+// };
