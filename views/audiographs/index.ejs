@@ -71,10 +71,14 @@
 									<i class="fa fa-headphones" ></i>
 									<span><$- ag.listen_count $></span>
 								</span>
+								<span class="created-time" >
+									<i class="fa fa-time-clock-o" ></i>
+									<span><$- ag.listen_count $></span>
+								</span>
 							</div>
 							<div class="audio-enclosure"  data-id='<$- ag._id $>'>
 								<audio>
-									<source src="http://localhost:7000/ag/<$- ag.audio_file $>" type="audio/mp3">
+									<source src="/ag/<$- ag.audio_file $>" type="audio/mp3">
 								</audio>
 								<div class="controls-container">
 									<div class="left-controls">

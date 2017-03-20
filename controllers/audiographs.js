@@ -3,7 +3,9 @@ module.exports = (app) => {
 	return {
 		index: (req, res) => {
 			Audiographs.find({}, (err, audiographs) => {
+
 				audiographs.sort((a, b) => b.created_time - a.created_time);
+
 				if(err){
 					res.render('audiographs/index', {status: 'error', audiographs: []});
 				}else{
