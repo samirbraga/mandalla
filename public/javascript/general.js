@@ -423,6 +423,43 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   goDown();
+
+
+  var searchOverlay = function(){
+    var searchIcon = document.querySelector('.topbar .search-icon');
+    var searchContainer = document.querySelector('.search-container');
+    var searchBgOverlay = document.querySelector('.search-container .search-background-overlay');
+    var closeIcon = document.querySelector('.search-container .search-wrapper .close-icon');
+    var searchInput = document.querySelector('.search-container .search-wrapper form input');
+    var searchElements = searchContainer.querySelectorAll('*');
+
+    var search = {
+      open: function(){
+        $(searchContainer).class.add('activated');
+        searchInput.focus()
+        setTimeout(function(){
+          $(searchElements).class.add('activated');
+        }, 30)
+      },
+      close: function(){
+        $(searchContainer).class.remove('activated');
+        setTimeout(function(){
+          $(searchElements).class.remove('activated');
+        }, 30)
+      }
+    }
+
+    $(searchIcon).on('click', search.open);
+    $(closeIcon).on('click', search.close);
+    $(searchBgOverlay).on('click', search.close);
+		$(searchInput).on('keyup', function(e){
+			keycode = e.keycode || e.which;
+			if(keycode == 27){
+				search.close();
+			}
+		})
+  }
+  searchOverlay();
 });
 
 document.addEventListener('DOMContentLoaded', function(){

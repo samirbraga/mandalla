@@ -59,7 +59,7 @@ section .tabs-container .tabs-header .tab-title{
   padding: 0 20px;
   height: 100%;
   line-height: 40px;
-  border-radius: 10px 10px 0 0;
+  border-radius: 4px 4px 0 0;
   border: 1px solid #009492;
   display: inline-block;
   margin-top: 1px;
@@ -75,7 +75,7 @@ section .tabs-container .tabs-header .tab-title.activated{
 section .tabs-container .tab{
   width: 100%;
   height: auto;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 4px 4px;
 }
 section .tabs-container .tab .title{
   font-size: 1.1em;

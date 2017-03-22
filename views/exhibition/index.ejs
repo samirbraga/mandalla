@@ -2,7 +2,10 @@
 <html lang="pt-br">
 	<head>
 
-		<$- include('../standart-preload', {pagetitle: 'Exposição', pagename: "exhibition"}) $>
+		<$- include('../standart-preload', {
+			pagetitle: 'Exposição',
+			pagename: 'exhibition'
+		}); $>
 
 		<script type="text/javascript">
 	    var dataEstablishments;
@@ -13,7 +16,11 @@
 		<!-- .topbar -->
 		<$- include('../topbar', {classTopbar: "dark"}); $>
 
-		<$- include('../other-pages', {pagename: "expo<br>sição", pagephrase: "O que é, é e não pode não ser"}) $>
+		<$- include('../other-pages', {
+			pagename: "expo<br>sição",
+			pagephrase: "In voluptate veniam adipisicing esse Lorem",
+			filename: 'exhibition'
+		}); $>
 
 		<section class="presentation align-center-both-table viewport-units" data-properties="height: 100vh">
 			<article class="content-wrapper">

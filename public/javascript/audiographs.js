@@ -149,53 +149,59 @@ var doSearch = function(e){
   if(JSON.stringify(lastSearchResult) != JSON.stringify(searchResult)){
 
     var agContainertemplate = '<div class="audiograph-container">' +
-    '<figure class="audiograph-picture" >' +
-    '<img src="{{instagram_image_url}}" alt="">' +
-    '</figure>' +
-    '<div class="audiograph-content">' +
-    '<div class="audiograph-title" >' +
-    '<span>' +
-    '<i class="fa fa-instagram" ></i> ' +
-    '<a target="_blank" href="{{instagram_link}}">{{street_name}}</a>' +
-    '</span>' +
-    '</div>' +
-    '<div class="audiograph-counts" data-id="{{_id}}" >' +
-    '<span class="listen-count" >' +
-    '<i class="fa fa-headphones" ></i> ' +
-    '<span>{{listen_count}}</span>' +
-    '</span>' +
-    '</div>' +
-    '<div class="audio-enclosure"  data-id="{{_id}}">' +
-    '<audio>' +
-    '<source src="http://localhost:7000/ag/{{audio_file}}" type="audio/mp3">' +
-    '</audio>' +
-    '<div class="controls-container">' +
-    '<div class="left-controls">' +
-    '<i class="fa fa-play fa-lg" ></i>' +
-    '</div>' +
-    '<div class="time-line-container">' +
-    '<div class="range-line">' +
-    '<div class="progress"></div>' +
-    '</div>' +
-    '</div>' +
-    '<div class="time">' +
-    '<span></span>' +
-    '</div>' +
-    '</div>' +
-    '</div>' +
-    '</div>' +
-    '</div>' +
-    '</div>';
+                                '<figure class="audiograph-picture" >' +
+                                  '<img src="{{instagram_image_url}}" alt="">' +
+                                '</figure>' +
+                                '<div class="audiograph-content">' +
+                                  '<div class="audiograph-title" >' +
+                                    '<span>' +
+                                      '<i class="fa fa-instagram" ></i> ' +
+                                      '<a target="_blank" href="{{instagram_link}}">{{street_name}}</a>' +
+                                    '</span>' +
+                                  '</div>' +
+                                  '<div class="audiograph-counts" data-id="{{_id}}" >' +
+                                    '<span class="listen-count" >' +
+                                      '<i class="fa fa-headphones" ></i> ' +
+                                      '<span>{{listen_count}}</span>' +
+                                    '</span>' +
+                                  '</div>' +
+                                  '<div class="audio-enclosure"  data-id="{{_id}}">' +
+                                    '<audio>' +
+                                      '<source src="http://localhost:7000/ag/{{audio_file}}" type="audio/mp3">' +
+                                    '</audio>' +
+                                    '<div class="controls-container">' +
+                                      '<div class="left-controls">' +
+                                        '<i class="fa fa-play fa-lg" ></i>' +
+                                      '</div>' +
+                                      '<div class="time-line-container">' +
+                                        '<div class="range-line">' +
+                                          '<div class="progress"></div>' +
+                                        '</div>' +
+                                      '</div>' +
+                                      '<div class="time">' +
+                                        '<span></span>' +
+                                      '</div>' +
+                                    '</div>' +
+                                  '</div>' +
+                                '</div>' +
+                              '</div>' +
+                              '</div>';
 
 
     var notFoundTemplate = "<div class='ag-not-found' >" +
-    "<i class='fa fa-exclamation-circle' ></i> "+
-    "<span>Nenhuma audiografia encontrada.</span>"+
-    "</div>";
+                              "<i class='fa fa-exclamation-circle' ></i> "+
+                              "<span>Nenhuma audiografia encontrada.</span>"+
+                            "</div>";
 
-    ag_list.innerHTML = jsonToHTML(searchResult, agContainertemplate, notFoundTemplate);
+    ag_list.style.opacity = 0;
+    setTimeout(function(){
+      ag_list.innerHTML = jsonToHTML(searchResult, agContainertemplate, notFoundTemplate);
+      setTimeout(function(){
+        ag_list.style.opacity = 1;
+      }, 10);
+      loadAgInfo();
+    }, 100);
 
-    loadAgInfo();
   }
 
 
