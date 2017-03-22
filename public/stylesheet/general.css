@@ -827,7 +827,7 @@ body.no-overflow{
 	background-size: 0 0;
 	background-repeat: no-repeat;
 }
-.form-input-container:before{
+.form-input-container .input-icon{
 	content: '';
 	display: block;
 	position: absolute;
@@ -872,7 +872,7 @@ body.no-overflow{
 .fotter-content-wrapper .form-row:nth-child(1) .form-input-container:last-child{
 	padding-right: 0px;
 }
-.fotter-content-wrapper .form-row:nth-child(1) .form-input-container:last-child:before{
+.fotter-content-wrapper .form-row:nth-child(1) .form-input-container:last-child .input-icon{
 	right: 0;
 }
 @media (max-width: 800px) {
@@ -883,7 +883,7 @@ body.no-overflow{
 		margin-left: 0;
 		padding-right: 0;
 	}
-	.fotter-content-wrapper .form-row:nth-child(1) .form-input-container:before{
+	.fotter-content-wrapper .form-row:nth-child(1) .form-input-container .input-icon{
 		right: 0;
 	}
 	.fotter-content-wrapper .form-row:nth-child(1) input:nth-child(1){
@@ -899,7 +899,7 @@ body.no-overflow{
 .fotter-content-wrapper .form-row:nth-child(2) .form-input-container{
 	width: calc(100%);
 }
-.fotter-content-wrapper .form-row:nth-child(2) .form-input-container::before{
+.fotter-content-wrapper .form-row:nth-child(2) .form-input-container .input-icon{
 	right: 0;
 }
 .form-input::-webkit-input-placeholder{

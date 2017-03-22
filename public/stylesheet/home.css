@@ -706,7 +706,6 @@ article p, aside p{
 .section-demo article .content{
   display: inline-block;
   width: 50%;
-  height: 100%;
   vertical-align: top;
 }
 .section-demo article .content h2{
@@ -754,11 +753,13 @@ article p, aside p{
     text-align: center;
   }
   .section-demo article .content{
+    display: block;
     width: 100%;
     margin-bottom: 30px;
     text-align: left;
   }
   .section-demo article img{
+    display: block;
     margin: auto;
     float: initial;
     width: 100%;
