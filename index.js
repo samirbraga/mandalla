@@ -49,13 +49,12 @@ app.use(bodyParser.urlencoded({
 
 app.use(favicon(path.join(__dirname, 'public/images/favicon/', 'favicon.ico')));
 
-/*
 app.use(minifyHTML({
     override:      true,
     exception_url: false,
     htmlMinifier: {
         removeComments:            true,
-        collapseWhitespace:        true,
+        collapseWhitespace:        false,
         collapseBooleanAttributes: false,
         removeAttributeQuotes:     false,
         removeEmptyAttributes:     true,
@@ -63,7 +62,7 @@ app.use(minifyHTML({
         minifyCSS:                 true
     }
 }));
-*/
+
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // cookie and session setup

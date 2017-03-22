@@ -9,12 +9,20 @@
 		<div class="fotter-content-wrapper responsive-width">
 			<form method="post">
 				<div class="form-row">
-					<input type="text" class="form-input" style="background-image: url('/public/images/icons/person-icon.png')" placeholder="Nome" name="name" >
-					<input type="text" class="form-input" style="background-image: url('/public/images/icons/at-icon.png')" placeholder="Email" name="email" >
-					<input type="text" class="form-input" style="background-image: url('/public/images/icons/info-icon.png')" placeholder="Assunto" name="subject" >
+					<div class="form-input-container" style="background-image: url('/public/images/icons/person-icon.png')" >
+						<input type="text" class="form-input" placeholder="Nome" name="name" >
+					</div>
+					<div class="form-input-container" style="background-image: url('/public/images/icons/at-icon.png')" >
+						<input type="text" class="form-input" placeholder="Email" name="email" >
+					</div>
+					<div class="form-input-container" style="background-image: url('/public/images/icons/info-icon.png')" >
+						<input type="text" class="form-input" placeholder="Assunto" name="subject" >
+					</div>
 				</div>
 				<div class="form-row">
-					<textarea class="form-input" style="background-image: url('/public/images/icons/message-icon.png')" placeholder="Mensagem" name="message" ></textarea>
+					<div class="form-input-container" style="background-image: url('/public/images/icons/message-icon.png')" >
+						<textarea class="form-input" placeholder="Mensagem" name="message" ></textarea>
+					</div>
 				</div>
 				<div class="form-row clearfix">
 					<input type="submit" name="submit" value="ENVIAR">

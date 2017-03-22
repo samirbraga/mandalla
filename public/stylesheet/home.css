@@ -694,7 +694,7 @@ article p, aside p{
 .section-demo .wrapper{
   display: table;
   margin: auto;
-  height: auto;
+  height: 100%;
   min-height: 100vh;
   padding: 20px;
 }

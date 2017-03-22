@@ -409,10 +409,24 @@ var optimizedResize = (function() {
   }
 }());
 
-//document.addEventListener('DOMContentLoaded', parallax);
+document.addEventListener('DOMContentLoaded', function(){
+	setTimeout(function(){
+		$(document.body).class.add('full-loaded');
+	}, 10)
+
+
+  var goDown = function(){
+    var arrow = document.querySelector('.arrow-bottom');
+    var roots = document.querySelectorAll('html, body');
+    $(arrow).on('click', function(){
+      $(roots).scrollY(window.innerHeight, 1000)
+    });
+  }
+  goDown();
+});
 
 document.addEventListener('DOMContentLoaded', function(){
-	if (!Modernizr.cssvwunit || !Modernizr.cssvhunit || !Modernizr.cssvminunit || !Modernizr.cssvminunit){
+	if (!Modernizr.cssvwunit || !Modernizr.cssvhunit || !Modernizr.cssvmaxunit){
 		/*
 		var viewPortUnitsCss = {};
 		for(i in document.styleSheets){
@@ -481,7 +495,6 @@ document.addEventListener('DOMContentLoaded', function(){
 				var nodeList = document.querySelectorAll('.viewport-units');
 						$(nodeList).each(function(el){
 							var styles = el.getAttribute('data-properties');
-							console.log(styles)
 							styles = styles.split(';');
 							styles.forEach(function(style){
 								var property = style.split(':')[0].trim();

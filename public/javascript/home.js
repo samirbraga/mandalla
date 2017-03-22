@@ -3,7 +3,7 @@
 var body = document.body;
 
 var sections = document.querySelectorAll('.uniform');
-
+/*
 var toggleMenu = function () {
   var menuIcon = document.querySelector('.topbar .topbar-main-menu');
   var menuOverlay = document.querySelector('.main-menu .main-menu-overlay');
@@ -28,6 +28,7 @@ var toggleMenu = function () {
   $(menuOverlay).on('click', menuFns.close);
 
 }
+*/
 //toggleMenu();
 
 
@@ -370,16 +371,6 @@ document.addEventListener('DOMContentLoaded', function(){
 		softLine.style.background = colors[Math.getRandomFrom(colors.length-1)];
 	}
 	//randomTopbarLineColor();
-
-  var goDown = function(){
-    var introduce = document.querySelector('.introduce');
-    var arrow = document.querySelector('.introduce .arrow-bottom');
-    var roots = document.querySelectorAll('html, body');
-    $(arrow).on('click', function(){
-      $(roots).scrollY($(introduce).height(), 1000)
-    });
-  }
-  goDown();
 
   var searchOverlay = function(){
     var searchIcon = document.querySelector('.topbar .search-icon');
