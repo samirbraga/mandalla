@@ -460,10 +460,9 @@ document.addEventListener('DOMContentLoaded', function(){
 		})
   }
   searchOverlay();
-});
 
-document.addEventListener('DOMContentLoaded', function(){
 	if (!Modernizr.cssvwunit || !Modernizr.cssvhunit || !Modernizr.cssvmaxunit){
+		//alert('ddd')
 		/*
 		var viewPortUnitsCss = {};
 		for(i in document.styleSheets){
@@ -533,28 +532,31 @@ document.addEventListener('DOMContentLoaded', function(){
 						$(nodeList).each(function(el){
 							var styles = el.getAttribute('data-properties');
 							styles = styles.split(';');
-							styles.forEach(function(style){
-								var property = style.split(':')[0].trim();
-								var value = style.split(':')[1].trim();
+								styles.forEach(function(style){
+									if(style){
+										console.log(style)
+										var property = style.split(':')[0].trim();
+										var value = style.split(':')[1].trim();
 
-								var unit = value.match(/(vmin|vmax|vh|vw)$/)[0];
-								var number = parseFloat(value);
+										var unit = value.match(/(vmin|vmax|vh|vw)$/)[0];
+										var number = parseFloat(value);
 
-								var vpW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-								var vpH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+										var vpW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+										var vpH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-								if(unit == "vh"){
-									value = vpH;
-								}else if(unit == "vw"){
-									value = vpW;
-								}else if(unit == "vmax"){
-									value = Math.max(vpH, vpW);
-								}else if(unit == "vmin"){
-									value = Math.min(vpH, vpW);
-								}
+										if(unit == "vh"){
+											value = vpH;
+										}else if(unit == "vw"){
+											value = vpW;
+										}else if(unit == "vmax"){
+											value = Math.max(vpH, vpW);
+										}else if(unit == "vmin"){
+											value = Math.min(vpH, vpW);
+										}
 
-								el.style[property] = ((number*value)/100) + "px";
-							});
+										el.style[property] = ((number*value)/100) + "px";
+									}
+								});
 						});
 					}
 				//})
