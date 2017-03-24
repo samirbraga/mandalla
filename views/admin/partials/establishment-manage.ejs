@@ -1,0 +1,58 @@
+<section class="establishments-manage" >
+  <h2>Gerenciamento de estabelecimentos</h2>
+  <hr>
+  <div class="tabs-container">
+    <div class="tabs-header">
+      <div class="tab-title " data-target="add-establishment">
+        Adicionar <i class="fa fa-plus" ></i>
+      </div>
+      <div class="tab-title" data-target="remove-establishment">
+        Deletar <i class="fa fa-trash" ></i>
+      </div>
+      <div class="tab-title activated" data-target="update-establishment">
+        Atualizar <i class="fa fa-refresh" ></i>
+      </div>
+    </div>
+    <div class="tab add" id="add-establishment">
+      <h3 class="title">Dados do novo estabelecimento:</h3>
+      <form action="/admin/add-establishment" method="post" accept-charset="utf-8" >
+        <label for="name"><i class="fa fa-id-card-o" ></i> Nome:</label>
+        <input value="dddd" required="true" type="text" id="name" name="name" class="">
+        <label for="site"><i class="fa fa-globe" ></i> Site: <small>(Com <b>https://www.</b>)</small></label>
+        <input value="dddd" required="true" type="text" id="site" name="site" class="">
+        <label for="trading"><i class="fa fa-shopping-cart" ></i> Ramo:</label>
+        <input value="dddd" required="true" type="text" id="trading" name="trading" class="">
+        <label for="district"><i class="fa fa-compass" ></i> Bairro:</label>
+        <input value="dddd" required="true" type="text" id="district" name="district" class="">
+        <label for="street"><i class="fa fa-road" ></i> Rua: <small>(Escreva o prefixo <b>Rua, Av., Alameda, etc</b>)</small></label>
+        <input value="dddd" required="true" type="text" id="street" name="street" class="">
+        <label for="number"><i class="fa fa-list-ol" ></i> Número:</label>
+        <input value="dddd" required="true" type="text" id="number" name="number" class="">
+        <label for="latLng"><i class="fa fa-map-marker" ></i> Latitude e logintude: <small>(Primeiro Latitude, segundo longitude - <b>sepados por vírgula (,)</b>)</small></label>
+        <input value="9999, 888" pattern="\s*((-)?[0-9]+(\.[0-9]+)?)\s*,\s*((-)?[0-9]+(\.[0-9]+)?)\s*" type="text" id="latLng" name="latLng" class="" title="Dois números separados por vírgula" required >
+        <!-- <label for="logo"><i class="fa fa-picture-o" ></i> Logo do estabelecimento: <small>(de preferência com fundo transparente)</small></label>
+        <input type="file" id="logo" name="logo" class="" required > -->
+        <hr>
+        <button type="submit" name="button">ADICIONAR ESTABELECIMENTO &nbsp;
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+    <div class="tab remove " id="remove-establishment">
+      <h3 class="title">Pesquise o estabelecimento que será removido:</h3>
+      <form action="">
+        <label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+        <input type="text" id="name-search" class="search-name" >
+      </form>
+      <div class="establishments-list"></div>
+    </div>
+    <div class="tab update activated" id="update-establishment">
+      <h3 class="title">Pesquise o estabelecimento que será atualizado:</h3>
+      <form action="">
+        <label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+        <input type="text" id="name-search" class="search-name" >
+      </form>
+      <div class="establishments-list"></div>
+    </div>
+  </div>
+</section>

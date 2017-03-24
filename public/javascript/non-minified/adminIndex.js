@@ -29,26 +29,23 @@ function updateAudioData(){
 updateAudioData();
 
 // ADD
-
-function addEstablishment(){
-  var result = confirm('Adicionar estabelecimento? \n\nTenha certeza que já revisou todas as informações fornecidas.');
-  if(result){
-    var addForm = document.querySelector('.tabs-container .tab.add form');
-    var inputs = addForm.querySelectorAll('input[type=text], textarea');
-    var params = {};
-    $(inputs).each(function(input, i){
-      params[input.name] = input.value;
-    });
-    postData('/admin/add-establishment', params, function(err, response){
-      if(err || response == 'error'){
-        alert('Não foi possível completar a ação, tente novamente mais tarde.');
-      }else{
-        updateData()
-        $(inputs).value('');
-      }
-    });
+var addEstaForm = document.querySelector('.tabs-container .tab.add form');
+var addSubmitted = false;
+addEstaForm.addEventListener('submit', function(e){
+  if(addSubmitted == false){
+    e.preventDefault();
+    var result = confirm('Adicionar estabelecimento? \n\nTenha certeza que já revisou todas as informações fornecidas.');
+    if(result){
+      addSubmitted = true;
+      addEstaForm.submit();
+      $(inputs).value('');
+    }
+  }else{
+    $(inputs).value('');
+    addEstaForm.submit();
   }
-}
+})
+
 
 // REMOVE SEARCH
 
@@ -244,8 +241,6 @@ function renderAudiosRemove(data){
     }
   });
 }
-
-
 
 var tabsTitle = document.querySelectorAll('.tab-title');
 //var tabs = document.querySelectorAll('.tab');

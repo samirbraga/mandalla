@@ -31,6 +31,10 @@ module.exports = (app) => {
 		latLng: {
 			type: Array,
 			required: true
+		},
+		logofile: {
+			type: String,
+			required: false
 		}
 	});
 

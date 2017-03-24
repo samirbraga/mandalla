@@ -1,0 +1,48 @@
+<section class="audios-manage" >
+  <h2>Gerenciamento de Audiografias</h2>
+  <hr>
+  <div class="tabs-container">
+    <div class="tabs-header">
+      <div class="tab-title " data-target="add-audio">
+        Adicionar <i class="fa fa-plus" ></i>
+      </div>
+      <div class="tab-title" data-target="remove-audio">
+        Deletar <i class="fa fa-trash" ></i>
+      </div>
+      <div class="tab-title activated" data-target="update-audio">
+        Atualizar <i class="fa fa-refresh" ></i>
+      </div>
+    </div>
+    <div class="tab add" id="add-audio">
+      <h3 class="title">Dados da nova audiografia:</h3>
+      <form enctype="multipart/form-data" method="post" action="/admin/add-audio">
+        <label for="street-name"><i class="fa fa-id-card-o" ></i> Nome da respectiva rua:</label>
+        <input value="dddd" required="true" type="text" id="street-name" name="street-name" class="">
+        <label for="instagram-link"><i class="fa fa-instagram" ></i> Link da respectiva publicação no Instagram: <small>(Com <b>https://www.</b>)</small></label>
+        <input value="dddd" required="true" type="text" id="instagram-link" name="instagram-link" class="">
+        <label for="audio-uploader"><i class="fa fa-headphones" ></i> Upload do arquivo do áudio:</label>
+        <input value="dddd" required="true" type="file" id="audio-uploader" name="audiographs" class="">
+        <hr>
+        <button type="submit" name="button">ADICIONAR ÁUDIO &nbsp;
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+    <div class="tab remove " id="remove-audio">
+      <h3 class="title">Pesquise a audiografia que será removida:</h3>
+      <form action="">
+        <label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+        <input type="text" id="name-search" class="search-name" >
+      </form>
+      <div class="audios-list"></div>
+    </div>
+    <div class="tab update activated" id="update-audio">
+      <h3 class="title">Pesquise a audiografia que será atualizada:</h3>
+      <form action="">
+        <label for="name-search"><i class="fa fa-id-card-o" ></i> Nome:</label>
+        <input type="text" id="name-search" class="search-name" >
+      </form>
+      <div class="audios-list"></div>
+    </div>
+  </div>
+</section>

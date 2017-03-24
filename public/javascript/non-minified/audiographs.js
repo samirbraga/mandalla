@@ -12,6 +12,7 @@ function loadAgInfo(){
       var progressLine = container.querySelector('.range-line .progress');
       var leftControls = container.querySelector('.left-controls');
       var time = container.querySelector('.time');
+      
       /*
       var stopDelay;
       $(audio).on('ended', function(){

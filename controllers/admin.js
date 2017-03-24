@@ -8,7 +8,7 @@ module.exports = (app) => {
         request = require('request'),
         path = require('path');
 
-  let storage =   multer.diskStorage({
+  let storageAudios = multer.diskStorage({
     destination: (req, file, callback) => {
       callback(null, './uploads/audiographs');
     },
@@ -16,7 +16,19 @@ module.exports = (app) => {
       callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
   });
-  let upload = multer({storage: storage}).single('audiographs');
+  let uploadAudios = multer({storage: storageAudios}).single('audiographs');
+
+
+  let storageEstablishments = multer.diskStorage({
+    destination: (req, file, callback) => {
+      callback(null, './uploads/establishments-logo');
+    },
+    filename: (req, file, callback) => {
+      console.log( path.extname(file.originalname))
+      callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
+  let uploadEstablishments = multer({storage: storageEstablishments}).single('logo');
 
 
   // Nodejs encryption with CTR
@@ -78,18 +90,25 @@ module.exports = (app) => {
       res.redirect("/admin");
 		},
     addEstablishment: (req, res) => {
-      var body = JSON.parse(JSON.stringify(req.body));
-
-      body['latLng'] = body['latLng'].replace(/\s+/g, '').split(',').map(el => parseFloat(el));
-      console.log(body)
-      Establishments.create(body, (err, establishments) => {
-        if(err){
-          console.log(err)
-          res.end('error');
-        }else{
-          res.end('success');
-        }
-      })
+      //uploadEstablishments(req, res, function(err) {
+      //    console.log(req)
+      //  if(err) {
+      //    console.log(err)
+      //    return res.end("error");
+      //  }else{
+          var body = JSON.parse(JSON.stringify(req.body));
+          body['latLng'] = body['latLng'].replace(/\s+/g, '').split(',').map(el => parseFloat(el));
+          body['logofile'] = 'req.files';
+          Establishments.create(body, (err, establishments) => {
+            if(err){
+              console.log(err)
+              res.end('error');
+            }else{
+              res.redirect('/admin');
+            }
+          })
+      //  }
+      //})
     },
     removeEstablishment: (req, res) => {
       var id = req.params.id;
@@ -128,7 +147,7 @@ module.exports = (app) => {
     },
     addAudio: (req, res) => {
       if(req.session.adminUser){
-        upload(req, res, function(err) {
+        uploadAudios(req, res, function(err) {
           if(err) {
             console.log(err)
             return res.end("error");

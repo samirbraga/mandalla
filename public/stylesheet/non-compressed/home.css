@@ -300,7 +300,7 @@ article p, aside p{
   display: block;
   font-size: 3em;
   color: #3ab4b4;
-  font-family: 'Century Gothic', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 .section-numbers .wrapper .number-wrapper .description{
   display: block;
@@ -694,8 +694,7 @@ article p, aside p{
 .section-demo .wrapper{
   display: table;
   margin: auto;
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
   padding: 20px;
 }
 .section-demo .wrapper article{
@@ -789,39 +788,37 @@ article p, aside p{
   overflow: hidden;
   vertical-align: middle;
   background: #333;
+  overflow: hidden;
 }
 #galery figure a{
   display: table;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 #galery figure img{
-  width: 101%;
-  height: auto;
-  -webkit-transform: translate(0, 0%);
-          transform: translate(0, 0%);
-  -webkit-transition: -webkit-transform 0.3s ease-in-out;
-  transition: -webkit-transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  min-width: 100.1%;
+  min-height: 100.1%;
   display: table-cell;
   vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #galery figure figcaption{
   position: absolute;
-  height: 50%;
+  height: 100%;
   width: 100%;
-  background: #333333;
+  background: rgba(0, 0, 0, 0.6);
   bottom: 0;
   left: 0;
-  -webkit-transform: translate(0, 100%);
-          transform: translate(0, 100%);
-  -webkit-transition: -webkit-transform 0.3s ease-in-out;
-  transition: -webkit-transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   color: #fff;
   padding: 15px;
   font-size: 12pt;
   text-align: center;
+  opacity: 0;
   /*display: flex;*/
   /*justify-content: space-between;*/
 }
@@ -850,26 +847,23 @@ article p, aside p{
   font-size: 3em;
   z-index: 2;
   margin-bottom: 4px;
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 #galery figure figcaption .likes i{
   padding-right: 10px;
 }
-#galery figure figcaption .time:before{
-  content: '';
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.5);
-  z-index: -3;
-}
 #galery figure figcaption .time {
-  background: #333;
   z-index: 1;
   width: 100%;
-  opacity: 0.7;
   margin-top: 10px;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 #galery figure figcaption .time i{
   padding: 0 5px;
@@ -879,17 +873,13 @@ article p, aside p{
 }
 #galery figure figcaption .time i,
 #galery figure figcaption .time span{
-  background-color: #333;
   margin: 0;
   z-index: 1;
 }
 #galery figure:hover img{
-  -webkit-transform: translate(0, -20%);
-          transform: translate(0, -20%);
 }
 #galery figure:hover figcaption{
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
+  opacity: 1;
 }
 
 @media (max-width: 450px) {
@@ -1001,7 +991,7 @@ article p, aside p{
     top: 30%;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
-    font-size: 9.5vmin;
+    font-size: 35pt;
     color: rgba(0,0,0,.3);
     -webkit-transition: color 0.5s ease;
     transition: color 0.5s ease;

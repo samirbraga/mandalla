@@ -28,7 +28,9 @@
 					var paths = ['/', '/exposicao', '/audiografias', '/imprensa', '/sobre', '/contato'];
 					var pathname = window.location.pathname.match(/^\/[a-z-._#$%&]*/g)[0];
 					var index = paths.indexOf(pathname);
-					$(topbarMenuOptions[index]).class.add('i-am-here');
+					if(topbarMenuOptions[index]){
+						$(topbarMenuOptions[index]).class.add('i-am-here');
+					}
 				})();
 			</script>
 			<div class="search-icon">
