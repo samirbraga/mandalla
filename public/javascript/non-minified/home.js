@@ -43,15 +43,13 @@ var establishmentsNumber = establishments.querySelector('.number');
 var biographiesLength = 200;
 
 
-var passedChecker = {
+var passedChecker = {};
 
-}
 $(sections).each(function(section, si){
   passedChecker[section.className.split(' ')[0]] = false;
 })
 
 var passScroll = function () {
-  'use strict';
 
 	var scrollTop = (body.scrollTop || window.scrollY);
   function getOffset(el) {
@@ -103,6 +101,8 @@ window.addEventListener('DOMMouseScroll', passScroll);
 window.addEventListener('mousewheel', passScroll);
 window.addEventListener('wheel', passScroll);
 window.addEventListener('DOMContentLoaded', passScroll);
+
+
 
 var depositionsCarousel = function(){
 	var arrowLeft = document.querySelector('.depositions .arrow-scroll-left');
