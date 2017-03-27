@@ -2,7 +2,7 @@
 
 var body = document.body;
 
-var sections = document.querySelectorAll('.uniform');
+var sections = document.querySelectorAll('section, .introduce');
 /*
 var toggleMenu = function () {
   var menuIcon = document.querySelector('.topbar .topbar-main-menu');
@@ -31,6 +31,24 @@ var toggleMenu = function () {
 */
 //toggleMenu();
 
+var biographies = document.querySelector('.section-numbers .biographies');
+var biographiesNumber = biographies.querySelector('.number');
+var histories = document.querySelector('.section-numbers .history');
+var historyNumber = histories.querySelector('.number');
+var followers = document.querySelector('.section-numbers .followers');
+var followersNumber = followers.querySelector('.number');
+var establishments = document.querySelector('.section-numbers .establishments');
+var establishmentsNumber = establishments.querySelector('.number');
+
+var biographiesLength = 200;
+
+
+var passedChecker = {
+
+}
+$(sections).each(function(section, si){
+  passedChecker[section.className.split(' ')[0]] = false;
+})
 
 var passScroll = function () {
   'use strict';
@@ -44,41 +62,47 @@ var passScroll = function () {
 		};
 	}
 
-	if (scrollTop > getOffset(sections[1]).top - 400) {
-		var section = sections[1];
-		var services = section.querySelectorAll('.area-service');
-		$(services).each(function(service, index){
-			setTimeout(function(){
-				$(service).class.add('passed');
-			}, (index+1)*100);
-		})
-	}
-	if (scrollTop > getOffset(sections[3]).top - 400) {
-		var section = sections[3];
-		var selectionString = ".left-wrapper header h1, .left-wrapper article ul li, .main-content .content, .main-content .content hr";
-		var selections = section.querySelectorAll(selectionString);
-		$(selections).each(function(service, index){
-			setTimeout(function(){
-				$(service).class.add('passed');
-			}, (index+1)*120);
-		})
-	}
-	if (scrollTop > getOffset(sections[5]).top - 400) {
-		var section = sections[5];
-		var selectionString = "header, .content .picture-container .picture";
-		var selections = section.querySelectorAll(selectionString);
-		$(selections).each(function(service, index){
-			setTimeout(function(){
-				$(service).class.add('passed');
-			}, (index+1)*120);
-		})
-	}
+  $(sections).each(function(section, si){
+    var passed = passedChecker[section.className.split(' ')[0]]
+    var offset = parseFloat(section.getAttribute('data-animation-offset')) || 250;
+
+    if (scrollTop > getOffset(section).top - offset && !passed){
+      var delay = parseFloat(section.getAttribute('data-animation-delay')) || 100;
+      passedChecker[section.className.split(' ')[0]] = true;
+      if(si == 1){
+        animateCounting(dataEstablishments.length, 0, 4000, function(currentValue){
+          establishmentsNumber.innerHTML = currentValue.formatDot();
+        });
+        animateCounting(200, 0, 4000, function(currentValue){
+          biographiesNumber.innerHTML = "+" + currentValue.formatDot();
+        });
+        animateCounting(followed_byCount, 0, 4000, function(currentValue){
+          followersNumber.innerHTML = currentValue.formatDot();
+        });
+        var time = fulldate.year - 2014;
+        animateCounting(time, 0, 4000, function(currentValue){
+          historyNumber.innerHTML = currentValue;
+        });
+      }
+      var services = section.querySelectorAll('.animation-point');
+      if(services){
+        if(services.length> 0){
+          $(services).each(function(service, index){
+            setTimeout(function(){
+              $(service).class.add('passed');
+            }, (index+1)*delay);
+          })
+        }
+      }
+    }
+  })
 }
 
-//window.addEventListener('scroll', passScroll);
-//window.addEventListener('DOMMouseScroll', passScroll);
-//window.addEventListener('mousewheel', passScroll);
-//window.addEventListener('wheel', passScroll);
+window.addEventListener('scroll', passScroll);
+window.addEventListener('DOMMouseScroll', passScroll);
+window.addEventListener('mousewheel', passScroll);
+window.addEventListener('wheel', passScroll);
+window.addEventListener('DOMContentLoaded', passScroll);
 
 var depositionsCarousel = function(){
 	var arrowLeft = document.querySelector('.depositions .arrow-scroll-left');

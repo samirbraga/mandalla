@@ -12,7 +12,7 @@ function loadAgInfo(){
       var progressLine = container.querySelector('.range-line .progress');
       var leftControls = container.querySelector('.left-controls');
       var time = container.querySelector('.time');
-      
+
       /*
       var stopDelay;
       $(audio).on('ended', function(){
@@ -135,7 +135,7 @@ var ag_list = document.querySelector('.audiographs-list-container');
 var searchResult;
 
 var doSearch = function(e){
-  e.preventDefault();
+  if(e) e.preventDefault();
 
   var lastSearchResult = searchResult;
 
@@ -211,3 +211,10 @@ var doSearch = function(e){
 
 agSearchform.addEventListener('submit', doSearch);
 searchInput.addEventListener('input', doSearch);
+
+if(autoSearch){
+  var rootElements = document.querySelectorAll('body, html');
+  $(rootElements).scrollY(window.innerHeight);
+  searchInput.value = autoSearch;
+  doSearch();
+}

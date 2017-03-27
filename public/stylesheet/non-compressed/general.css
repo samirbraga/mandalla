@@ -12,8 +12,7 @@ html, body{
 	min-height: 100%;
 }
 body{
-	-webkit-transform: scale(1.02, 1.02);
-	        transform: scale(1.02, 1.02);
+	position: relative;
 	opacity: 0;
 	-webkit-transition: opacity 0.5s ease-out, -webkit-transform 0.3s ease-out;
 	transition: opacity 0.5s ease-out, -webkit-transform 0.3s ease-out;
@@ -21,14 +20,86 @@ body{
 	transition: transform 0.3s ease-out, opacity 0.5s ease-out, -webkit-transform 0.3s ease-out;
 }
 body.full-loaded{
-	-webkit-transform: scale(1, 1);
-	        transform: scale(1, 1);
 	opacity: 1;
 }
 
 .m-auto{
 	margin: auto;
 }
+
+
+.animation-point.slide-crop-x{
+  overflow-x: hidden;
+  max-width: 0;
+  transition: max-width 0.4s ease-in-out;
+  white-space: nowrap;
+}
+.passed.animation-point.slide-crop-x{
+  max-width: 600px;
+}
+
+
+.animation-point.fade-translate-center-y{
+	opacity: 0 !important;
+	transform: translate(-50%, 20px) !important;
+	transition: opacity 0.4s ease-in-out,
+ 							transform 0.4s ease-in-out;;
+}
+.passed.animation-point.fade-translate-center-y{
+	opacity: 1 !important;
+	transform: translate(-50%, 0px) !important;
+}
+
+.animation-point.fade-translate-y{
+	opacity: 0 !important;
+	transform: translate(0, 20px) !important;
+	transition: opacity 0.4s ease-in-out,
+ 							transform 0.4s ease-in-out;;
+}
+.passed.animation-point.fade-translate-y{
+	opacity: 1 !important;
+	transform: translate(0, 0px) !important;
+}
+
+.animation-point.fade-translate-x{
+	opacity: 0 !important;
+	transform: translate(-20px, 0) !important;
+	transition: opacity 0.4s ease-in-out,
+ 							transform 0.4s ease-in-out;;
+}
+.passed.animation-point.fade-translate-x{
+	opacity: 1 !important;
+	transform: translate(0px, 0) !important;
+}
+
+
+.animation-point.fade-in{
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+.passed.animation-point.fade-in{
+  opacity: 1;
+}
+
+
+.animation-point.grow-x{
+  width: 0 !important;
+}
+.passed.animation-point.grow-x{
+  width: 40px !important;
+  transition: width 0.4s ease-in-out;
+}
+
+
+.animation-point.grow-x-before:before{
+  width: 0 !important;
+}
+.passed.animation-point.grow-x-before:before{
+  width: 40px !important;
+  transition: width 0.4s ease-in-out;
+}
+
+
 
 .arrow-bottom{
 	position: absolute;
@@ -115,7 +186,6 @@ p a{
 	display: inline;
 
 }
-
 b, a, span, em{
 	font-family: inherit;
 }
@@ -188,6 +258,7 @@ body.no-overflow{
 	background-image: url('/public/images/icons/instagram-just-line-blue__small.png');
 }
 
+
 .section-title{
 	text-align: center;
 	height: 200px;
@@ -212,7 +283,6 @@ body.no-overflow{
 .section-title.top div h2{
 	margin: 20px 0 0 0;
 }
-
 .section-title div h2:before{
 	content: '';
 	position: absolute;
@@ -238,7 +308,6 @@ body.no-overflow{
 .section-title.bottom div h2:before{
 	bottom: -12px;
 }
-
 .section-title div span{
 	display: block;
 	font-size: .95em;
@@ -247,6 +316,8 @@ body.no-overflow{
 	max-width: 645px;
 	margin: auto;
 }
+
+
 
 .topbar{
 	height: 100px;
@@ -282,7 +353,6 @@ body.no-overflow{
 	width: calc(100% - 20px);
 	bottom: -1px;
 }
-
 .topbar .topbar-content{
 	height: 70px;
 	margin: 15px auto;
@@ -408,7 +478,6 @@ body.no-overflow{
 	transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 	transition: transform 0.2s ease-out, opacity 0.2s ease-out, -webkit-transform 0.2s ease-out;
 }
-
 .topbar.fixed .topbar-side-menu .topbar-menu-options ul li{
 	color: #987bb8;
 }
@@ -421,8 +490,6 @@ body.no-overflow{
 .topbar.static .topbar-side-menu .topbar-menu-options ul li:nth-child(1){
 	opacity: 1;
 }
-
-
 .topbar .topbar-side-menu .networking{
 	display: inline-block;
 	margin: auto;
@@ -436,7 +503,6 @@ body.no-overflow{
   width: 50px;
   height: 50px;
 }
-
 .topbar .topbar-side-menu .networking ul li:hover{
 }
 
@@ -569,7 +635,7 @@ body.no-overflow{
 	z-index: 1000;
 	top: 0;
 	left: 0;
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	display: none;
   -webkit-perspective: 800;
@@ -579,6 +645,7 @@ body.no-overflow{
 }
 .search-container.activated{
 	display: block;
+	position: fixed;
 }
 .search-container .search-background-overlay{
 	position: absolute;
@@ -589,8 +656,7 @@ body.no-overflow{
 	height: 100%;
 	background: rgba(0,0,0,0.7);
 }
-.search-container.activated .search-background-overlay.activated{
-}
+.search-container.activated .search-background-overlay.activated{}
 .search-container .search-wrapper{
 	width: 100%;
 	max-width: 600px;
@@ -599,6 +665,7 @@ body.no-overflow{
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	border-radius: 4px;
 	z-index: 1010;
 	opacity: 0;
 	-webkit-transition: opacity 0.3s ease-in, -webkit-transform 0.3s ease-in;
@@ -961,7 +1028,7 @@ body.no-overflow{
 	padding-bottom: 30px;
 	text-align: center;
 	color: #ffffff;
-	opacity: 0.7;
+	opacity: 0.9;
 }
 .fotter-content-wrapper .info .realization{
 	display: inline-block;
@@ -976,6 +1043,11 @@ body.no-overflow{
 }
 .fotter-content-wrapper .info .realization a{
 	display: inline;
+	opacity: 0.7;
+	transition: opacity 0.2s ease-in-out;
+}
+.fotter-content-wrapper .info .realization a:hover{
+	opacity: 1;
 }
 
 

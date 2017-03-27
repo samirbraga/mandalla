@@ -4,6 +4,8 @@
 		<$- include('../standart-preload', {pagetitle: '', pagename: "home"}) $>
 		<script type="text/javascript">
 	    var dataEstablishments;
+			var followed_byCount;
+			var fulldate = <$- JSON.stringify(data.fulldate); $>;
 		</script>
 	</head>
 	<body>
@@ -17,12 +19,12 @@
 		<!-- Section .portfolio -->
 		<$- include('./partials/section-numbers'); $>
 
-    <section class="splitter-phrase" >
+    <section class="splitter-phrase" data-animation-offset="300" >
       <div class="wrapper responsive-width">
 				<div class="vertical-align">
-					<p>MAIS DE 200 RUAS</p>
-					<p>MUITAS HISTÓRIAS</p>
-					<hr>
+					<p class="animation-point slide-crop-x" >MAIS DE 200 RUAS</p>
+					<p class="animation-point fade-in" >MUITAS HISTÓRIAS</p>
+					<hr class="animation-point grow-x" >
 				</div>
       </div>
     </section>
@@ -89,54 +91,39 @@
 
 		<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDF6m-mdz6eTmb-x5CuGaGXkBUjjaceVSE&callback=initMap" defer async></script>
-		<script type="text/javascript">
+		<script defer type="text/javascript">
 			function animateProjectNumbers(){
-				var biographies = document.querySelector('.section-numbers .biographies');
-				var biographiesNumber = biographies.querySelector('.number');
-				var history = document.querySelector('.section-numbers .history');
-				var historyNumber = history.querySelector('.number');
-				var followers = document.querySelector('.section-numbers .followers');
-				var followersNumber = followers.querySelector('.number');
-				var establishments = document.querySelector('.section-numbers .establishments');
-				var establishmentsNumber = establishments.querySelector('.number');
-
-				var biographiesLength = 200;
-
+				var dataRequestCount = 0;
+				var showPage = function(){
+					$(document.body).class.add('all-requested');
+					var loadedScript = document.createElement("script");
+					loadedScript.src = "/public/javascript/home.js";
+					document.body.appendChild(loadedScript);
+				}
 				dataRequest('establishments', function(err, data){
 					if(!err) dataEstablishments = data;
-
-					animateCounting(dataEstablishments.length, 0, 4000, function(currentValue){
-						establishmentsNumber.innerHTML = currentValue.formatDot();
-					});
-
 					mapConfig();
-				});
-
-				animateCounting(biographiesLength, 0, 4000, function(currentValue){
-					biographiesNumber.innerHTML = "+" + currentValue.formatDot();
+					dataRequestCount++;
+					if(dataRequestCount == 2){
+						showPage()
+					}
 				});
 
 				dataRequest('insta', function(error, data){
-					var followed_byCount;
 					if(!error){
 						followed_byCount = data.data.counts.followed_by;
 					}else{
 						followed_byCount = 6709;
 					}
-					animateCounting(followed_byCount, 0, 4000, function(currentValue){
-						followersNumber.innerHTML = currentValue.formatDot();
-					});
+					dataRequestCount++
+					if(dataRequestCount == 2){
+						showPage()
+					}
 				});
 
-				var fulldate = <$- JSON.stringify(data.fulldate); $>;
-				var time = fulldate.year - 2014;
-				animateCounting(time, 0, 4000, function(currentValue){
-					historyNumber.innerHTML = currentValue;
-				});
 			};
 		</script>
 		<$- include('partials/google-maps-script'); $>
-		<script src="/public/javascript/home.js" ></script>
 		<script src="/public/javascript/libs/smooth-scroll/smoothscroll.js" ></script>
 	</body>
 </html>

@@ -4,6 +4,7 @@
 		<$- include('../standart-preload', {pagetitle: 'Audiografias', pagename: "audiographs"}) $>
 		<script type="text/javascript">
 	    var dataAudiographs = <$- JSON.stringify(audiographs) $>;
+			var autoSearch = <$- JSON.stringify(search.query) $>;
 		</script>
 	</head>
 	<body >
@@ -17,7 +18,7 @@
 			filename: 'audiographs'
 		}) $>
 
-		<section class="page-wrapper" >
+		<section class="page-wrapper" id="search-container">
 			<div class="audiographs-search-container responsive-width m-auto" >
 				<form action="/" method="post">
 					<input placeholder="Pesquise por alguma rua que queira conhecer" type="text">
