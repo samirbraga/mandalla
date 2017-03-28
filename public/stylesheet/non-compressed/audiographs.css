@@ -144,15 +144,6 @@ body{
           justify-content: space-between;
 }
 
-@media (max-width: 700px){
-
-  .audiograph-container{
-    padding-right: 0;
-    width: 100%;
-    display: inline-block;
-  }
-
-}
 
 .audio-enclosure{
   width: 100%;
@@ -244,4 +235,40 @@ body{
           transform: translateY(-50%);
   color: #666666;
   font-family: 'Raleway', sans-serif, monospace;
+}
+
+
+@media (max-width: 700px){
+
+  .audiograph-container{
+    padding-right: 0;
+    width: 100%;
+    display: block;
+    position: relative;
+    padding-left: 0;
+    height: 270px;
+
+  }
+  .audiograph-container .audiograph-picture{
+    width: 100%;
+    z-index: 0;
+    height: 110px;
+    overflow: hidden;
+  }
+
+  .audiograph-container .audiograph-content{
+    width: 100%;
+    z-index: 10;
+    padding: 10px;
+    margin-top: 110px;
+  }
+  .audiograph-container .audiograph-content .audio-enclosure{
+    min-width: 100%;
+  }
+  .audio-enclosure .controls-container{
+    padding: 0 105px 0 40px;
+  }
+  .audio-enclosure .controls-container .time{
+    right: 0;
+  }
 }

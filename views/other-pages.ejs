@@ -10,13 +10,23 @@
   .introduce h1{
     font-size: 2em;
   }
-
   .introduce h1 span{
     display: inline-block;
     color: white;
     text-transform: uppercase;
     width: 250px;
     vertical-align: middle;
+  }
+
+  @media (max-width: 600px){
+    .introduce h1{
+      font-size: 1.3em;
+      width: 320px;
+    }
+
+    .introduce h1 span{
+      width: 45%;
+    }
   }
   .introduce h1 hr{
     display: inline-block;
