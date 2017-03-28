@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+
+		<$- include('../standart-preload', {
+			pagetitle: 'Página não Encontrada',
+			pagename: 'not-found'
+		}); $>
+    <style>
+    body{
+      background: #18536c;
+      background: -webkit-linear-gradient(to left, #18536c , #2c8b96);
+      background: linear-gradient(to left, #18536c , #2c8b96);
+      position: relative;
+    }
+    body:before{
+      content: '';
+      position: absolute;
+      background-image: url('/public/images/icons/city.png');
+      background-repeat: repeat-x;
+      background-position: center bottom;
+      height: 50px;
+      width: 100%;
+      bottom: 0;
+      z-index: 90;
+      transition: background-position 0.5s ease-out 0.1s;
+    }
+
+		.content-wrapper{
+			width: 100%;
+			height: 100%;
+			padding: 100px 0 50px 0;
+		}
+		.content-wrapper .main-page{
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		.content-wrapper .main-page{
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		.content-wrapper .main-page .text-wrapper{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			color: #ffffff;
+			text-align: center;
+			padding: 0 15px;
+			max-width: 300px;
+			width: 100%;
+		}
+		.content-wrapper .main-page .text-wrapper h1{
+			font-family: 'Raleway', sans-serif;
+			font-size: 1.2em;
+			margin-bottom: 35px;
+			position: relative;
+		}
+		.content-wrapper .main-page .text-wrapper img{
+			width: 70%;
+		}
+		.content-wrapper .main-page .text-wrapper img,
+		.content-wrapper .main-page .text-wrapper p{
+			margin-bottom: 25px;
+		}
+		.content-wrapper .main-page .text-wrapper a{
+			display: block;
+			width: 100%;
+			height: 50px;
+			background: #ffffff;
+			color: #226e80;
+			border-radius: 50px;
+			font-size: 1.1em;
+			padding: 14px;
+		}
+		.content-wrapper .main-page .text-wrapper a span{
+		}
+		.content-wrapper .main-page .text-wrapper h1::before{
+			content: '';
+			position: absolute;
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+			height: 1px;
+			width: 30px;
+			background: #ffffff;
+		}
+		.content-wrapper .main-page .text-wrapper .text-align{
+			width: 100%;
+		}
+		@media (max-width: 500px){
+			.content-wrapper .main-page .text-wrapper img{
+				width: 50%;
+			}
+		}
+    </style>
+	</head>
+	<body >
+
+		<!-- .topbar -->
+		<$- include('../topbar', {classTopbar: ""}); $>
+
+		<div class="content-wrapper">
+			<div class="main-page">
+				<div class="text-wrapper">
+					<div class="text-align">
+						<h1>PÁGINA NÃO ENCONTRADA</h1>
+						<img src="/public/images/icons/dead-end-icon.png" alt="Dead-end">
+						<a href="/" >
+							<i class="fa fa-home"></i>
+							<span>ir para página inicial</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

@@ -96,15 +96,15 @@ var passScroll = function () {
   })
 }
 
-//if(!mobileDetect){
+if(mobileDetect == false){
   window.addEventListener('scroll', passScroll);
   window.addEventListener('DOMMouseScroll', passScroll);
   window.addEventListener('mousewheel', passScroll);
   window.addEventListener('wheel', passScroll);
   window.addEventListener('DOMContentLoaded', passScroll);
-/*}else{
+}else{
   var passedNumbers = false;
-  function animateCounting(){
+  var animateNumbers = function (){
     function getOffset(el) {
       el = el.getBoundingClientRect();
       return {
@@ -116,6 +116,7 @@ var passScroll = function () {
     if(scrollTop >= getOffset(sections[1]).top && !passedNumbers){
       passedNumbers = true;
       animateCounting(dataEstablishments.length, 0, 4000, function(currentValue){
+        console.log(dataEstablishments.length)
         establishmentsNumber.innerHTML = currentValue.formatDot();
       });
       animateCounting(200, 0, 4000, function(currentValue){
@@ -132,14 +133,14 @@ var passScroll = function () {
   }
 
 
-  window.addEventListener('scroll', animateCounting);
-  window.addEventListener('DOMMouseScroll', animateCounting);
-  window.addEventListener('mousewheel', animateCounting);
-  window.addEventListener('wheel', animateCounting);
-  window.addEventListener('DOMContentLoaded', animateCounting);
+  window.addEventListener('scroll', animateNumbers);
+  window.addEventListener('DOMMouseScroll', animateNumbers);
+  window.addEventListener('mousewheel', animateNumbers);
+  window.addEventListener('wheel', animateNumbers);
+  window.addEventListener('DOMContentLoaded', animateNumbers);
 
 }
-*/
+
 
 
 

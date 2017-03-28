@@ -26,14 +26,16 @@
 
 var $ = function(elements){
 	function each(callback){
-		if(elements.length){
-			if(elements.length > 1){
-				[].forEach.call(elements, callback);
+		if(elements){
+			if(elements.length){
+				if(elements.length > 1){
+					[].forEach.call(elements, callback);
+				}else{
+					callback(elements[0], 0);
+				}
 			}else{
-				callback(elements[0], 0);
+				callback(elements, 0);
 			}
-		}else{
-			callback(elements, 0);
 		}
 	}
 

@@ -101,6 +101,29 @@
 }
 
 
+@media (max-width: 600px){
+  .presentation article .main-text h2{
+    font-size: 1.4em;
+  }
+  .presentation article figure figcaption p {
+      font-size: 0.9em;
+  }
+  .presentation article .presentation-text-align{
+    width: 100%;
+    display: inline-block;
+    height: 500px;
+    vertical-align: middle;
+  }
+  .presentation article .presentation-image-align{
+    width: 100%;
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    height: 500px;
+    vertical-align: middle;
+  }
+}
+
 
 
 .general-info{
@@ -166,6 +189,19 @@
 }
 
 
+@media (max-width: 600px){
+
+  .general-info .info-section{
+    width: 100%;
+    padding-right: 15px;
+    margin-top: 45px;
+    margin-bottom: 25px;
+  }
+}
+
+
+
+
 .meet-plaque article{
   height: auto;
   font-size: 0;
@@ -197,8 +233,6 @@
 .meet-plaque article .plaque-explain p{
   font-family: 'Maven Pro', sans-serif;
 }
-
-
 
 
 .plaque-slider-container{
@@ -253,6 +287,30 @@
 }
 
 
+@media (max-width: 800px){
+  .plaque-slider-container{
+    width: 100%;
+    display: block;
+  }
+
+  .meet-plaque article .plaque-slider-container{
+    padding: 15px;
+  }
+
+  .plaque-slider-container .arrow{
+    text-align: center;
+  }
+  .plaque-slider-container .arrow-pass {
+    right: 0;
+  }
+
+  .meet-plaque article .plaque-explain{
+    width: 100%;
+    margin-top: 45px;
+  }
+
+}
+
 
 
 
@@ -289,4 +347,15 @@
 }
 .sponsors-rights article .right p a{
   color: rgb(32, 132, 132);
+}
+
+
+
+
+@media (max-width: 600px){
+  .sponsors-rights article .right{
+    width: 100%;
+    margin-bottom: 40px;
+    padding: 0;
+  }
 }

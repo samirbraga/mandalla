@@ -17,17 +17,6 @@
     width: 250px;
     vertical-align: middle;
   }
-
-  @media (max-width: 600px){
-    .introduce h1{
-      font-size: 1.3em;
-      width: 320px;
-    }
-
-    .introduce h1 span{
-      width: 45%;
-    }
-  }
   .introduce h1 hr{
     display: inline-block;
     height: 50px;
@@ -54,6 +43,10 @@
     height: 40vh;
     background: rgba(58, 180, 180, 1);
     position: relative;
+    padding: 20px;
+  }
+  .welcome header div{
+    vertical-align: top;
   }
   .welcome:after{
     content: '';
@@ -68,6 +61,26 @@
     background-size: contain;
     background-color: transparent;
     background-position: right bottom;
+  }
+
+  @media (max-width: 600px){
+    .introduce h1{
+      font-size: 1.3em;
+      width: 320px;
+    }
+
+    .introduce h1 span{
+      width: 45%;
+    }
+
+    .welcome h2{
+      font-size: 1em !important;
+    }
+
+    .welcome:after{
+      width: 100px;
+      height: 70px;
+    }
   }
 </style>
 

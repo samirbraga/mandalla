@@ -75,7 +75,7 @@ load('models').
 
 // Middlewares
 app.use((req, res, next) => {
-    res.end('not-found/index');
+    res.render('errors/page-not-found');
     next();
 });
 app.use((req, res, next) => {
