@@ -1,12 +1,14 @@
 const clientData = require('./../data/clients'),
 			componentsData = require('./../data/components'),
-			request = require('request');
+			request = require('request'),
+			MobileDetect = require('is-mobile');
 
 module.exports = (app) => {
 	let Establishments = app.models.establishments;
 
 	return {
 		index: (req, res) => {
+			let md = MobileDetect(req);
 
       // const options = {
       //   url: 'https://www.instagram.com/p/BRk-PQ7Dv1d/embed/captioned/?cr=1&v=7',
@@ -37,7 +39,8 @@ module.exports = (app) => {
 						components: componentsData,
 						// data: body,
 						fulldate: dateResponse
-					}
+					},
+					md: md
 				});
 			// })
 		},

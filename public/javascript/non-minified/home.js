@@ -96,11 +96,13 @@ var passScroll = function () {
   })
 }
 
-window.addEventListener('scroll', passScroll);
-window.addEventListener('DOMMouseScroll', passScroll);
-window.addEventListener('mousewheel', passScroll);
-window.addEventListener('wheel', passScroll);
-window.addEventListener('DOMContentLoaded', passScroll);
+if(!mobileDetect){
+  window.addEventListener('scroll', passScroll);
+  window.addEventListener('DOMMouseScroll', passScroll);
+  window.addEventListener('mousewheel', passScroll);
+  window.addEventListener('wheel', passScroll);
+  window.addEventListener('DOMContentLoaded', passScroll);
+}
 
 
 
