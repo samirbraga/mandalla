@@ -43,6 +43,7 @@ var establishmentsNumber = establishments.querySelector('.number');
 var biographiesLength = 200;
 
 
+
 var passedChecker = {};
 
 $(sections).each(function(section, si){
@@ -53,13 +54,12 @@ var passScroll = function () {
 
 	var scrollTop = (body.scrollTop || window.scrollY);
   function getOffset(el) {
-		el = el.getBoundingClientRect();
-		return {
-			left: el.left,
-			top: el.top + scrollTop
-		};
-	}
-
+    el = el.getBoundingClientRect();
+    return {
+      left: el.left,
+      top: el.top + scrollTop
+    };
+  }
   $(sections).each(function(section, si){
     var passed = passedChecker[section.className.split(' ')[0]]
     var offset = parseFloat(section.getAttribute('data-animation-offset')) || 250;
@@ -84,7 +84,7 @@ var passScroll = function () {
       }
       var services = section.querySelectorAll('.animation-point');
       if(services){
-        if(services.length> 0){
+        if(services.length > 0){
           $(services).each(function(service, index){
             setTimeout(function(){
               $(service).class.add('passed');
@@ -96,13 +96,50 @@ var passScroll = function () {
   })
 }
 
-if(!mobileDetect){
+//if(!mobileDetect){
   window.addEventListener('scroll', passScroll);
   window.addEventListener('DOMMouseScroll', passScroll);
   window.addEventListener('mousewheel', passScroll);
   window.addEventListener('wheel', passScroll);
   window.addEventListener('DOMContentLoaded', passScroll);
+/*}else{
+  var passedNumbers = false;
+  function animateCounting(){
+    function getOffset(el) {
+      el = el.getBoundingClientRect();
+      return {
+        left: el.left,
+        top: el.top + scrollTop
+      };
+    }
+  	var scrollTop = (body.scrollTop || window.scrollY);
+    if(scrollTop >= getOffset(sections[1]).top && !passedNumbers){
+      passedNumbers = true;
+      animateCounting(dataEstablishments.length, 0, 4000, function(currentValue){
+        establishmentsNumber.innerHTML = currentValue.formatDot();
+      });
+      animateCounting(200, 0, 4000, function(currentValue){
+        biographiesNumber.innerHTML = "+" + currentValue.formatDot();
+      });
+      animateCounting(followed_byCount, 0, 4000, function(currentValue){
+        followersNumber.innerHTML = currentValue.formatDot();
+      });
+      var time = fulldate.year - 2014;
+      animateCounting(time, 0, 4000, function(currentValue){
+        historyNumber.innerHTML = currentValue;
+      });
+    }
+  }
+
+
+  window.addEventListener('scroll', animateCounting);
+  window.addEventListener('DOMMouseScroll', animateCounting);
+  window.addEventListener('mousewheel', animateCounting);
+  window.addEventListener('wheel', animateCounting);
+  window.addEventListener('DOMContentLoaded', animateCounting);
+
 }
+*/
 
 
 

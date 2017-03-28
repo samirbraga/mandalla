@@ -1,7 +1,9 @@
 module.exports = (app) => {
+	MobileDetect = require('is-mobile');
 	return {
 		index: (req, res) => {
-			res.render('press/index', {});
+			md = MobileDetect(req);
+			res.render('press/index', {md: md});
 		}
 	}
 }

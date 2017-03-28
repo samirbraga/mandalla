@@ -2,6 +2,7 @@ module.exports = (app) => {
   let Establishments = app.models.establishments;
   let AdminUser = app.models.adminUser;
   let Audiographs = app.models.audiographs;
+	let MobileDetect = require('is-mobile');
 
   const multer = require('multer'),
         fs = require('fs'),
@@ -53,8 +54,9 @@ module.exports = (app) => {
 
 	return {
 		index: (req, res) => {
+      md = MobileDetect(req);
       if(req.session.adminUser){
-			  res.render('admin/index', {});
+			  res.render('admin/index', {md: md});
       }else{
         res.redirect('/admin/login')
       }
