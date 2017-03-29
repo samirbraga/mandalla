@@ -89,6 +89,27 @@ body{
   border-radius: 4px;
   overflow: hidden;
 }
+.audiograph-container .load-overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 250, 0.6);
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+}
+.audiograph-container .load-overlay.hidden{
+  display: none;
+}
+.audiograph-container .load-overlay i{
+  position: absolute;
+  display: block;
+  color: #999999;
+  top: 45%;
+  left: 50%;
+  z-index: 55;
+  transform: translate(-50%, -50%);
+}
 .audiograph-container:hover{
   box-shadow: 0px 2px 3px 0 rgba(0,0,0,0.2);
 }
@@ -226,6 +247,17 @@ body{
   width: 0%;
   height: 100%;
   background: rgba(58, 180, 180, 1);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.audio-enclosure .controls-container .time-line-container .range-line .buffer{
+  width: 0%;
+  height: 100%;
+  background: rgba(58, 180, 180, 0.2);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .audio-enclosure .controls-container .time{
   position: absolute;

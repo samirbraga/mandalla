@@ -10,9 +10,12 @@ function loadAgInfo(){
       var rangeLine = container.querySelector('.range-line');
       var timelineContainer = container.querySelector('.time-line-container');
       var progressLine = container.querySelector('.range-line .progress');
+      var bufferLine = container.querySelector('.range-line .buffer');
       var leftControls = container.querySelector('.left-controls');
       var time = container.querySelector('.time');
-
+      var loadOverlay = container.parentNode.parentNode.querySelector('.load-overlay');
+      console.log(time)
+      console.log(loadOverlay)
       /*
       var stopDelay;
       $(audio).on('ended', function(){
@@ -41,6 +44,22 @@ function loadAgInfo(){
           }, 'POST', '/admin/inc-audio-listen-count/' + audioId);
         }
       })
+      $(audio).on('progress', function() {
+        if(audio.buffered.length > 0){
+          var w = 100*(audio.buffered.end(0))/audio.duration;
+          $(bufferLine).css("width", w + "%");
+        }
+      });
+
+      $(audio).on('canplay', function(){
+        $(loadOverlay).class.add('hidden');
+      })
+      $(audio).on('waiting', function() {
+        $(loadOverlay).class.remove('hidden');
+      });
+      $(audio).on('canplaythrough', function() {
+        $(loadOverlay).class.add('hidden');
+      });
       function formatTime(seconds) {
         minutes = Math.floor(seconds / 60);
         minutes = (minutes >= 10) ? minutes : "0" + minutes;
@@ -62,6 +81,10 @@ function loadAgInfo(){
       $(audio).on('timeupdate', function(){
         $(progressLine).css('width', calc.rngWidthByTime() + 'px');
         updateTime();
+        if(audio.buffered.length > 0){
+          var w = 100*(audio.buffered.end(0))/audio.duration;
+          $(bufferLine).css("width", w + "%");
+        }
       })
       var calc = {
         rngWidthByTime: function(){
@@ -99,7 +122,6 @@ function loadAgInfo(){
       var grabbingTime = function(e){
         e.preventDefault();
         if(dragging){
-          console.log(calc.timeByXPos(e.pageX || e.changedTouches[0].pageX));
           audio.currentTime = calc.timeByXPos(e.pageX || e.changedTouches[0].pageX);
         }
       }
@@ -150,6 +172,9 @@ var doSearch = function(e){
   if(JSON.stringify(lastSearchResult) != JSON.stringify(searchResult)){
 
     var agContainertemplate = '<div class="audiograph-container">' +
+                                '<div class="load-overlay hidden" >' +
+                                    '<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>' +
+                                '</div>' +
                                 '<figure class="audiograph-picture" >' +
                                   '<img src="{{instagram_image_url}}" alt="">' +
                                 '</figure>' +
@@ -177,6 +202,7 @@ var doSearch = function(e){
                                       '<div class="time-line-container">' +
                                         '<div class="range-line">' +
                                           '<div class="progress"></div>' +
+                                          '<div class="buffer"></div>' +
                                         '</div>' +
                                       '</div>' +
                                       '<div class="time">' +

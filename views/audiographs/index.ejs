@@ -30,6 +30,9 @@
 			<div class="audiographs-list-container responsive-width m-auto soft-scroll" >
 				<$ audiographs.forEach((ag, index) => { $>
 					<div class="audiograph-container">
+						<div class="load-overlay hidden" >
+							<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+						</div>
             <figure class="audiograph-picture" >
 							<img src="<$- ag.instagram_image_url $>" alt="">
             </figure>
@@ -57,6 +60,7 @@
 									<div class="time-line-container">
 										<div class="range-line">
 											<div class="progress"></div>
+											<span class="buffer"></span>
 										</div>
 									</div>
 									<div class="time">
