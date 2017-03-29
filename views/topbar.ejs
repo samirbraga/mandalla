@@ -25,6 +25,17 @@
 			</nav>
 			<script>
 			(function(){
+
+				var toggleMenuInput = document.querySelector('#toggle-main-menu');
+				var mainMenuIcon = document.querySelector('.main-menu-icon');
+				$(toggleMenuInput).on('change', function(){
+					if(this.checked){
+						$(mainMenuIcon).class.add('checked')
+					}else{
+						$(mainMenuIcon).class.remove('checked')
+					}
+				})
+
 				var topbarMenuOptions = document.querySelectorAll('.topbar-menu-options ul li');
 				var paths = ['/', '/exposicao', '/audiografias', '/imprensa', '/sobre', '/contato'];
 				var pathname = window.location.pathname.match(/^\/[a-z-._#$%&]*/g)[0];
