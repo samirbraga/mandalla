@@ -14,8 +14,6 @@ function loadAgInfo(){
       var leftControls = container.querySelector('.left-controls');
       var time = container.querySelector('.time');
       var loadOverlay = container.parentNode.parentNode.querySelector('.load-overlay');
-      console.log(time)
-      console.log(loadOverlay)
       /*
       var stopDelay;
       $(audio).on('ended', function(){

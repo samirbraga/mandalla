@@ -15,7 +15,7 @@
     </div>
     <div class="tab add" id="add-establishment">
       <h3 class="title">Dados do novo estabelecimento:</h3>
-      <form action="/admin/add-establishment" method="post" accept-charset="utf-8" >
+      <form enctype="multipart/form-data" action="/admin/add-establishment" method="post" accept-charset="utf-8" >
         <label for="name"><i class="fa fa-id-card-o" ></i> Nome:</label>
         <input value="dddd" required="true" type="text" id="name" name="name" class="">
         <label for="site"><i class="fa fa-globe" ></i> Site: <small>(Com <b>https://www.</b>)</small></label>
@@ -30,8 +30,8 @@
         <input value="dddd" required="true" type="text" id="number" name="number" class="">
         <label for="latLng"><i class="fa fa-map-marker" ></i> Latitude e logintude: <small>(Primeiro Latitude, segundo longitude - <b>sepados por vírgula (,)</b>)</small></label>
         <input value="9999, 888" pattern="\s*((-)?[0-9]+(\.[0-9]+)?)\s*,\s*((-)?[0-9]+(\.[0-9]+)?)\s*" type="text" id="latLng" name="latLng" class="" title="Dois números separados por vírgula" required >
-        <!-- <label for="logo"><i class="fa fa-picture-o" ></i> Logo do estabelecimento: <small>(de preferência com fundo transparente)</small></label>
-        <input type="file" id="logo" name="logo" class="" required > -->
+        <label for="logo"><i class="fa fa-picture-o" ></i> Logo do estabelecimento: <small>(de preferência com fundo transparente)</small></label>
+        <input type="file" id="logo" name="logo" class="" required >
         <hr>
         <button type="submit" name="button">ADICIONAR ESTABELECIMENTO &nbsp;
           <i class="fa fa-plus" aria-hidden="true"></i>

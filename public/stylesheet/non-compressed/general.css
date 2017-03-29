@@ -536,12 +536,6 @@ body.no-overflow{
 	input[type="checkbox"]:checked + nav{
 		max-height: 500px !important;
 	}
-	#toggle-main-menu{
-		order: -1;
-	}
-	label ~ input[type="checkbox"]:checked{
-		width: 500px;
-	}
 	.topbar .topbar-side-menu .topbar-menu-options{
 		display: block;
 		position: absolute;

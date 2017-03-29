@@ -1,7 +1,7 @@
 module.exports = (app) => {
 	const audiographsCtrl = app.controllers.audiographs;
+	/*
 	var Audiographs = app.models.audiographs;
-/*
 	const request = require('request');
 
 

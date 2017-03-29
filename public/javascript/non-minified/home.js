@@ -62,7 +62,7 @@ var passScroll = function () {
   }
   $(sections).each(function(section, si){
     var passed = passedChecker[section.className.split(' ')[0]]
-    var offset = parseFloat(section.getAttribute('data-animation-offset')) || 250;
+    var offset = parseFloat(section.getAttribute('data-animation-offset')) || 300;
 
     if (scrollTop > getOffset(section).top - offset && !passed){
       var delay = parseFloat(section.getAttribute('data-animation-delay')) || 100;
@@ -77,7 +77,8 @@ var passScroll = function () {
         animateCounting(followed_byCount, 0, 4000, function(currentValue){
           followersNumber.innerHTML = currentValue.formatDot();
         });
-        var time = fulldate.year - 2014;
+        var time = new Date(fulldate.full).getTime()/8.64e7 - new Date(2014, 9, 1).getTime()/8.64e7;
+        time = Math.floor(Math.roundTo(time, 365)/365);
         animateCounting(time, 0, 4000, function(currentValue){
           historyNumber.innerHTML = currentValue;
         });
@@ -125,7 +126,8 @@ if(mobileDetect == false){
       animateCounting(followed_byCount, 0, 4000, function(currentValue){
         followersNumber.innerHTML = currentValue.formatDot();
       });
-      var time = fulldate.year - 2014;
+      var time = new Date(fulldate.full).getTime()/8.64e7 - new Date(2014, 9, 1).getTime()/8.64e7;
+      time = Math.floor(Math.roundTo(time, 365)/365);
       animateCounting(time, 0, 4000, function(currentValue){
         historyNumber.innerHTML = currentValue;
       });

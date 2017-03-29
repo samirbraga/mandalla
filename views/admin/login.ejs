@@ -15,10 +15,24 @@
 		<script src="/public/javascript/libs/modernizr/modernizr.js" ></script>
 		<script src="/public/javascript/general.js" ></script>
 		<style>
-			body{
-				background: #278e8c;
-				min-height: 100vh;
-			}
+  		body{
+	      background: #18536c;
+	      background: -webkit-linear-gradient(to left, #18536c , #2c8b96);
+	      background: linear-gradient(to left, #18536c , #2c8b96);
+	      position: relative;
+	    }
+	    body:before{
+	      content: '';
+	      position: absolute;
+	      background-image: url('/public/images/icons/city.png');
+	      background-repeat: repeat-x;
+	      background-position: center bottom;
+	      height: 50px;
+	      width: 100%;
+	      bottom: 0;
+	      z-index: 90;
+	      transition: background-position 0.5s ease-out 0.1s;
+	    }
 			.page-wrapper{
 				max-width: 500px;
 				height: auto;

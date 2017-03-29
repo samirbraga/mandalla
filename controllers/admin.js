@@ -1,15 +1,26 @@
 module.exports = (app) => {
-  let Establishments = app.models.establishments;
-  let AdminUser = app.models.adminUser;
-  let Audiographs = app.models.audiographs;
-	let MobileDetect = require('is-mobile');
+  let Establishments = app.models.establishments,
+      AdminUser = app.models.adminUser,
+      Audiographs = app.models.audiographs,
+      MobileDetect = require('is-mobile');
 
-  const multer = require('multer'),
+  const multer1 = require('multer'),
+        multer2 = require('multer'),
         fs = require('fs'),
         request = require('request'),
         path = require('path');
 
-  let storageAudios = multer.diskStorage({
+  let storageEstablishments = multer1.diskStorage({
+    destination: (req, file, callback) => {
+      callback(null, './uploads/establishments-logo');
+    },
+    filename: (req, file, callback) => {
+      callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
+  let uploadEstablishments = multer1({ storage: storageEstablishments }).single('logo');
+
+  let storageAudios = multer2.diskStorage({
     destination: (req, file, callback) => {
       callback(null, './uploads/audiographs');
     },
@@ -17,20 +28,16 @@ module.exports = (app) => {
       callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
   });
-  let uploadAudios = multer({storage: storageAudios}).single('audiographs');
+  let uploadAudios = multer2({ storage: storageAudios }).single('audiographs');
 
 
-  let storageEstablishments = multer.diskStorage({
-    destination: (req, file, callback) => {
-      callback(null, './uploads/establishments-logo');
-    },
-    filename: (req, file, callback) => {
-      console.log( path.extname(file.originalname))
-      callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-  });
-  let uploadEstablishments = multer({storage: storageEstablishments}).single('logo');
-
+  const removeFile = path => {
+    fs.stat(path, (err) => {
+      if(err == null){
+        fs.unlink(path);
+      }
+    })
+  }
 
   // Nodejs encryption with CTR
   let crypto = require('crypto'),
@@ -92,15 +99,14 @@ module.exports = (app) => {
       res.redirect("/admin");
 		},
     addEstablishment: (req, res) => {
-      //uploadEstablishments(req, res, function(err) {
-      //    console.log(req)
-      //  if(err) {
-      //    console.log(err)
-      //    return res.end("error");
-      //  }else{
+      uploadEstablishments(req, res, function(err) {
+        if(err) {
+          console.log(err)
+          return res.end("error");
+        }else{
           var body = JSON.parse(JSON.stringify(req.body));
           body['latLng'] = body['latLng'].replace(/\s+/g, '').split(',').map(el => parseFloat(el));
-          body['logofile'] = 'req.files';
+          body['logofile'] = req.file.filename;
           Establishments.create(body, (err, establishments) => {
             if(err){
               console.log(err)
@@ -109,8 +115,8 @@ module.exports = (app) => {
               res.redirect('/admin');
             }
           })
-      //  }
-      //})
+        }
+      })
     },
     removeEstablishment: (req, res) => {
       var id = req.params.id;
@@ -121,6 +127,7 @@ module.exports = (app) => {
           res.end('error');
         }else{
           establishment.remove();
+          removeFile(rootPath + '/uploads/establishments-logo/' + establishment.logofile);
           res.end('success');
         }
       })
@@ -190,7 +197,7 @@ module.exports = (app) => {
 
               Audiographs.create(body, (err, audiograph) => {
                 if(err){
-                  console.log(err)
+                  console.log(err);
                   res.end('error');
                 }else{
                   res.redirect('/admin');
@@ -211,7 +218,7 @@ module.exports = (app) => {
           console.log(err)
           res.end('error');
         }else{
-          fs.unlink(rootPath + '/uploads/audiographs/' + audiograph.audio_file);
+          removeFile(rootPath + '/uploads/audiographs/' + audiograph.audio_file);
           audiograph.remove();
           res.end('success');
         }
