@@ -7,6 +7,12 @@
 			</a>
 		</div>
 		<div class="topbar-side-menu">
+			<label for="toggle-main-menu" class="main-menu-icon">
+				<span></span>
+				<span></span>
+				<span></span>
+			</label>
+			<input type="checkbox" style="width: 0px; height: 0px; visibility: hidden" id="toggle-main-menu" >
 			<nav class="topbar-menu-options">
 				<ul>
 					<li><a href="/">Início</a></li>
@@ -17,23 +23,21 @@
 					<li><a href="/contato">Contato</a></li>
 				</ul>
 			</nav>
-			<div class="main-menu-icon">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
 			<script>
-				(function(){
-					var topbarMenuOptions = document.querySelectorAll('.topbar-menu-options ul li');
-					var paths = ['/', '/exposicao', '/audiografias', '/imprensa', '/sobre', '/contato'];
-					var pathname = window.location.pathname.match(/^\/[a-z-._#$%&]*/g)[0];
-					var index = paths.indexOf(pathname);
-					if(topbarMenuOptions[index]){
-						$(topbarMenuOptions[index]).class.add('i-am-here');
-					}
-				})();
+			(function(){
+				var topbarMenuOptions = document.querySelectorAll('.topbar-menu-options ul li');
+				var paths = ['/', '/exposicao', '/audiografias', '/imprensa', '/sobre', '/contato'];
+				var pathname = window.location.pathname.match(/^\/[a-z-._#$%&]*/g)[0];
+				var index = paths.indexOf(pathname);
+				if(topbarMenuOptions[index]){
+					$(topbarMenuOptions[index]).class.add('i-am-here');
+				}
+			})();
 			</script>
-			<div class="search-icon">
+			<div class="instagram-icon topbar-menu-icon">
+				<a href="https://www.instagram.com/ruasbiograficas/" ><i class="fa fa-instagram fa-lg"></i></a>
+			</div>
+			<div class="search-icon topbar-menu-icon">
 				<i class="fa fa-search fa-lg"></i>
 			</div>
 		</div>
